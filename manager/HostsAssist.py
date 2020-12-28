@@ -4,6 +4,8 @@
 import requests, re, sys
 from html.parser import HTMLParser
 
+__all__ = ['get_ip_from_domain']
+
 _src_url = r'https://{}.ipaddress.com/{}'
 
 _headers = {
@@ -41,10 +43,11 @@ def get_ip_from_domain(url: str):
     parser = ResponseHandler()
     parser.feed(response.content.decode())
     parser.close()
-    print(parser.ip)
+
+    return parser.ip
 
 if __name__ == '__main__':
-    get_ip_from_domain(sys.argv[1])
+    print(get_ip_from_domain(sys.argv[1]))
 
 # EOF
 
