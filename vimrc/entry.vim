@@ -1,4 +1,6 @@
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"
+"
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
 " the True entry of my vimrc
 "
@@ -13,6 +15,10 @@ exec 'set rtp+=~/.vim'
 
 IncScript basic.vim
 IncScript keymap.vim
-IncScript plugs.vim
+
+" Introduce the plugins if vim-plug installed
+if filereadable(vim_plug_home.'/../autoload/plug.vim')
+    IncScript plugs.vim
+endif
 
 " EOF
