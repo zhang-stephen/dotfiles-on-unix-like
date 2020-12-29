@@ -1,9 +1,9 @@
 #!/bin/python3
 #-*-coding: utf-8 -*-
 
-from . import HostsAssist
+from . import HostsAssist, utility
 
-__all__ = [*HostsAssist.__all__]
+__all__ = ['HostsAssist', 'utility']
 
 # EOF
 
