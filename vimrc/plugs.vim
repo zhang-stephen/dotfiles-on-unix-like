@@ -19,7 +19,7 @@ IncScript plugins/nerdcomment.vim
 " @plugin	ctags and its assistantive tools
 " @config 	./plugins/ctags.vim
 Plug 'ludovicchabant/vim-gutentags'
-Plug 'universal-ctags/ctags'
+Plug 'universal-ctags/ctags', { 'frozen': v:true }
 IncScript plugins/ctags.vim
 
 " @plugin   You-Complete-Me
