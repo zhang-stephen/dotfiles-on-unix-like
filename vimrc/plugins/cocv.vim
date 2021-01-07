@@ -151,6 +151,9 @@ command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 " Add `:OR` command for organize imports of the current buffer.
 command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
 
+"Add `:Mark` command for toggle Bookmark at current line
+command! -nargs=0 Mark  :CocCommand bookmark.toggle
+
 " Add (Neo)Vim's native statusline support.
 " NOTE: Please see `:h coc-status` for integrations with external plugins that
 " provide custom statusline: lightline.vim, vim-airline.m/MaskRay/ccls/issues/455
@@ -174,5 +177,7 @@ nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
 nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
+" Show user's bookmark
+nnoremap <silent><nowait> <space>b  :<C-u>CocList bookmark<CR>
 
 " EOF

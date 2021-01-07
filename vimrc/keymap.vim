@@ -16,10 +16,7 @@ nn <leader>5 5gt
 nn <leader>j gT
 nn <leader>k gt
 
-" editor shortcut
-no <c-c> <esc>y
-no <c-v> <esc>d
-no <c-a> <esc>ggVG
-no <c-y> <c-r>
-nn <c-s> <esc>:w<cr>
+" refresh the screen
+nn <F5> :redraw!<CR>
+
 "" EOF

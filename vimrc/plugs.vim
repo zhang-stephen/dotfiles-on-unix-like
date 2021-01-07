@@ -83,6 +83,16 @@ IncScript plugins/rainbowps.vim
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 IncScript plugins/cocv.vim
 
+" @plugin   fzf and its wrapper
+" @config   None for now
+Plug 'junegunn/fzf'
+Plug 'junegunn/fzf.vim'
+
+" @plugin   python-syntax
+" @config   pyntax.vim
+Plug 'vim-python/python-syntax'
+IncScript plugins/pyntax.vim
+
 call plug#end()
 
 " EOF

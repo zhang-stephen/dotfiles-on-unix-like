@@ -4,5 +4,6 @@
 
 # Filetypes
 *.swp
+.bash_profile
 
 #EOF
