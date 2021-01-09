@@ -39,8 +39,8 @@ IncScript plugins/asyncrun.vim
 
 " @plugin 	LeaderF: full-featured searching tool box
 " @config 	.plugins/leaderf.vim
-Plug 'Yggdroot/LeaderF', { 'do': 'install.sh' }
-IncScript plugins/leaderf.vim
+" Plug 'Yggdroot/LeaderF', { 'do': 'install.sh' }
+" IncScript plugins/leaderf.vim
 
 " @plugin 	fugitive -- git wrapper
 " @config 	None
@@ -65,7 +65,7 @@ Plug 'jackguo380/vim-lsp-cxx-highlight'
 Plug 'jiangmiao/auto-pairs'
 
 " @plugin   altercation/vim-colors-solarized
-" @config   None 
+" @config   None
 Plug 'altercation/vim-colors-solarized'
 IncScript plugins/schemes.vim
 
@@ -92,6 +92,14 @@ Plug 'junegunn/fzf.vim'
 " @config   pyntax.vim
 Plug 'vim-python/python-syntax'
 IncScript plugins/pyntax.vim
+
+" @plugin   vim-startify
+" @config   None
+Plug 'mhinz/vim-startify'
+
+" @plugin   vim-terminal-help
+" @config   None
+Plug 'skywind3000/vim-terminal-help'
 
 call plug#end()
 

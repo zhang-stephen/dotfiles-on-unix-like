@@ -6,29 +6,8 @@
                 ".project",
                 ".github"
         ],
-        "languageserver": {
-                       "ccls":{
-                               "command": "ccls",
-                               "filetypes": [
-                                       "c", "cc", "cpp", "cxx"
-                               ],
-                               "rootPatterns": [
-                                       ".git/",
-                                       ".svn/",
-                                       ".hg/",
-                                       ".ccls",
-                                       "compile_commands.json"
-                               ],
-                               "initializationOptions": {
-                                       "cache": {
-                                                "directory": "/host/workdir/.cache/ccls"
-                                       },
-                                       "highlight": {
-                                               "lsRanges": true
-                                       }
-                               }
-                }
-        },
         "python.linting.enabled": true,
-        "python.linting.pylintEnabled": true
+        "python.linting.pylintEnabled": true,
+        "clangd.checkUpdates": false,
+        "clangd.serverCompletionRanking": true
 }
