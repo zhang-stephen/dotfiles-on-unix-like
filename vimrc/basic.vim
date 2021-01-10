@@ -101,4 +101,7 @@ highlight Pmenu ctermbg=black guibg=black
 " flash whole screen if error occured
 " set visualbellset paste
 
+" change the default viminfo file
+set viminfo='100,n$HOME/.vim/viminfo
+
 " EOF
