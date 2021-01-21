@@ -36,6 +36,10 @@ set autoindent
 " tabsize = 4 space
 set tabstop=4
 set softtabstop=4
+set shiftwidth=4
+
+" disable add comments in newline automatically
+set fo-=cro
 
 " >> = tab, << = shift tab 
 set expandtab

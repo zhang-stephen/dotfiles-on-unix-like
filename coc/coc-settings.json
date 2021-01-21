@@ -1,21 +1,28 @@
 {
-        "diagnostic.warningSign": "!!",
-        "coc.preferences.rootPatterns": [
-                ".git",
-                ".svn",
-                ".project",
-                ".github"
-        ],
-        "python.linting.enabled": true,
-        "python.linting.pylintEnabled": true,
-        "clangd.checkUpdates": false,
-        "clangd.semanticHighlighting": true,
-        "clangd.arguments": [
-                "--pretty",
-                "-j=12",
-                "--pch-storage=memory",
-                "--suggest-missing-includes",
-                "--cross-file-rename",
-                "--background-index"
-        ]
+    // basic settings
+    "diagnostic.warningSign": "!!",
+    "coc.preferences.rootPatterns": [
+        ".git",
+        ".svn",
+        ".project",
+        ".github"
+    ],
+
+    // for coc-pyright
+    "python.linting.enabled": true,
+    "python.linting.pylintEnabled": true,
+
+    // for coc-clangd
+    "clangd.checkUpdates": false,
+    "clangd.semanticHighlighting": true,
+    "clangd.arguments": [
+        "--pretty",
+        "--pch-storage=memory",
+        "--suggest-missing-includes",
+        "--cross-file-rename",
+        "--background-index"
+    ],
+
+    // for coc-sh
+    "sh.enable": false
 }
