@@ -39,8 +39,8 @@ IncScript plugins/asyncrun.vim
 
 " @plugin 	LeaderF: full-featured searching tool box
 " @config 	.plugins/leaderf.vim
-Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }
-IncScript plugins/leaderf.vim
+" Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }
+" IncScript plugins/leaderf.vim
 
 " @plugin 	fugitive -- git wrapper
 " @config 	None
@@ -101,6 +101,11 @@ IncScript plugins/startify.vim
 " @plugin   vim-terminal-help
 " @config   None
 Plug 'skywind3000/vim-terminal-help'
+
+" @plugin   vista.vim
+" @config   vista.vim
+Plug 'liuchengxu/vista.vim'
+IncScript plugins/vista.vim
 
 call plug#end()
 
