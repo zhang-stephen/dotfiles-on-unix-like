@@ -16,7 +16,4 @@ nn <leader>5 5gt
 nn <leader>j gT
 nn <leader>k gt
 
-" refresh the screen
-nn <F5> :redraw!<CR>
-
-"" EOF
+" EOF

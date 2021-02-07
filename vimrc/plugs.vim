@@ -102,11 +102,6 @@ IncScript plugins/startify.vim
 " @config   None
 Plug 'skywind3000/vim-terminal-help'
 
-" @plugin   vista.vim
-" @config   vista.vim
-Plug 'liuchengxu/vista.vim'
-IncScript plugins/vista.vim
-
 call plug#end()
 
 " EOF
