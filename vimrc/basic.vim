@@ -48,7 +48,7 @@ set expandtab
 set number
 
 " show line number where cursor was in, and show other numbers as relative with cursor line
-" set relativenumber
+set relativenumber
 
 " highlight the cursor line
 set cursorline

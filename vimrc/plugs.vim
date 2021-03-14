@@ -99,8 +99,12 @@ Plug 'mhinz/vim-startify'
 IncScript plugins/startify.vim
 
 " @plugin   vim-terminal-help
-" @config   None
+" @config   terminal.vim
 Plug 'skywind3000/vim-terminal-help'
+IncScript plugins/terminal.vim
+
+" @plugin   indentline
+Plug 'yggdroot/indentline'
 
 call plug#end()
 

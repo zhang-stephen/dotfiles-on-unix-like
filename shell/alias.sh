@@ -37,7 +37,7 @@ has_cmd git
 if [[ $? -eq 0 ]]; then
     has_cmd fzf
     if [[ $? -eq 0 ]]; then
-        alias gck='git checkout $(git branch | fzf)'
+        alias gck='git checkout $(git branch -r | fzf)'
     fi
 fi
 
