@@ -12,7 +12,7 @@ syntax enable
 set background=dark
 
 " show current mode in docker bar
-set showmode 
+set showmode
 
 " show command in command mode
 set showcmd
@@ -41,7 +41,7 @@ set shiftwidth=4
 " disable add comments in newline automatically
 set fo-=cro
 
-" >> = tab, << = shift tab 
+" >> = tab, << = shift tab
 set expandtab
 
 " show line number
@@ -53,30 +53,20 @@ set relativenumber
 " highlight the cursor line
 set cursorline
 
-" width per line 
+" width per line
 "set textwidth=80
 
-" auto line wrap, if you want to disable it, use 'set nowtap' 
+" auto line wrap, if you want to disable it, use 'set nowtap'
 set wrap
 
 " line wrap with specific symbols, such as space
 set linebreak
 
-" width between the right end of the line and right edge of screen 
+" width between the right end of the line and right edge of screen
 set wrapmargin=2
 
 " the distance(number of lines) between cursor and the bottom of screen
 set scrolloff=15
-
-" statusbar config:
-" -> always show status bar
-" -> show full path of current file and filetype
-" -> show current and all columns
-" -> show some flags
-" set laststatus=2
-" set statusline=%f%m%r%h%w%=\ [%Y]\ 
-" set statusline+=%{\"[\".(&fenc==\"\"?&enc:&fenc).((exists(\"+bomb\")\ &&\ &bomb)?\"+\":\"\").\"]\"}
-" set statusline+=\ [%{&ff}]\ [%03.3b/0x%02.2B]\ [%L,\ %l-%v][%p%%]
 
 " show position of cursor(line, column)
 " set ruler
@@ -97,15 +87,16 @@ set bs=2
 highlight Pmenu ctermbg=black guibg=black
 
 " ignore the case in search
-" set smartcase
+set smartcase
 
 " enable spelling check for English
 " set spell spelllang=en_us
 
-" flash whole screen if error occured
-" set visualbellset paste
-
 " change the default viminfo file
 set viminfo='100,n$HOME/.vim/viminfo
+
+" code folding by indent and the default fold level is 99
+set foldmethod=indent
+set foldlevel=99
 
 " EOF

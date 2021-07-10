@@ -22,25 +22,14 @@ Plug 'ludovicchabant/vim-gutentags'
 Plug 'universal-ctags/ctags', { 'frozen': v:true }
 IncScript plugins/ctags.vim
 
-" @plugin   You-Complete-Me
-" @config   ./plugins/ycm.vim
-" @note		using clang as completer rather than clangd
-" Plug 'ycm-core/YouCompleteMe', { 'do': 'install.py --clangd-completer' }
-
 " @plugin   Async Run powered by https://github.com/skywind3000
 " @config   ./plugins/asyncrun.vim
 Plug 'skywind3000/asyncrun.vim'
 IncScript plugins/asyncrun.vim
 
-" @plugin   ale
-" @config   ./plugins/ale.vim
-" Plug 'dense-analysis/ale'
-" IncScript plugins/ale.vim
-
-" @plugin 	LeaderF: full-featured searching tool box
-" @config 	.plugins/leaderf.vim
-" Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }
-" IncScript plugins/leaderf.vim
+" @plugin   surround.vim
+" @config   None
+Plug 'tpope/vim-surround'
 
 " @plugin 	fugitive -- git wrapper
 " @config 	None
@@ -51,10 +40,6 @@ Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 IncScript plugins/airline.vim
-
-" @plugin   c/cpp-highlight-enhanced
-" @config   None
-" Plug 'octol/vim-cpp-enhanced-highlight'
 
 " @plugin 	c/cpp highlight based on semantic analyzer
 " @config 	None
