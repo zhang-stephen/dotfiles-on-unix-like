@@ -19,7 +19,8 @@ IncScript plugins/nerdcomment.vim
 " @plugin	ctags and its assistantive tools
 " @config 	./plugins/ctags.vim
 Plug 'ludovicchabant/vim-gutentags'
-Plug 'universal-ctags/ctags', { 'frozen': v:true }
+Plug 'skywind3000/gutentags_plus'
+Plug 'universal-ctags/ctags' " { 'frozen': v:true }
 IncScript plugins/ctags.vim
 
 " @plugin   Async Run powered by https://github.com/skywind3000
