@@ -92,6 +92,12 @@ IncScript plugins/terminal.vim
 " @plugin   indentline
 Plug 'yggdroot/indentline'
 
+" @plugin   rainbow_csv
+Plug 'mechatroner/rainbow_csv'
+
+" Plug 'mattesgroeger/vim-bookmarks'
+" Plug 'itchyny/lightline.vim'
+
 call plug#end()
 
 " EOF

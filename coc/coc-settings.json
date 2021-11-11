@@ -7,6 +7,7 @@
         ".project",
         ".github"
     ],
+    "coc.preferences.semanticTokensHighlights": false,
 
     // for coc-pyright
     "python.linting.enabled": true,

@@ -93,7 +93,11 @@ set smartcase
 " set spell spelllang=en_us
 
 " change the default viminfo file
-set viminfo='100,n$HOME/.vim/viminfo
+if has('nvim')
+    set viminfo='100,n$HOME/.vim/nviminfo
+else
+    set viminfo='100,n$HOME/.vim/viminfo'
+end
 
 " code folding by indent and the default fold level is 99
 set foldmethod=indent
