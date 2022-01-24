@@ -36,7 +36,7 @@ let g:gutentags_ctags_extra_args += ['--c++-kinds=+px']
 let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
 
 " try to make path to store *.ctags
-if !isdirectory(s:vim_tags)
+if filewritable(s:vim_tags) != 2
    silent! call mkdir(s:vim_tags, 'p')
 endif
 

@@ -1,5 +1,4 @@
 {
-    // basic settings
     "diagnostic.warningSign": "!!",
     "coc.preferences.rootPatterns": [
         ".git",
@@ -9,11 +8,16 @@
     ],
     "coc.preferences.semanticTokensHighlights": false,
 
-    // for coc-pyright
+    "codeLens.enable": false,
+
+    "explorer.position": "floating",
+    "explorer.git.enable": false,
+    "explorer.icon.source": "builtin",
+    "explorer.openAction.strategy": "tab",
+
     "python.linting.enabled": true,
     "python.linting.pylintEnabled": true,
 
-    // for coc-clangd
     "clangd.checkUpdates": false,
     "clangd.semanticHighlighting": true,
     "clangd.arguments": [
@@ -24,6 +28,5 @@
         "--background-index"
     ],
 
-    // for coc-sh
     "sh.enable": false
 }

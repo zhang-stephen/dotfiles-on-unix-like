@@ -16,4 +16,6 @@ nn <leader>5 5gt
 nn <leader>j gT
 nn <leader>k gt
 
+map <Caps> <Ctrl>
+
 " EOF
