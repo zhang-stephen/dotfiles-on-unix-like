@@ -42,9 +42,15 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 IncScript plugins/airline.vim
 
-" @plugin 	c/cpp highlight based on semantic analyzer
-" @config 	None
-Plug 'jackguo380/vim-lsp-cxx-highlight'
+
+if has('nvim')
+    Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+    "lua require('plugin-config/nvim-treesitter')
+else
+    " @plugin 	c/cpp highlight based on semantic analyzer
+    " @config 	None
+    Plug 'jackguo380/vim-lsp-cxx-highlight'
+endif
 
 " @plugin   auto-pairs
 " @config   autopairs.vim
