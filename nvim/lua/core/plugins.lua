@@ -145,14 +145,6 @@ plugins.convert_compiled_to_lua = function()
     os.remove(default_compiled)
 end
 
-function plugins.auto_compile()
-     local file = vim.fn.expand('%:p')
-     if file:match(modules_dir) then
-          plugins.clean()
-          plugins.compile()
-     end
-end
-
 plugins.setup = function()
     disable_distribution_plugins()
     Packer.setup()
@@ -167,13 +159,13 @@ plugins.load_compile = function()
     end
 
     vim.api.nvim_command [[ autocmd User PackerComplete lua require('core.plugins').compile() ]]
-    vim.api.nvim_command [[ autocmd User PackerCompileDone lua require('core.plugins').load_compile() ]]
+    -- vim.api.nvim_command [[ autocmd User PackerCompileDone lua require('core.plugins').load_compile() ]]
     vim.api.nvim_command [[ command! PackerCompile lua require('core.plugins').compile() ]]
     vim.api.nvim_command [[ command! PackerInstall lua require('core.plugins').install() ]]
     vim.api.nvim_command [[ command! PackerUpdate lua require('core.plugins').update() ]]
     vim.api.nvim_command [[ command! PackerSync lua require('core.plugins').sync() ]]
     vim.api.nvim_command [[ command! PackerClean lua require('core.plugins').clean() ]]
-    vim.api.nvim_command [[ command! PackerStatus lua require('core.plugins').status() ]]
+    vim.api.nvim_command [[ command! PackerStatus lua require('core.plugins').compile() ('core.plugins').status() ]]
 end
 
 return plugins

@@ -97,11 +97,13 @@ There is a simple implementation of logger, would help debugging.
 
 ### Known Issues
 
-If someone used this configuration,
+If someone used this configuration, welcome PR and issues.
 
 + The *italic* font displays wired on Windows Terminal with `FiraCode NF`,
++ The *italic* font not worked in tmux, if `$TERM=xterm-256color`,
 + The behaviour of extension `indent-blank.nvim` is not expected,
-+ The behaviout of `utility.logger` is not expected in some situations.
++ The behaviour of `utility.logger` is not expected in some situations,
++ `acclerated-jk` and `vim-eft` not worked for now.
 
 ### Roadmap
 

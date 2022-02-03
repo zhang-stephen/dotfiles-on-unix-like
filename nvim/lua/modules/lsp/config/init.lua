@@ -20,19 +20,20 @@ conf.lspconfig = function()
     local util = require('lspconfig.util')
     lsp.ccls.setup {
         init_options = {
-            compilationDatabaseDirectory = 'build',
+            compilationDatabaseDirectory = './',
             index = {
                 threads = 12,
                 comments = 2,
-                onChange = true,
             },
             clang = {
-                excludeArgs = {'-frounding-math'}
+                includeArgs = {'-isystem'},
+                excludeArgs = {'-m*', '-flto*'}
             },
             cache = {
-                directory = '$HOME/.cache/ccls/',
-                format = 'binary'
-            }
+                directory = vim.env['HOME'] .. '/.cache/ccls/',
+                -- format = 'binary',
+                -- retainInMemory = 2,
+            },
         },
         root_dir = util.root_pattern('.git', '.ccls', 'compile_commands.json'),
         -- single_file_support = true, -- seems not support ccls, try clangd in the future
