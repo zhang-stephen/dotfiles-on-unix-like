@@ -1,77 +1,47 @@
 local config = {}
 
-function config.edge()
-    vim.cmd([[set background=dark]])
-    vim.g.edge_style = 'aura'
-    vim.g.edge_enable_italic = 1
-    vim.g.edge_disable_italic_comment = 1
-    vim.g.edge_show_eob = 1
-    vim.g.edge_better_performance = 1
-    vim.g.edge_transparent_background = 1
-end
-
-function config.kanagawa()
-    require('kanagawa').setup({
-        undercurl = true, -- enable undercurls
-        commentStyle = 'italic',
-        functionStyle = 'bold,italic',
-        keywordStyle = 'italic',
-        statementStyle = 'bold',
-        typeStyle = 'NONE',
-        variablebuiltinStyle = 'italic',
-        specialReturn = true, -- special highlight for the return keyword
-        specialException = true, -- special highlight for exception handling keywords
-        transparent = false, -- do not set background color
-        dimInactive = true, -- dim inactive window `:h hl-NormalNC`
-        colors = {},
-        overrides = {},
-    })
-end
-
 config.alpha_nvim = function ()
-    local alpha = require("alpha")
-    local dashboard = require("alpha.themes.dashboard")
+    local alpha = require('alpha')
+    local dashboard = require('alpha.themes.dashboard')
 
     -- Set header
     dashboard.section.header.val = {
-        "                                                     ",
-        "  ███╗   ██╗███████╗ ██████╗ ██╗   ██╗██╗███╗   ███╗ ",
-        "  ████╗  ██║██╔════╝██╔═══██╗██║   ██║██║████╗ ████║ ",
-        "  ██╔██╗ ██║█████╗  ██║   ██║██║   ██║██║██╔████╔██║ ",
-        "  ██║╚██╗██║██╔══╝  ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║ ",
-        "  ██║ ╚████║███████╗╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║ ",
-        "  ╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝ ",
-        "                                                     ",
+        '                                                     ',
+        '  ███╗   ██╗███████╗ ██████╗ ██╗   ██╗██╗███╗   ███╗ ',
+        '  ████╗  ██║██╔════╝██╔═══██╗██║   ██║██║████╗ ████║ ',
+        '  ██╔██╗ ██║█████╗  ██║   ██║██║   ██║██║██╔████╔██║ ',
+        '  ██║╚██╗██║██╔══╝  ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║ ',
+        '  ██║ ╚████║███████╗╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║ ',
+        '  ╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝ ',
+        '                                                     ',
     }
 
     -- Set menu
     dashboard.section.buttons.val = {
-        dashboard.button( "e", "  > New file" , ":ene <BAR> startinsert <CR>"),
-        dashboard.button( "f", "  > Find file", ":cd $HOME/Workspace | Telescope find_files<CR>"),
-        dashboard.button( "r", "  > Recent"   , ":Telescope oldfiles<CR>"),
-        dashboard.button( "s", "  > Settings" , ":e $MYVIMRC | :cd %:p:h | split . | wincmd k | pwd<CR>"),
-        dashboard.button( "q", "  > Quit NVIM", ":qa<CR>"),
+        dashboard.button( 'f', '  > Find file', ':cd ~ | Telescope find_files<CR>'),
+        dashboard.button( 'r', '  > Recent'   , ':Telescope oldfiles<CR>'),
+        dashboard.button( 'q', '  > Quit NVIM', ':qa<CR>'),
     }
 
-    local fortune = require("alpha.fortune")
+    local fortune = require('alpha.fortune')
     dashboard.section.footer.val = fortune()
 
     -- Send config to alpha
     alpha.setup(dashboard.opts)
 
     -- Disable folding on alpha buffer
-    vim.cmd([[
+    vim.api.nvim_command([[
         autocmd FileType alpha setlocal nofoldenable
     ]])
 end
 
 function config.catppuccin()
     require('catppuccin').setup({
-        transparent_background = false,
+        transparent_background = true,
         term_colors = true,
         styles = {
             comments = 'italic',
-            functions = 'italic,bold',
+            functions = 'italic',
             keywords = 'italic',
             strings = 'NONE',
             variables = 'NONE',
@@ -100,9 +70,8 @@ function config.catppuccin()
             telescope = true,
             nvimtree = { enabled = true, show_root = true },
             which_key = true,
-            indent_blankline = { enabled = true, colored_indent_levels = true },
-            -- dashboard = true,
-            alpha = true, -- alpha.nvim
+            indent_blankline = { enabled = true, colored_indent_levels = false },
+            dashboard = true,
             neogit = false,
             vim_sneak = false,
             fern = false,
@@ -321,11 +290,38 @@ function config.gitsigns()
 end
 
 function config.indent_blankline()
-    vim.opt.termguicolors = true
     vim.opt.list = true
+    -- vim.opt.listchars:append('space:⋅')
+    -- vim.opt.listchars:append('eol:↴')
+
     require('indent_blankline').setup({
         char = '│',
+        space_char_blankline = ' ',
+        use_treesitter = true,
         show_first_indent_level = true,
+        show_trailing_blankline_indent = false,
+        show_current_context = true,
+        show_current_context_start = true,
+        buftype_exclude = {
+            'terminal',
+            'nofile'
+        },
+        context_patterns = {
+            'class',
+            'function',
+            'method',
+            'block',
+            'list_literal',
+            'selector',
+            '^if',
+            '^table',
+            'if_statement',
+            'while',
+            'for',
+            'type',
+            'var',
+            'import',
+        },
         filetype_exclude = {
             'startify',
             'dashboard',
@@ -350,29 +346,10 @@ function config.indent_blankline()
             'flutterToolsOutline',
             '', -- for all buffers without a file type
         },
-        buftype_exclude = { 'terminal', 'nofile' },
-        show_trailing_blankline_indent = false,
-        show_current_context = true,
-        context_patterns = {
-            'class',
-            'function',
-            'method',
-            'block',
-            'list_literal',
-            'selector',
-            '^if',
-            '^table',
-            'if_statement',
-            'while',
-            'for',
-            'type',
-            'var',
-            'import',
-        },
-        space_char_blankline = ' ',
     })
     -- because lazy load indent-blankline so need readd this autocmd
-    vim.cmd('autocmd CursorMoved * IndentBlanklineRefresh')
+    vim.api.nvim_command('autocmd BufReadPre * IndentBlanklineEnable')
+    vim.api.nvim_command('autocmd CursorMoved * IndentBlanklineRefresh')
 end
 
 return config

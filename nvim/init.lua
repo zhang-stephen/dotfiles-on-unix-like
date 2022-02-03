@@ -3,7 +3,7 @@
 -- logger initialized, config avalible:
 -- 'DBG', 'INF', 'WRN', 'ERR', 'OFF'(disable all logs)
 -- should be configured as OFF except debugging
-require('utility.logger').init('DBG')
+require('utility.logger').init('OFF')
 
 require('core').setup()
 

@@ -6,53 +6,52 @@ This is a backup of my dotfiles(User Configuation). I am taking a try that manag
 
 There are configurations for the followings now:
 
-+ [VIM](https://github.com/vim/vim): The God of editors(8.2 and later)
-+ [Tmux](https://github.com/tmux/tmux): The multiplexing tool for terminal(2.1 and later)
-+ [Coc.nvim](https://github.com/neoclide/coc.nvim): The truely async plugin framework for VIM and NeoVIM
++ neovim: 0.6.0+ or nightly,
++ tmux 3.1a+,
++ bash 5.8+.
 
-My target is to transplant the configurations between different distributions of Unix-like OS, such as Linux, MacOS X, BSD and etc. And I also will try to transplant it for VIM on MS Windows.
+### Notice
 
-### Designs
+#### vim or nvim?
+The branch `master` keep support for nvim only. You could find common configuration for both vim and nvim in branch [`common_config_for_n_vim`](https://github.com/stark-zhang/dotfiles-on-unix-like/tree/common_config_for_n_vim), It used [coc.nvim](https://github.com/neoclide/coc.nvim) to as LSP clients and to provides more features beyond the vim8. In the new configuration, I used `nvim-lsp` as native LSP clients for higher performance.
 
-The configuration for VIM has been designed to be modular for maintanance. And I'm trying to split the configuration of Tmux.
+#### if you are an user from Windows or macOS...
 
-#### VIM Configuration
+I cannot give a promise that all configuration could work well on all platforms. Test coverage is following:
 
-You can find all of following of this section in `./vimrc`. 
+Config | Neovim | Bash | Z-Shell | Tmux
+:---: | :---: | :---: | :---: | :---:
+Win | Y | N | N | N
+Linux | Y | Y | Y | Y
+macOS | N | N | N | N
 
-Firstly, the `vimrc.unix` is the real entry of this configuration. It provides you a VIM command `IncScript`, just like keyword `import` in Python. In this file, It imports `entry.vim`, which imports `basic.vim`, `keymap.vim`, and `plugs.vim`.
+*The configuration of Z-Shell is coming soon but I have no macOS to test. I think the configuration of nvim could work well on any unix-like system.*
 
-Ok, you got the architecture of VIM configuration. But how does the `IncScript` implement?
+*Linux Distros have been tested: CentOS 7.9, OpenSUSE Tumbleeweed, Ubuntu 20.04 LTS, RaspberryPi OS 11(raspberry Pi 4b)*
 
-```vimscript
-command! -nargs=1 IncScript exec 'so '.fnameescape(s:home."/<args>")
-```
+### Pre-requisites
 
-Then, there are some special variables in `entry.vim`. It declares that the path of VIM plugins must be in `$HOME/.vim/`. I use [vim-plug](https://github.com/junegunn/vim-plug) to manage my plugins and you can see familiar importations in-chain in `plugs.vim`.
+You need to install pre-requisites before applying this configuration in you work environments.
 
-#### Tmux Configration
++ Python 3.6+ for `.py` files, including shell helper and installer, which is coming soon.
 
-None
++ Bash 5.8+ and Tmux 3.1a+ plus for Linux users, they should be avaliable in recent linux distros, or you could compile them manually.
 
-#### Coc.nvim Configuration
++ Neovim 0.6.0+ or nightly for all platforms.
 
-None
++ Git 2.18+ for all platforms.
 
-### How to Use?
+#### Optional
 
-It's very simple.
+You might need the optional pre-requisites for following:
 
-1. Install the dependencies
-	+ VIM 8.2+ and Tmux 2.1+ and Coc.nvim 0.077+
-	+ Install [vim-plug](https://github.com/junegunn/vim-plug) to `$HOME/.vim/autoload`
-	+ Install [Tmux Plugins Manager](https://github.com/tmux-plugins/tpm) to `$HOME/.tmux/plugins/tpm`
-	+ Install Node.js 10.12+
++ Node.js 17.0+ for pyright(the language server for Python),
++ Gcc 7.2.0+ for cpp support,
++ [ccls(libclang-dev)](https://github.com/MaskRay/ccls) as c/c++ language servers,
++ cmake 3.18+ for something compilation.
 
-2. Run the `install.sh`(debugging and will finished soon)
+### Usage, Customizationm Known Issues & Roadmap
 
-3. Apply the configurations
-	+ for VIM, run `$ vim -c "PlugInstall!"` and using `CocInstall` to install coc plugins
+Neovim: [README.md](nvim/README.md)
 
-	+ for Tmux, run `$ tmux` to go into Tmux, and press `<prefix> <S-I>` to install Tmux Plugins
-
-<!-- EOF -->
+Others to be done soon.

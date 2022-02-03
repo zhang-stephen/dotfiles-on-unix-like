@@ -77,16 +77,12 @@ Packer.setup = function()
     local loading = function(use)
         use({
             'wbthomason/packer.nvim',
-            opt = true
+           opt = true
         })
 
         for group, modules in pairs(require('modules')) do
             for repo, spec in pairs(modules) do
-                if spec then
-                    use(vim.tbl_extend('force', {repo}, spec))
-                else
-                    use(repo)
-                end
+                use(vim.tbl_extend('force', {repo}, spec))
             end
         end
     end
@@ -114,6 +110,7 @@ Packer.setup = function()
 
     loading(packer.use)
     packer.install()
+    -- packer.compile()
 end
 
 plugins.convert_compiled_to_lua = function()
@@ -149,18 +146,16 @@ plugins.convert_compiled_to_lua = function()
 end
 
 function plugins.auto_compile()
-     local file = vim.fn.expand("%:p")
+     local file = vim.fn.expand('%:p')
      if file:match(modules_dir) then
           plugins.clean()
           plugins.compile()
      end
 end
 
-
 plugins.setup = function()
     disable_distribution_plugins()
     Packer.setup()
-    plugins.compile()
     plugins.load_compile()
 end
 
@@ -171,12 +166,14 @@ plugins.load_compile = function()
         assert('Missing packer compile file Run PackerCompile Or PackerInstall to fix')
     end
 
-    vim.cmd [[ command! PackerCompile lua require('core.plugins').user_compile() ]]
-    vim.cmd [[ command! PackerInstall lua require('core.plugins').install() ]]
-    vim.cmd [[ command! PackerUpdate lua require('core.plugins').update() ]]
-    vim.cmd [[ command! PackerSync lua require('core.plugins').sync() ]]
-    vim.cmd [[ command! PackerClean lua require('core.plugins').clean() ]]
-    vim.cmd [[ command! PackerStatus lua require('core.plugins').status() ]]
+    vim.api.nvim_command [[ autocmd User PackerComplete lua require('core.plugins').compile() ]]
+    vim.api.nvim_command [[ autocmd User PackerCompileDone lua require('core.plugins').load_compile() ]]
+    vim.api.nvim_command [[ command! PackerCompile lua require('core.plugins').compile() ]]
+    vim.api.nvim_command [[ command! PackerInstall lua require('core.plugins').install() ]]
+    vim.api.nvim_command [[ command! PackerUpdate lua require('core.plugins').update() ]]
+    vim.api.nvim_command [[ command! PackerSync lua require('core.plugins').sync() ]]
+    vim.api.nvim_command [[ command! PackerClean lua require('core.plugins').clean() ]]
+    vim.api.nvim_command [[ command! PackerStatus lua require('core.plugins').status() ]]
 end
 
 return plugins

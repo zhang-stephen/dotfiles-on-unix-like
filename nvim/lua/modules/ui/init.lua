@@ -4,14 +4,6 @@ local conf = require('modules.ui.config')
 ui['kyazdani42/nvim-web-devicons'] = {
     opt = false
 }
-ui['sainnhe/edge'] = {
-    opt = false,
-    config = conf.edge
-}
-ui['rebelot/kanagawa.nvim'] = {
-    opt = false,
-    config = conf.kanagawa
-}
 ui['catppuccin/nvim'] = {
     opt = false,
     as = 'catppuccin',
@@ -47,7 +39,8 @@ ui['lewis6991/gitsigns.nvim'] = {
 }
 ui['lukas-reineke/indent-blankline.nvim'] = {
     opt = true,
-    event = 'BufRead',
+    event = 'BufReadPre',
+    after = 'nvim-treesitter',
     config = conf.indent_blankline
 }
 ui['akinsho/nvim-bufferline.lua'] = {

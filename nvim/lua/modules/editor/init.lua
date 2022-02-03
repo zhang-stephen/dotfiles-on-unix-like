@@ -9,13 +9,7 @@ editor['itchyny/vim-cursorword'] = {
 }
 editor['terrortylor/nvim-comment'] = {
     opt = false,
-    config = function()
-        require('nvim_comment').setup({
-            hook = function()
-                require('ts_context_commentstring.internal').update_commentstring()
-            end,
-        })
-    end,
+    config = conf.nvim_comment,
 }
 editor['simrat39/symbols-outline.nvim'] = {
     opt = true,
@@ -23,9 +17,7 @@ editor['simrat39/symbols-outline.nvim'] = {
     config = conf.symbols_outline,
 }
 editor['nvim-treesitter/nvim-treesitter'] = {
-    opt = true,
     run = ':TSUpdate',
-    event = {'BufReadPre', 'BufWinEnter'},
     config = conf.nvim_treesitter,
 }
 editor['nvim-treesitter/nvim-treesitter-textobjects'] = {
@@ -52,6 +44,7 @@ editor['mfussenegger/nvim-ts-hint-textobject'] = {
 editor['SmiteshP/nvim-gps'] = {
     opt = true,
     after = 'nvim-treesitter',
+    event = {'BufNewFile', 'BufReadPre', 'BufWinEnter'},
     config = conf.nvim_gps,
 }
 editor['windwp/nvim-ts-autotag'] = {

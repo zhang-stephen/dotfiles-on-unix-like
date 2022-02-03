@@ -3,7 +3,7 @@ local rhs_options = {}
 
 function rhs_options:new()
     local instance = {
-        cmd = "",
+        cmd = '',
         options = {
             noremap = true,
             silent = false,
@@ -22,17 +22,17 @@ function rhs_options:map_cmd(cmd_string)
 end
 
 function rhs_options:map_cr(cmd_string)
-    self.cmd = (":%s<CR>"):format(cmd_string)
+    self.cmd = (':%s<CR>'):format(cmd_string)
     return self
 end
 
 function rhs_options:map_args(cmd_string)
-    self.cmd = (":%s<Space>"):format(cmd_string)
+    self.cmd = (':%s<Space>'):format(cmd_string)
     return self
 end
 
 function rhs_options:map_cu(cmd_string)
-    self.cmd = (":<C-u>%s<CR>"):format(cmd_string)
+    self.cmd = (':<C-u>%s<CR>'):format(cmd_string)
     return self
 end
 
@@ -80,8 +80,8 @@ end
 
 function pbind.nvim_load_mapping(mapping)
     for key, value in pairs(mapping) do
-        local mode, keymap = key:match("([^|]*)|?(.*)")
-        if type(value) == "table" then
+        local mode, keymap = key:match('([^|]*)|?(.*)')
+        if type(value) == 'table' then
             local rhs = value.cmd
             local options = value.options
             vim.api.nvim_set_keymap(mode, keymap, rhs, options)

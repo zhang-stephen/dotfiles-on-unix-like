@@ -18,7 +18,7 @@ options.configuration = {
         splitbelow = true,
         splitright = true,
         grepformat = '%f:%l:%c:%m',
-        grepprg = 'rg --hidden --vimgrep --smart-case --'
+        -- grepprg = 'rg --hidden --vimgrep --smart-case --'
     },
 
     buffwin = {
@@ -44,7 +44,7 @@ options.configuration = {
         hlsearch = true,
         incsearch = true,
         cursorline = true,
-        cursorcolumn = true,
+        cursorcolumn = false,
         showcmd = true,
         cmdwinheight = 5,
         equalalways = false,
@@ -57,12 +57,22 @@ options.configuration = {
     cmds = {'filetype indent on', 'highlight Pmenu ctermbg=black guibg=black'}
 }
 
+local bind_option = function(options)
+    for k, v in pairs(options) do
+        if v == true then
+            vim.cmd('set ' .. k)
+        elseif v == false then
+            vim.cmd('set no' .. k)
+        else
+            vim.cmd('set ' .. k .. '=' .. v)
+        end
+    end
+end
+
 options.setup = function()
     for group, confs in pairs(options.configuration) do
         if group ~= 'cmds' then
-            for opt, val in pairs(confs) do
-                vim.api.nvim_set_option(opt, val)
-            end
+            bind_option(confs)
         else
             for _, cmd in ipairs(confs) do
                 vim.api.nvim_command(cmd)

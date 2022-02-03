@@ -134,19 +134,25 @@ end
 function config.vim_cursorwod()
     vim.api.nvim_command('augroup user_plugin_cursorword')
     vim.api.nvim_command('autocmd!')
-    vim.api.nvim_command('autocmd FileType NvimTree,lspsagafinder,dashboard let b:cursorword = 0')
+    vim.api.nvim_command('autocmd FileType NvimTree,lspsagafinder,alpha let b:cursorword = 0')
     vim.api.nvim_command('autocmd WinEnter * if &diff || &pvw | let b:cursorword = 0 | endif')
     vim.api.nvim_command('autocmd InsertEnter * let b:cursorword = 0')
     vim.api.nvim_command('autocmd InsertLeave * let b:cursorword = 1')
     vim.api.nvim_command('augroup END')
 end
 
+function config.nvim_comment()
+    vim.api.nvim_command [[autocmd! FileType c,cpp :lua vim.api.nvim_buf_set_option(0, 'commentstring', '// %s')]]
+    require('nvim_comment').setup()
+end
+
 function config.nvim_treesitter()
-    -- vim.api.nvim_command('set foldmethod=expr')
-    -- vim.api.nvim_command('set foldexpr=nvim_treesitter#foldexpr()')
+    vim.api.nvim_command('set foldmethod=expr')
+    vim.api.nvim_command('set foldexpr=nvim_treesitter#foldexpr()')
 
     require('nvim-treesitter.configs').setup({
-        ensure_installed = {'c', 'cpp', 'json', 'python', 'rust', 'yaml', 'toml', 'lua'},
+        ensure_installed = {'c', 'cpp', 'json', 'python', 'rust', 'yaml', 'toml', 'lua', 'cmake', 'make'},
+        -- ensure_installed = 'maintained',
         highlight = {
             enable = true,
             disable = {'vim'}
@@ -199,10 +205,13 @@ function config.nvim_treesitter()
             throttle = true
         }
     })
+
+    -- prefer git rather than curl to install parsers
+    require('nvim-treesitter.install').prefer_git = true
 end
 
 function config.matchup()
-    vim.cmd([[let g:matchup_matchparen_offscreen = {'method': 'popup'}]])
+    vim.api.nvim_command([[let g:matchup_matchparen_offscreen = {'method': 'popup'}]])
 end
 
 function config.nvim_gps()
