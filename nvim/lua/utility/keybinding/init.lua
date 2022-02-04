@@ -1,4 +1,3 @@
-local log = require('utility.logger')
 local rhs_options = {}
 
 function rhs_options:new()

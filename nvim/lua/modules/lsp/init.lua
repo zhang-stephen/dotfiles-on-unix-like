@@ -22,7 +22,6 @@ lsp['kosayoda/nvim-lightbulb'] = {
     config = conf.lightbulb,
 }
 lsp['ray-x/lsp_signature.nvim'] = { opt = true, after = 'nvim-lspconfig' }
--- lsp['hrsh7th/cmp-nvim-lsp'] = {opt = false}
 lsp['hrsh7th/nvim-cmp'] = {
     config = conf.cmp,
     -- opt = true,

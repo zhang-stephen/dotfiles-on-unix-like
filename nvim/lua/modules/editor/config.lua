@@ -151,7 +151,7 @@ function config.nvim_treesitter()
     vim.api.nvim_command('set foldexpr=nvim_treesitter#foldexpr()')
 
     require('nvim-treesitter.configs').setup({
-        ensure_installed = {'c', 'cpp', 'json', 'python', 'rust', 'yaml', 'toml', 'lua', 'cmake', 'make'},
+        ensure_installed = {'c', 'cpp', 'json', 'python', 'rust', 'yaml', 'toml', 'lua', 'cmake', 'make', 'vim', 'bash'},
         -- ensure_installed = 'maintained',
         highlight = {
             enable = true,

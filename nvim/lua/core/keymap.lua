@@ -17,7 +17,7 @@ keymap.init = function ()
     end
 
     _G.enhance_jk_move = function(key)
-        local map = key == 'j' and '<Plug>(accelerated_jk_gj)' or '<Plug>(accelerated_jk_gk)'
+        local map = key == 'j' and '<Plug>(accelerated_jk_gj_position)' or '<Plug>(accelerated_jk_gk_position)'
         return t(map)
     end
 
@@ -123,26 +123,25 @@ keymap.init = function ()
         ['n|<A-/>'] = map_cr('CommentToggle'):with_silent(),
 
         -- Hop
-        ['n|<leader>w'] = map_cu('HopWord'),
-        ['n|<leader>j'] = map_cu('HopLine'),
-        ['n|<leader>k'] = map_cu('HopLine'),
-        ['n|<leader>c'] = map_cu('HopChar1'),
-        ['n|<leader>cc'] = map_cu('HopChar2'),
+        ['n|<leader>w'] = map_cu('HopWord'):with_nowait():with_silent(),
+        ['n|<leader>l'] = map_cu('HopLine'):with_nowait():with_silent(),
+        ['n|<leader>c'] = map_cu('HopChar1'):with_nowait():with_silent(),
+        ['n|<leader>cc'] = map_cu('HopChar2'):with_nowait():with_silent(),
 
         -- accelerate-jk
-        ['n|j'] = map_cmd [[v:lua.enhance_jk_move('j')]]:with_silent():with_expr(),
-        ['n|k'] = map_cmd [[v:lua.enhance_jk_move('k')]]:with_silent():with_expr(),
+        ['n|j'] = map_cmd [[v:lua.enhance_jk_move('j')]]:with_silent():with_expr():with_recursive(),
+        ['n|k'] = map_cmd [[v:lua.enhance_jk_move('k')]]:with_silent():with_expr():with_recursive(),
 
         -- vim-eft
-        ['n|f'] = map_cmd [[v:lua.enhance_ft_move('f')]]:with_expr(),
-        ['n|F'] = map_cmd [[v:lua.enhance_ft_move('F')]]:with_expr(),
-        ['n|t'] = map_cmd [[v:lua.enhance_ft_move('t')]]:with_expr(),
-        ['n|T'] = map_cmd [[v:lua.enhance_ft_move('T')]]:with_expr(),
-        ['n|;'] = map_cmd [[v:lua.enhance_ft_move(';')]]:with_expr(),
+        ['n|f'] = map_cmd [[v:lua.enhance_ft_move('f')]]:with_expr():with_recursive(),
+        ['n|F'] = map_cmd [[v:lua.enhance_ft_move('F')]]:with_expr():with_recursive(),
+        ['n|t'] = map_cmd [[v:lua.enhance_ft_move('t')]]:with_expr():with_recursive(),
+        ['n|T'] = map_cmd [[v:lua.enhance_ft_move('T')]]:with_expr():with_recursive(),
+        ['n|;'] = map_cmd [[v:lua.enhance_ft_move(';')]]:with_expr():with_recursive(),
 
         -- Plugin EasyAlign
-        ['n|ga'] = map_cmd [['v:lua.enhance_align('nga')]]:with_expr(),
-        ['x|ga'] = map_cmd [[v:lua.enhance_align('xga')]]:with_expr(),
+        ['n|ga'] = map_cmd [['v:lua.enhance_align('nga')]]:with_expr():with_recursive(),
+        ['x|ga'] = map_cmd [[v:lua.enhance_align('xga')]]:with_expr():with_recursive(),
 
         -- bufferline
         ['n|gb'] = map_cr('BufferLinePick'):with_silent(),

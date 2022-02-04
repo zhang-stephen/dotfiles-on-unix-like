@@ -36,7 +36,8 @@ local definitions = {
         { 'BufWritePre', 'MERGE_MSG', 'setlocal noundofile' },
         { 'BufWritePre', '*.tmp', 'setlocal noundofile' },
         { 'BufWritePre', '*.bak', 'setlocal noundofile' },
-        { 'BufEnter', '*', 'silent! lcd %:p:h' }, -- auto place to last edit
+        -- FIXME: raise E201/E434 when buffer changed, e.g. run `:h something`
+        -- { 'BufEnter', '*', 'silent! lcd %:p:h' }, -- auto place to last edit
     },
 }
 
