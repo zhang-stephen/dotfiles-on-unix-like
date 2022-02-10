@@ -47,38 +47,19 @@ function config.catppuccin()
             variables = 'NONE',
         },
         integrations = {
-            treesitter = true,
             native_lsp = {
-                enabled = true,
                 virtual_text = {
                     errors = 'NONE',
                     hints = 'NONE',
                     warnings = 'NONE',
                     information = 'NONE',
                 },
-                underlines = {
-                    errors = 'underline',
-                    hints = 'underline',
-                    warnings = 'underline',
-                    information = 'underline',
-                },
             },
             lsp_trouble = true,
             lsp_saga = true,
-            gitgutter = false,
-            gitsigns = true,
-            telescope = true,
-            nvimtree = { enabled = true, show_root = true },
+            nvimtree = { show_root = true },
             which_key = true,
-            indent_blankline = { enabled = true, colored_indent_levels = true },
-            dashboard = true,
-            neogit = false,
-            vim_sneak = false,
-            fern = false,
-            barbar = false,
-            bufferline = true,
-            markdown = true,
-            lightspeed = false,
+            indent_blankline = { colored_indent_levels = true },
             ts_rainbow = true,
             hop = true,
         },
@@ -222,38 +203,6 @@ end
 
 function config.gitsigns()
     require('gitsigns').setup({
-        signs = {
-            add = {
-                hl = 'GitSignsAdd',
-                text = '│',
-                numhl = 'GitSignsAddNr',
-                linehl = 'GitSignsAddLn',
-            },
-            change = {
-                hl = 'GitSignsChange',
-                text = '│',
-                numhl = 'GitSignsChangeNr',
-                linehl = 'GitSignsChangeLn',
-            },
-            delete = {
-                hl = 'GitSignsDelete',
-                text = '_',
-                numhl = 'GitSignsDeleteNr',
-                linehl = 'GitSignsDeleteLn',
-            },
-            topdelete = {
-                hl = 'GitSignsDelete',
-                text = '‾',
-                numhl = 'GitSignsDeleteNr',
-                linehl = 'GitSignsDeleteLn',
-            },
-            changedelete = {
-                hl = 'GitSignsChange',
-                text = '~',
-                numhl = 'GitSignsChangeNr',
-                linehl = 'GitSignsChangeLn',
-            },
-        },
         keymaps = {
             -- Default keymap options
             noremap = true,

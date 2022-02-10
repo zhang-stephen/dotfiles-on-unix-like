@@ -95,8 +95,8 @@ keymap.init = function ()
         -- nvim-lspconfig, nvim-lspinstaller, lspsaga, nvim-lsp, ...
         ['n|<leader>li'] = map_cr('LspInfo'):with_silent():with_nowait(),
         ['n|<leader>lr'] = map_cr('LspRestart'):with_silent():with_nowait(),
-        ['n|g['] = map_cr('Lspsaga diagnostic_jump_next'):with_silent(),
-        ['n|g]'] = map_cr('Lspsaga diagnostic_jump_prev'):with_silent(),
+        ['n|g['] = map_cr('Lspsaga diagnostic_jump_prev'):with_silent(),
+        ['n|g]'] = map_cr('Lspsaga diagnostic_jump_next'):with_silent(),
         ['n|gs'] = map_cr('Lspsaga signature_help'):with_silent(),
         ['n|<leader>rn'] = map_cr('Lspsaga rename'):with_silent(),
         ['n|K'] = map_cr('Lspsaga hover_doc'):with_silent(),
@@ -104,16 +104,15 @@ keymap.init = function ()
         ['n|<C-Down>'] = map_cr [[lua require('lspsaga.action').smart_scroll_with_saga(1)]]:with_silent(),
         ['n|<leader>ca'] = map_cr('Lspsaga code_action'):with_silent(),
         ['v|<leader>ca'] = map_cu('Lspsaga range_code_action'):with_silent(),
-        ['n|gd'] = map_cr('Lspsaga preview_definition'):with_silent(),
-        ['n|gD'] = map_cr('lua vim.lsp.buf.definition()'):with_silent(),
-        ['n|gr'] = map_cr('lua vim.lsp.buf.references()'):with_silent(),
+        ['n|gp'] = map_cr('Lspsaga preview_definition'):with_silent(),
+        ['n|gd'] = map_cr('lua vim.lsp.buf.definition()'):with_silent(),
 
         -- SymbolsOutline
         ['n|<leader>o'] = map_cu('SymbolsOutline'):with_silent(),
 
         -- Trouble
         ['n|gt'] = map_cr('TroubleToggle'):with_silent(),
-        ['n|gR'] = map_cr('TroubleToggle lsp_references'):with_silent(),
+        ['n|gr'] = map_cr('TroubleToggle lsp_references'):with_silent(),
         ['n|<leader>cd'] = map_cr('TroubleToggle lsp_document_diagnostics'):with_silent(),
         ['n|<leader>cw'] = map_cr('TroubleToggle lsp_workspace_diagnostics'):with_silent(),
         ['n|<leader>cq'] = map_cr('TroubleToggle quickfix'):with_silent(),

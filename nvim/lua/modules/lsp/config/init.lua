@@ -74,6 +74,9 @@ conf.lspconfig = function()
         -- toml
         ['taplo'] = function(opts) end,
 
+        -- markdown
+        ['zk'] = function(opts) end,
+
         ['vimls'] = function(opts) end,
 
         -- XML
