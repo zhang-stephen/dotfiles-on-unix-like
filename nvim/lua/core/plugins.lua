@@ -2,9 +2,7 @@ local Packer = {}
 local log = require('utility.logger')
 
 local nvim_data_path = vim.fn.stdpath('data') .. '/site'
--- local default_compiled = nvim_data_path .. '/packer_compiled.vim'
 local default_compiled = nvim_data_path .. '/lua/_compiled.lua'
-local optimized_compiled = nvim_data_path .. '/lua/_compiled.lua'
 local packer = nil
 
 local disable_distribution_plugins = function()
@@ -39,11 +37,6 @@ local plugins = setmetatable({}, {
         return packer[key]
     end
 })
-
-local is_nvim_compatible = function()
-    -- FIXME: method doesn't adapt to nvim 0.6+
-    return vim.api.nvim_call_function('has', {'nvim-0.5'}) ~= 1
-end
 
 Packer.bootstrap = function()
     Packer.manager = {
@@ -80,7 +73,7 @@ Packer.setup = function()
            opt = true
         })
 
-        for group, modules in pairs(require('modules')) do
+        for _, modules in pairs(require('modules')) do
             for repo, spec in pairs(modules) do
                 use(vim.tbl_extend('force', {repo}, spec))
             end
@@ -92,11 +85,9 @@ Packer.setup = function()
     packer = require(Packer.manager.name)
     packer.init({
         compile_path = default_compiled,
-        max_job = 32,
         git = {
-            clone_timeout = 120
+            clone_timeout = 60
         },
-        disable_commands = true,
         display = {
             open_fn = function()
                 return require('packer.util').float({
@@ -110,62 +101,13 @@ Packer.setup = function()
 
     loading(packer.use)
     packer.install()
-    -- packer.compile()
-end
-
-plugins.convert_compiled_to_lua = function()
-    local lines = {}
-    local lnum = 1
-    lines[#lines + 1] = 'vim.cmd [[packadd packer.nvim]]\n'
-
-    for line in io.lines(default_compiled) do
-        lnum = lnum + 1
-        if lnum > 15 then
-            if line == 'END' then
-                break
-            end
-            lines[#lines + 1] = line .. '\n'
-        end
-    end
-
-    if vim.fn.isdirectory(nvim_data_path .. '/lua') ~= 1 then
-        os.execute(string.format('mkdir -p %s/lua', nvim_data_path))
-    end
-
-    if vim.fn.filereadable(optimized_compiled) == 1 then
-        os.rename(optimized_compiled, optimized_compiled .. '.bak')
-    end
-
-    local file = io.open(optimized_compiled, 'w')
-    for _, line in ipairs(lines) do
-        file:write(line)
-    end
-    file:close()
-
-    os.remove(default_compiled)
+    packer.compile()
 end
 
 plugins.setup = function()
     disable_distribution_plugins()
     Packer.setup()
-    plugins.load_compile()
-end
-
-plugins.load_compile = function()
-    if vim.fn.filereadable(optimized_compiled) == 1 then
-        require('_compiled')
-    else
-        assert('Missing packer compile file Run PackerCompile Or PackerInstall to fix')
-    end
-
-    vim.api.nvim_command [[ autocmd User PackerComplete lua require('core.plugins').compile() ]]
-    -- vim.api.nvim_command [[ autocmd User PackerCompileDone lua require('core.plugins').load_compile() ]]
-    vim.api.nvim_command [[ command! PackerCompile lua require('core.plugins').compile() ]]
-    vim.api.nvim_command [[ command! PackerInstall lua require('core.plugins').install() ]]
-    vim.api.nvim_command [[ command! PackerUpdate lua require('core.plugins').update() ]]
-    vim.api.nvim_command [[ command! PackerSync lua require('core.plugins').sync() ]]
-    vim.api.nvim_command [[ command! PackerClean lua require('core.plugins').clean() ]]
-    vim.api.nvim_command [[ command! PackerStatus lua require('core.plugins').compile() ('core.plugins').status() ]]
+    require('_compiled')
 end
 
 return plugins

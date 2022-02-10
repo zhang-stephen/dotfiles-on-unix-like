@@ -70,7 +70,7 @@ function config.catppuccin()
             telescope = true,
             nvimtree = { enabled = true, show_root = true },
             which_key = true,
-            indent_blankline = { enabled = true, colored_indent_levels = false },
+            indent_blankline = { enabled = true, colored_indent_levels = true },
             dashboard = true,
             neogit = false,
             vim_sneak = false,

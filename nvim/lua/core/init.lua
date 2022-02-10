@@ -7,12 +7,18 @@ local core = {
     }
 }
 
-function core.setup()
-    for _, conf in ipairs(core.config) do
-        conf.setup()
-    end
+local is_nvim_compatible = function()
+    return vim.fn.has('nvim-0.6')
+end
 
-    vim.api.nvim_command [[ colorscheme catppuccin ]]
+function core.setup()
+   if is_nvim_compatible() then
+        for _, conf in ipairs(core.config) do
+            conf.setup()
+        end
+
+        vim.api.nvim_command [[ colorscheme catppuccin ]]
+   end
 end
 
 return core
