@@ -11,11 +11,11 @@ function config.telescope()
             layout_config = {
                 horizontal = {
                     prompt_position = 'bottom',
-                    results_width = 0.6
+                    results_width = 0.6,
                 },
                 vertical = {
-                    mirror = false
-                }
+                    mirror = false,
+                },
             },
             file_previewer = require('telescope.previewers').vim_buffer_cat.new,
             grep_previewer = require('telescope.previewers').vim_buffer_vimgrep.new,
@@ -23,15 +23,15 @@ function config.telescope()
             file_sorter = require('telescope.sorters').get_fuzzy_file,
             file_ignore_patterns = {},
             generic_sorter = require('telescope.sorters').get_generic_fuzzy_sorter,
-            path_display = {'absolute'},
+            path_display = { 'absolute' },
             winblend = 0,
             border = {},
-            borderchars = {'─', '│', '─', '│', '╭', '╮', '╯', '╰'},
+            borderchars = { '─', '│', '─', '│', '╭', '╮', '╯', '╰' },
             color_devicons = true,
             use_less = true,
             set_env = {
-                ['COLORTERM'] = 'truecolor'
-            }
+                ['COLORTERM'] = 'truecolor',
+            },
         },
 
         extensions = {
@@ -39,10 +39,10 @@ function config.telescope()
                 fuzzy = false, -- false will only do exact matching
                 override_generic_sorter = true, -- override the generic sorter
                 override_file_sorter = true, -- override the file sorter
-                case_mode = 'smart_case' -- or 'ignore_case' or 'respect_case'
+                case_mode = 'smart_case', -- or 'ignore_case' or 'respect_case'
                 -- the default case_mode is 'smart_case'
-            }
-        }
+            },
+        },
     })
 
     require('telescope').load_extension('fzf')
@@ -64,20 +64,20 @@ function config.trouble()
             close = 'q', -- close the list
             cancel = '<esc>', -- cancel the preview and get back to your last window / buffer / cursor
             refresh = 'r', -- manually refresh
-            jump = {'<cr>', '<tab>'}, -- jump to the diagnostic or open / close folds
-            open_split = {'<c-x>'}, -- open buffer in new split
-            open_vsplit = {'<c-v>'}, -- open buffer in new vsplit
-            open_tab = {'<c-t>'}, -- open buffer in new tab
-            jump_close = {'o'}, -- jump to the diagnostic and close the list
+            jump = { '<cr>', '<tab>' }, -- jump to the diagnostic or open / close folds
+            open_split = { '<c-x>' }, -- open buffer in new split
+            open_vsplit = { '<c-v>' }, -- open buffer in new vsplit
+            open_tab = { '<c-t>' }, -- open buffer in new tab
+            jump_close = { 'o' }, -- jump to the diagnostic and close the list
             toggle_mode = 'm', -- toggle between 'workspace' and 'document' diagnostics mode
             toggle_preview = 'P', -- toggle auto_preview
             hover = 'K', -- opens a small popup with the full multiline message
             preview = 'p', -- preview the diagnostic location
-            close_folds = {'zM', 'zm'}, -- close all folds
-            open_folds = {'zR', 'zr'}, -- open all folds
-            toggle_fold = {'zA', 'za'}, -- toggle fold of current file
+            close_folds = { 'zM', 'zm' }, -- close all folds
+            open_folds = { 'zR', 'zr' }, -- open all folds
+            toggle_fold = { 'zA', 'za' }, -- toggle fold of current file
             previous = 'k', -- preview item
-            next = 'j' -- next item
+            next = 'j', -- next item
         },
         indent_lines = true, -- add an indent guide below the fold icons
         auto_open = false, -- automatically open the list when you have diagnostics
@@ -90,9 +90,9 @@ function config.trouble()
             warning = '',
             hint = '',
             information = '',
-            other = '﫠'
+            other = '﫠',
         },
-        use_lsp_diagnostic_signs = false -- enabling this will use the signs defined in your lsp client
+        use_lsp_diagnostic_signs = false, -- enabling this will use the signs defined in your lsp client
     })
 end
 

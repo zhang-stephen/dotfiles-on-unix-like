@@ -2,55 +2,55 @@ local ui = {}
 local conf = require('modules.ui.config')
 
 ui['kyazdani42/nvim-web-devicons'] = {
-    opt = false
+    opt = false,
 }
 ui['catppuccin/nvim'] = {
     opt = false,
     as = 'catppuccin',
-    config = conf.catppuccin
+    config = conf.catppuccin,
 }
 ui['hoob3rt/lualine.nvim'] = {
     opt = true,
     after = 'lualine-lsp-progress',
-    config = conf.lualine
+    config = conf.lualine,
 }
 ui['arkav/lualine-lsp-progress'] = {
     opt = true,
-    after = 'nvim-gps'
+    after = 'nvim-gps',
 }
 ui['goolord/alpha-nvim'] = {
     opt = true,
     event = 'BufWinEnter',
-    config = conf.alpha_nvim
+    config = conf.alpha_nvim,
 }
 ui['kyazdani42/nvim-tree.lua'] = {
     opt = true,
-    cmd = {'NvimTreeToggle', 'NvimTreeOpen'},
-    config = conf.nvim_tree
+    cmd = { 'NvimTreeToggle', 'NvimTreeOpen' },
+    config = conf.nvim_tree,
 }
 ui['lewis6991/gitsigns.nvim'] = {
     opt = true,
-    event = {'BufRead', 'BufNewFile'},
+    event = { 'BufRead', 'BufNewFile' },
     config = conf.gitsigns,
     requires = {
         'nvim-lua/plenary.nvim',
-        opt = true
-    }
+        opt = true,
+    },
 }
 ui['lukas-reineke/indent-blankline.nvim'] = {
     opt = true,
     event = 'BufReadPre',
     after = 'nvim-treesitter',
-    config = conf.indent_blankline
+    config = conf.indent_blankline,
 }
 ui['akinsho/nvim-bufferline.lua'] = {
     opt = true,
     event = 'BufRead',
-    config = conf.nvim_bufferline
+    config = conf.nvim_bufferline,
 }
 ui['dstein64/nvim-scrollview'] = {
     opt = true,
-    event = 'BufRead'
+    event = 'BufRead',
 }
 
 return ui

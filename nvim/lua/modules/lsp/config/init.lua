@@ -1,210 +1,136 @@
 local log = require('utility.logger')
 local conf = {}
 
--- override the default settings of servers
-
-local custom_attach = function(client)
-    require('lsp_signature').on_attach({
-        bind = true,
-        use_lspsaga = false,
-        floating_window = true,
-        fix_pos = true,
-        hint_enable = true,
-        hi_parameter = 'Search',
-        handler_opts = {'double'}
-    })
-end
-
 conf.lspconfig = function()
     local lsp = require('lspconfig')
     local util = require('lspconfig.util')
-    lsp.ccls.setup {
-        init_options = {
-            compilationDatabaseDirectory = './',
-            index = {
-                threads = 12,
-                comments = 2,
-            },
-            clang = {
-                includeArgs = {'-isystem'},
-                excludeArgs = {'-m*', '-flto*'}
-            },
-            cache = {
-                directory = vim.env['HOME'] .. '/.cache/ccls/',
-                -- format = 'binary',
-                -- retainInMemory = 2,
-            },
-        },
-        root_dir = util.root_pattern('.git', '.ccls', 'compile_commands.json'),
-        -- single_file_support = true, -- seems not support ccls, try clangd in the future
-    }
+    local installer = require('nvim-lsp-installer')
+    local capabilities = require('vim.lsp.protocol').make_client_capabilities()
 
     -- register a global command to Format the buffer
     -- just like coc.nvim
-    vim.api.nvim_command [[command! -nargs=0 Format lua vim.lsp.buf.formatting()]]
+    vim.api.nvim_command([[command! -nargs=0 Format lua vim.lsp.buf.formatting()]])
 
     local enhance_server_opts = {
+        ['ccls'] = {
+            init_options = {
+                compilationDatabaseDirectory = './',
+                index = {
+                    threads = 12,
+                    comments = 2,
+                },
+                clang = {
+                    includeArgs = { '-isystem' },
+                    excludeArgs = { '-m*', '-flto*', '-W*', '-frounding-math' },
+                },
+                cache = {
+                    directory = vim.env['HOME'] .. '/.cache/ccls/',
+                    format = 'binary',
+                    -- retainInMemory = 2,
+                },
+            },
+            root_dir = util.root_pattern('.git', '.ccls', 'compile_commands.json'),
+            -- single_file_support = true, -- seems not support ccls, try clangd in the future
+        },
+
         ['sumneko_lua'] = function(opts)
             opts.settings = {
                 Lua = {
                     diagnostics = {
-                        globals = {'vim', 'packer_plugins'}
+                        globals = { 'vim', 'packer_plugins' },
                     },
                     workspace = {
                         library = {
                             [vim.fn.expand('$VIMRUNTIME/lua')] = true,
-                            [vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true
+                            [vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true,
                         },
                         maxPreload = 100000,
-                        preloadFileSize = 10000
+                        preloadFileSize = 10000,
                     },
                     telemetry = {
-                        enable = false
-                    }
-                }
+                        enable = false,
+                    },
+                },
             }
         end,
-
-        ['bashls'] = function(opts) end,
-
-        ['cmake'] = function(opts) end,
-
-        ['pyright'] = function(opts) end,
-
-        -- toml
-        ['taplo'] = function(opts) end,
-
-        -- markdown
-        ['zk'] = function(opts) end,
-
-        ['vimls'] = function(opts) end,
-
-        -- XML
-        ['lemminx'] = function(opts) end,
-
-        ['yamlls'] = function(opts) end,
 
         ['jsonls'] = function(opts)
             opts.settings = {
                 json = {
-                    schemas = {{
-                        fileMatch = {'package.json'},
-                        url = 'https://json.schemastore.org/package.json'
-                    }}
-                }
-            }
-        end
-    }
-
-    local installer = require('nvim-lsp-installer')
-    local capabilities = require('vim.lsp.protocol').make_client_capabilities()
-
-    installer.settings({
-        ui = {
-            icons = {
-                server_installed = '✓',
-                server_pending = '➜',
-                server_uninstalled = '✗'
-            }
-        }
-    })
-
-    for server_name, options in pairs(enhance_server_opts) do
-        local server_available, server = require('nvim-lsp-installer.servers').get_server(server_name)
-        if server_available then
-            server:on_ready(function(server)
-                local opts = {
-                    capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities),
-                    flags = {
-                        debounce_text_changes = 500
-                    },
-                    on_attach = custom_attach
-                }
-
-                if enhance_server_opts[server.name] then
-                    enhance_server_opts[server.name](opts)
-                end
-
-                server:setup(opts)
-            end)
-            if not server:is_installed() then
-                server:install()
-            end
-        end
-    end
-end
-
-conf.lspinstaller = function()
-    local enhance_server_opts = {
-        ['sumneko_lua'] = function(opts)
-            opts.settings = {
-                Lua = {
-                    diagnostics = {
-                        globals = {'vim', 'packer_plugins'}
-                    },
-                    workspace = {
-                        library = {
-                            [vim.fn.expand('$VIMRUNTIME/lua')] = true,
-                            [vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true
+                    schemas = {
+                        {
+                            fileMatch = { 'package.json' },
+                            url = 'https://json.schemastore.org/package.json',
                         },
-                        maxPreload = 100000,
-                        preloadFileSize = 10000
                     },
-                    telemetry = {
-                        enable = false
-                    }
-                }
+                },
             }
         end,
 
+        'bashls',
+        'cmake',
         'pyright',
-
-        ['jsonls'] = function(opts)
-            opts.settings = {
-                json = {
-                    schemas = {{
-                        fileMatch = {'package.json'},
-                        url = 'https://json.schemastore.org/package.json'
-                    }}
-                }
-            }
-        end
+        'taplo',
+        'vimls',
+        'lemminx',
+        'yamlls',
     }
-
-    local installer = require('nvim-lsp-installer')
-    local capabilities = require('vim.lsp.protocol').make_client_capabilities()
-    capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 
     installer.settings({
         ui = {
             icons = {
                 server_installed = '✓',
                 server_pending = '➜',
-                server_uninstalled = '✗'
-            }
-        }
+                server_uninstalled = '✗',
+            },
+        },
     })
 
-    for server_name, options in pairs(enhance_server_opts) do
-        local server_available, server = require('nvim-lsp-installer.servers').get_server(server_name)
-        if server_available then
-            server:on_ready(function(server)
-                local opts = {
-                    capabilities = capabilities,
-                    flags = {
-                        debounce_text_changes = 500
-                    },
-                    on_attach = custom_attach
-                }
+    local custom_attach = function()
+        require('lsp_signature').on_attach({
+            bind = true,
+            use_lspsaga = false,
+            floating_window = true,
+            fix_pos = true,
+            hint_enable = true,
+            hi_parameter = 'Search',
+            handler_opts = { 'double' },
+        })
+    end
 
-                if enhance_server_opts[server.name] then
-                    enhance_server_opts[server.name](opts)
+    local server_ready = function(server)
+        local opts = {
+            capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities),
+            on_attach = custom_attach,
+            flags = {
+                debounce_text_changes = 300,
+            },
+        }
+
+        if enhance_server_opts[server.name] then
+            enhance_server_opts[server.name](opts)
+        end
+
+        server:setup(opts)
+    end
+
+    for server, config in pairs(enhance_server_opts) do
+        if type(config) == 'table' then
+            if lsp[server] then
+                lsp[server].setup(config)
+            else
+                log.error(string.format('nvim-lspconfig not support: %s', server))
+            end
+        elseif type(config) == 'function' or type(config) == 'nil' then
+            local available, managed = require('nvim-lsp-installer.servers').get_server(server)
+            if available then
+                if managed:is_installed() then
+                    managed:on_ready(server_ready)
+                else
+                    managed:install()
                 end
-
-                server:setup(opts)
-            end)
-            if not server:is_installed() then
-                server:install()
+            else
+                log.error(string.format('unknown server: %s', server))
             end
         end
     end
@@ -215,7 +141,7 @@ conf.lspsaga = function()
         error_sign = '',
         warn_sign = '',
         hint_sign = '',
-        infor_sign = ''
+        infor_sign = '',
     })
 end
 
@@ -231,7 +157,7 @@ conf.lsputil = function()
 end
 
 conf.lightbulb = function()
-    vim.api.nvim_command [[ autocmd CursorHold,CursorHoldI * lua require('nvim-lightbulb').update_lightbulb() ]]
+    vim.api.nvim_command([[ autocmd CursorHold,CursorHoldI * lua require('nvim-lightbulb').update_lightbulb() ]])
 end
 
 conf.cmp = require('modules.lsp.config.cmp')

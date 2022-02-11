@@ -5,10 +5,10 @@ local levels = {
     INF = 1,
     WRN = 2,
     ERR = 3,
-    OFF = 0xff
+    OFF = 0xff,
 }
 
-local level_string2int = function (level)
+local level_string2int = function(level)
     for k, v in pairs(levels) do
         if level == k then
             return v
@@ -18,11 +18,11 @@ local level_string2int = function (level)
     return 0xff
 end
 
-logger.init = function (level)
+logger.init = function(level)
     logger.level = level
 end
 
-logger.emit = function (level, ...)
+logger.emit = function(level, ...)
     if level_string2int(logger.level) > level_string2int(level) then
         return
     end
@@ -30,19 +30,19 @@ logger.emit = function (level, ...)
     print(string.format('[%s]: ', level), ...)
 end
 
-logger.debug = function (...)
+logger.debug = function(...)
     logger.emit('DBG', ...)
 end
 
-logger.info = function (...)
+logger.info = function(...)
     logger.emit('INF', ...)
 end
 
-logger.warning = function (...)
+logger.warning = function(...)
     logger.emit('WRN', ...)
 end
 
-logger.error = function (...)
+logger.error = function(...)
     logger.emit('ERR', ...)
 end
 

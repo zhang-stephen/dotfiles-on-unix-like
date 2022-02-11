@@ -3,8 +3,8 @@ local core = {
         require('core.options'),
         require('core.plugins'),
         require('core.keymap'),
-        require('core.event')
-    }
+        require('core.event'),
+    },
 }
 
 local is_nvim_compatible = function()
@@ -12,13 +12,13 @@ local is_nvim_compatible = function()
 end
 
 function core.setup()
-   if is_nvim_compatible() then
+    if is_nvim_compatible() then
         for _, conf in ipairs(core.config) do
             conf.setup()
         end
 
-        vim.api.nvim_command [[ colorscheme catppuccin ]]
-   end
+        vim.api.nvim_command([[ colorscheme catppuccin ]])
+    end
 end
 
 return core

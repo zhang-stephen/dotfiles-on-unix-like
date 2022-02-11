@@ -1,21 +1,21 @@
-return function ()
-    vim.api.nvim_command [[highlight CmpItemAbbrDeprecated guifg=#D8DEE9 guibg=NONE gui=strikethrough ]]
-    vim.api.nvim_command [[highlight CmpItemKindSnippet guifg=#BF616A guibg=NONE ]]
-    vim.api.nvim_command [[highlight CmpItemKindUnit guifg=#D08770 guibg=NONE ]]
-    vim.api.nvim_command [[highlight CmpItemKindProperty guifg=#A3BE8C guibg=NONE ]]
-    vim.api.nvim_command [[highlight CmpItemKindKeyword guifg=#EBCB8B guibg=NONE ]]
-    vim.api.nvim_command [[highlight CmpItemAbbrMatch guifg=#5E81AC guibg=NONE ]]
-    vim.api.nvim_command [[highlight CmpItemAbbrMatchFuzzy guifg=#5E81AC guibg=NONE ]]
-    vim.api.nvim_command [[highlight CmpItemKindVariable guifg=#8FBCBB guibg=NONE ]]
-    vim.api.nvim_command [[highlight CmpItemKindInterface guifg=#88C0D0 guibg=NONE ]]
-    vim.api.nvim_command [[highlight CmpItemKindText guifg=#81A1C1 guibg=NONE ]]
-    vim.api.nvim_command [[highlight CmpItemKindFunction guifg=#B48EAD guibg=NONE ]]
-    vim.api.nvim_command [[highlight CmpItemKindMethod guifg=#B48EAD guibg=NONE ]]
+return function()
+    vim.api.nvim_command([[highlight CmpItemAbbrDeprecated guifg=#D8DEE9 guibg=NONE gui=strikethrough ]])
+    vim.api.nvim_command([[highlight CmpItemKindSnippet guifg=#BF616A guibg=NONE ]])
+    vim.api.nvim_command([[highlight CmpItemKindUnit guifg=#D08770 guibg=NONE ]])
+    vim.api.nvim_command([[highlight CmpItemKindProperty guifg=#A3BE8C guibg=NONE ]])
+    vim.api.nvim_command([[highlight CmpItemKindKeyword guifg=#EBCB8B guibg=NONE ]])
+    vim.api.nvim_command([[highlight CmpItemAbbrMatch guifg=#5E81AC guibg=NONE ]])
+    vim.api.nvim_command([[highlight CmpItemAbbrMatchFuzzy guifg=#5E81AC guibg=NONE ]])
+    vim.api.nvim_command([[highlight CmpItemKindVariable guifg=#8FBCBB guibg=NONE ]])
+    vim.api.nvim_command([[highlight CmpItemKindInterface guifg=#88C0D0 guibg=NONE ]])
+    vim.api.nvim_command([[highlight CmpItemKindText guifg=#81A1C1 guibg=NONE ]])
+    vim.api.nvim_command([[highlight CmpItemKindFunction guifg=#B48EAD guibg=NONE ]])
+    vim.api.nvim_command([[highlight CmpItemKindMethod guifg=#B48EAD guibg=NONE ]])
 
-    local t = function (str)
+    local t = function(str)
         return vim.api.nvim_replace_termcodes(str, true, true, true)
     end
-    local has_words_before = function ()
+    local has_words_before = function()
         local line, col = unpack(vim.api.nvim_win_get_cursor(0))
         return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match('%s') == nil
     end

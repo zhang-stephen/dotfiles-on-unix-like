@@ -28,14 +28,13 @@ local disable_distribution_plugins = function()
     vim.g.loaded_netrwFileHandlers = 1
 end
 
-
 local plugins = setmetatable({}, {
     __index = function(_, key)
         if not packer then
             packer = require(Packer.manager.name)
         end
         return packer[key]
-    end
+    end,
 })
 
 Packer.bootstrap = function()
@@ -44,12 +43,18 @@ Packer.bootstrap = function()
         -- to mute the WARNING: use 'wbthomason/packer.nvim' for twice!
         path = vim.fn.stdpath('data') .. '/site/pack/packer/opt/packer.nvim',
         status = false,
-        repo = 'wbthomason/packer.nvim'
+        repo = 'wbthomason/packer.nvim',
     }
 
     if vim.fn.empty(vim.fn.glob(Packer.manager.path)) > 0 then
-        local ret = vim.fn.system({'git', 'clone', '--depth', '1',
-                                   string.format('https://github.com/%s', Packer.manager.repo), Packer.manager.path})
+        local ret = vim.fn.system({
+            'git',
+            'clone',
+            '--depth',
+            '1',
+            string.format('https://github.com/%s', Packer.manager.repo),
+            Packer.manager.path,
+        })
 
         Packer.manager.status = (ret ~= nil)
     else
@@ -70,31 +75,31 @@ Packer.setup = function()
     local loading = function(use)
         use({
             'wbthomason/packer.nvim',
-           opt = true
+            opt = true,
         })
 
         for _, modules in pairs(require('modules')) do
             for repo, spec in pairs(modules) do
-                use(vim.tbl_extend('force', {repo}, spec))
+                use(vim.tbl_extend('force', { repo }, spec))
             end
         end
     end
 
-    vim.cmd [[ packadd packer.nvim ]]
+    vim.cmd([[ packadd packer.nvim ]])
 
     packer = require(Packer.manager.name)
     packer.init({
         compile_path = default_compiled,
         git = {
-            clone_timeout = 60
+            clone_timeout = 60,
         },
         display = {
             open_fn = function()
                 return require('packer.util').float({
-                    border = 'single'
+                    border = 'single',
                 })
-            end
-        }
+            end,
+        },
     })
 
     packer.reset()

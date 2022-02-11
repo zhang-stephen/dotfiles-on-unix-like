@@ -51,10 +51,10 @@ options.configuration = {
         laststatus = 2,
         display = 'lastline',
         pumblend = 10,
-        winblend = 10
+        winblend = 10,
     },
 
-    cmds = {'filetype indent on', 'highlight Pmenu ctermbg=black guibg=black'}
+    cmds = { 'filetype indent on', 'highlight Pmenu ctermbg=black guibg=black' },
 }
 
 local bind_option = function(options)

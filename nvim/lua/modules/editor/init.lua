@@ -44,7 +44,7 @@ editor['mfussenegger/nvim-ts-hint-textobject'] = {
 editor['SmiteshP/nvim-gps'] = {
     opt = true,
     after = 'nvim-treesitter',
-    event = {'BufNewFile', 'BufReadPre', 'BufWinEnter'},
+    event = { 'BufNewFile', 'BufReadPre', 'BufWinEnter' },
     config = conf.nvim_gps,
 }
 editor['windwp/nvim-ts-autotag'] = {

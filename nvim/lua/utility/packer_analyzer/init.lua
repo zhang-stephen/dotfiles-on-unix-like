@@ -5,6 +5,4 @@
 local log = require('utility.logger')
 local analyzer = {}
 
-
-
 return analyzer

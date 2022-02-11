@@ -4,7 +4,7 @@ local lsp = {}
 
 lsp['neovim/nvim-lspconfig'] = {
     opt = true,
-    after= 'cmp-nvim-lsp',
+    after = 'cmp-nvim-lsp',
     config = conf.lspconfig,
 }
 lsp['williamboman/nvim-lsp-installer'] = {
@@ -24,9 +24,7 @@ lsp['kosayoda/nvim-lightbulb'] = {
 lsp['ray-x/lsp_signature.nvim'] = { opt = true, after = 'nvim-lspconfig' }
 lsp['hrsh7th/nvim-cmp'] = {
     config = conf.cmp,
-    -- opt = true,
-    event = {'BufReadPre', 'BufNewFile'},
-    -- event = 'InsertEnter',
+    event = { 'BufReadPre', 'BufNewFile' },
     requires = {
         { 'lukas-reineke/cmp-under-comparator' },
         { 'hrsh7th/cmp-nvim-lsp', after = 'nvim-cmp' },

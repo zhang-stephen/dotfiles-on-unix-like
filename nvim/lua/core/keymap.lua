@@ -9,7 +9,7 @@ keymap.set_mapleader = function()
     vim.g.mapleader = ' ' -- use <space> as <leader>
 end
 
-keymap.init = function ()
+keymap.init = function()
     keymap.set_mapleader()
 
     local t = function(str)
@@ -57,7 +57,7 @@ keymap.init = function ()
         ['n|<A-[>'] = map_cr('vertical resize -5'):with_silent(),
         ['n|<A-]>'] = map_cr('vertical resize +5'):with_silent(),
         ['n|<A-;>'] = map_cr('resize -2'),
-        ['n|<A-\'>'] = map_cr('resize +2'),
+        ["n|<A-'>"] = map_cr('resize +2'),
         ['n|<C-q>'] = map_cr('wq!'):with_silent(),
 
         -- edit
@@ -73,12 +73,12 @@ keymap.init = function ()
         ['c|<C-e>'] = map_cmd('<End>'),
         ['c|<C-d>'] = map_cmd('<Del>'),
         ['c|<C-h>'] = map_cmd('<BS>'),
-        ['c|<C-t>'] = map_cmd [[<C-R>=expand('%:p:h') . '/' <CR>]],
-        ['c|w!!'] = map_cmd [[execute 'silent! write !sudo tee % >/dev/null' <bar> edit!]],
+        ['c|<C-t>'] = map_cmd([[<C-R>=expand('%:p:h') . '/' <CR>]]),
+        ['c|w!!'] = map_cmd([[execute 'silent! write !sudo tee % >/dev/null' <bar> edit!]]),
 
         -- Visual
-        ['v|J'] = map_cmd(':m \'>+1<cr>gv=gv'),
-        ['v|K'] = map_cmd(':m \'<-2<cr>gv=gv'),
+        ['v|J'] = map_cmd(":m '>+1<cr>gv=gv"),
+        ['v|K'] = map_cmd(":m '<-2<cr>gv=gv"),
         ['v|<'] = map_cmd('<gv'),
         ['v|>'] = map_cmd('>gv'),
     }
@@ -100,8 +100,8 @@ keymap.init = function ()
         ['n|gs'] = map_cr('Lspsaga signature_help'):with_silent(),
         ['n|<leader>rn'] = map_cr('Lspsaga rename'):with_silent(),
         ['n|K'] = map_cr('Lspsaga hover_doc'):with_silent(),
-        ['n|<C-Up>'] = map_cr [[lua require('lspsaga.action').smart_scroll_with_saga(-1)]]:with_silent(),
-        ['n|<C-Down>'] = map_cr [[lua require('lspsaga.action').smart_scroll_with_saga(1)]]:with_silent(),
+        ['n|<C-Up>'] = map_cr([[lua require('lspsaga.action').smart_scroll_with_saga(-1)]]):with_silent(),
+        ['n|<C-Down>'] = map_cr([[lua require('lspsaga.action').smart_scroll_with_saga(1)]]):with_silent(),
         ['n|<leader>ca'] = map_cr('Lspsaga code_action'):with_silent(),
         ['v|<leader>ca'] = map_cu('Lspsaga range_code_action'):with_silent(),
         ['n|gp'] = map_cr('Lspsaga preview_definition'):with_silent(),
@@ -128,19 +128,19 @@ keymap.init = function ()
         ['n|<leader>cc'] = map_cu('HopChar2'):with_nowait():with_silent(),
 
         -- accelerate-jk
-        ['n|j'] = map_cmd [[v:lua.enhance_jk_move('j')]]:with_silent():with_expr():with_recursive(),
-        ['n|k'] = map_cmd [[v:lua.enhance_jk_move('k')]]:with_silent():with_expr():with_recursive(),
+        ['n|j'] = map_cmd([[v:lua.enhance_jk_move('j')]]):with_silent():with_expr():with_recursive(),
+        ['n|k'] = map_cmd([[v:lua.enhance_jk_move('k')]]):with_silent():with_expr():with_recursive(),
 
         -- vim-eft
-        ['n|f'] = map_cmd [[v:lua.enhance_ft_move('f')]]:with_expr():with_recursive(),
-        ['n|F'] = map_cmd [[v:lua.enhance_ft_move('F')]]:with_expr():with_recursive(),
-        ['n|t'] = map_cmd [[v:lua.enhance_ft_move('t')]]:with_expr():with_recursive(),
-        ['n|T'] = map_cmd [[v:lua.enhance_ft_move('T')]]:with_expr():with_recursive(),
-        ['n|;'] = map_cmd [[v:lua.enhance_ft_move(';')]]:with_expr():with_recursive(),
+        ['n|f'] = map_cmd([[v:lua.enhance_ft_move('f')]]):with_expr():with_recursive(),
+        ['n|F'] = map_cmd([[v:lua.enhance_ft_move('F')]]):with_expr():with_recursive(),
+        ['n|t'] = map_cmd([[v:lua.enhance_ft_move('t')]]):with_expr():with_recursive(),
+        ['n|T'] = map_cmd([[v:lua.enhance_ft_move('T')]]):with_expr():with_recursive(),
+        ['n|;'] = map_cmd([[v:lua.enhance_ft_move(';')]]):with_expr():with_recursive(),
 
         -- Plugin EasyAlign
-        ['n|ga'] = map_cmd [['v:lua.enhance_align('nga')]]:with_expr():with_recursive(),
-        ['x|ga'] = map_cmd [[v:lua.enhance_align('xga')]]:with_expr():with_recursive(),
+        ['n|ga'] = map_cmd([['v:lua.enhance_align('nga')]]):with_expr():with_recursive(),
+        ['x|ga'] = map_cmd([[v:lua.enhance_align('xga')]]):with_expr():with_recursive(),
 
         -- bufferline
         ['n|gb'] = map_cr('BufferLinePick'):with_silent(),
@@ -173,7 +173,7 @@ keymap.init = function ()
     }
 end
 
-keymap.setup = function ()
+keymap.setup = function()
     keymap.init()
     bind.nvim_load_mapping(keymap.builtin)
     bind.nvim_load_mapping(keymap.plugins)
