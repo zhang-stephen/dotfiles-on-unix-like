@@ -28,7 +28,7 @@ lsp['hrsh7th/nvim-cmp'] = {
     requires = {
         { 'lukas-reineke/cmp-under-comparator' },
         { 'hrsh7th/cmp-nvim-lsp', after = 'nvim-cmp' },
-        { 'hrsh7th/cmp-nvim-lua', after = 'nvim-cmp' },
+        { 'hrsh7th/cmp-nvim-lua', after = 'cmp-nvim-lsp' },
         { 'andersevenrud/cmp-tmux', after = 'cmp-nvim-lua' },
         { 'hrsh7th/cmp-path', after = 'cmp-tmux' },
         { 'f3fora/cmp-spell', after = 'cmp-path' },

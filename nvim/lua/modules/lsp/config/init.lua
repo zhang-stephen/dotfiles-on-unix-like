@@ -13,6 +13,10 @@ conf.lspconfig = function()
 
     local enhance_server_opts = {
         ['ccls'] = {
+            -- the default configurations
+            -- create .ccls under project root rather than modify lua code if you want to customize it
+            -- refers to: https://github.com/MaskRay/ccls/wiki/Project-Setup#ccls-file
+            -- use `ln -sf` to place compile_commands.json into project root dir
             init_options = {
                 compilationDatabaseDirectory = './',
                 index = {
@@ -20,19 +24,18 @@ conf.lspconfig = function()
                     comments = 2,
                 },
                 clang = {
-                    includeArgs = { '-isystem' },
+                    extraArgs = {},
                     excludeArgs = { '-m*', '-flto*', '-W*', '-frounding-math' },
                 },
                 cache = {
                     directory = vim.env['HOME'] .. '/.cache/ccls/',
                     format = 'binary',
-                    -- retainInMemory = 2,
                 },
             },
             root_dir = util.root_pattern('.git', '.ccls', 'compile_commands.json'),
-            -- single_file_support = true, -- seems not support ccls, try clangd in the future
         },
 
+        -- lsp servers managed by nvim-lsp-installer
         ['sumneko_lua'] = function(opts)
             opts.settings = {
                 Lua = {
@@ -49,6 +52,10 @@ conf.lspconfig = function()
                     },
                     telemetry = {
                         enable = false,
+                    },
+                    completion = {
+                        keywordSnippet = 'Disable',
+                        callSnippet = 'Disable',
                     },
                 },
             }
@@ -67,13 +74,37 @@ conf.lspconfig = function()
             }
         end,
 
-        'bashls',
-        'cmake',
-        'pyright',
-        'taplo',
-        'vimls',
-        'lemminx',
-        'yamlls',
+        ['bashls'] = function(opts)
+            opts.settings = {}
+        end,
+
+        ['cmake'] = function(opts)
+            opts.settings = {}
+        end,
+
+        -- python3
+        ['pyright'] = function(opts)
+            opts.settings = {}
+        end,
+
+        -- toml
+        ['taplo'] = function(opts)
+            opts.settings = {}
+        end,
+
+        ['vimls'] = function(opts)
+            opts.settings = {}
+        end,
+
+        -- xml
+        ['lemminx'] = function(opts)
+            opts.settings = {}
+        end,
+
+        -- yaml
+        ['yamlls'] = function(opts)
+            opts.settings = {}
+        end,
     }
 
     installer.settings({
@@ -121,7 +152,7 @@ conf.lspconfig = function()
             else
                 log.error(string.format('nvim-lspconfig not support: %s', server))
             end
-        elseif type(config) == 'function' or type(config) == 'nil' then
+        elseif type(config) == 'function' then
             local available, managed = require('nvim-lsp-installer.servers').get_server(server)
             if available then
                 if managed:is_installed() then
@@ -130,8 +161,10 @@ conf.lspconfig = function()
                     managed:install()
                 end
             else
-                log.error(string.format('unknown server: %s', server))
+                log.error(string.format('unknown server for nvim-lspinstaller: %s', server))
             end
+        else
+            log.error(string.format('unsupport config for %s', server))
         end
     end
 end
@@ -173,5 +206,3 @@ conf.autopairs = function()
 end
 
 return conf
-
--- EOF

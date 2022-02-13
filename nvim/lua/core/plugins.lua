@@ -40,7 +40,6 @@ local plugins = setmetatable({}, {
 Packer.bootstrap = function()
     Packer.manager = {
         name = 'packer',
-        -- to mute the WARNING: use 'wbthomason/packer.nvim' for twice!
         path = vim.fn.stdpath('data') .. '/site/pack/packer/opt/packer.nvim',
         status = false,
         repo = 'wbthomason/packer.nvim',
@@ -91,7 +90,7 @@ Packer.setup = function()
     packer.init({
         compile_path = default_compiled,
         git = {
-            clone_timeout = 60,
+            clone_timeout = 120,
         },
         display = {
             open_fn = function()
@@ -107,12 +106,15 @@ Packer.setup = function()
     loading(packer.use)
     packer.install()
     packer.compile()
+    vim.api.nvim_command([[autocmd! User PackerCompileDone lua require('_compiled') ]])
 end
 
 plugins.setup = function()
     disable_distribution_plugins()
     Packer.setup()
-    require('_compiled')
+    if vim.fn.filereadable(default_compiled) == 1 then
+        require('_compiled')
+    end
 end
 
 return plugins
