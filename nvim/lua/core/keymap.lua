@@ -81,6 +81,9 @@ keymap.init = function()
         ['v|K'] = map_cmd(":m '<-2<cr>gv=gv"),
         ['v|<'] = map_cmd('<gv'),
         ['v|>'] = map_cmd('>gv'),
+
+        -- others
+        ['n|<F10>'] = map_cr('ccl'):with_nowait():with_silent(),
     }
 
     -- the keymap for features provided via plugins
@@ -108,7 +111,7 @@ keymap.init = function()
         ['n|gd'] = map_cr('lua vim.lsp.buf.definition()'):with_silent(),
 
         -- SymbolsOutline
-        ['n|<leader>o'] = map_cu('SymbolsOutline'):with_silent(),
+        -- ['n|<leader>o'] = map_cu('SymbolsOutline'):with_silent(),
 
         -- Trouble
         ['n|gt'] = map_cr('TroubleToggle'):with_silent(),
@@ -119,7 +122,8 @@ keymap.init = function()
         ['n|<leader>cl'] = map_cr('TroubleToggle loclist'):with_silent(),
 
         -- nvim-comment
-        ['n|<A-/>'] = map_cr('CommentToggle'):with_silent(),
+        ['n|<leader>/'] = map_cr('CommentToggle'):with_silent(),
+        ['v|<leader>/'] = map_cr('CommentToggle'):with_silent(),
 
         -- Hop
         ['n|<leader>w'] = map_cu('HopWord'):with_nowait():with_silent(),

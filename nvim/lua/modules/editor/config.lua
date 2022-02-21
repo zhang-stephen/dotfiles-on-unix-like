@@ -24,6 +24,13 @@ function config.nvim_comment()
     require('nvim_comment').setup()
 end
 
+function config.aerial()
+    require('aerial').setup {
+        backups = {'lsp', 'treesitter'},
+        default_bindings = false,
+    }
+end
+
 function config.nvim_treesitter()
     vim.api.nvim_command('set foldmethod=expr')
     vim.api.nvim_command('set foldexpr=nvim_treesitter#foldexpr()')

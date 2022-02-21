@@ -104,9 +104,9 @@ Packer.setup = function()
     packer.reset()
 
     loading(packer.use)
-    packer.install()
-    packer.compile()
-    vim.api.nvim_command([[autocmd! User PackerCompileDone lua require('_compiled') ]])
+    -- packer.install()
+    -- packer.compile()
+    -- vim.api.nvim_command([[autocmd! User PackerCompileDone lua require('_compiled') ]])
 end
 
 plugins.setup = function()

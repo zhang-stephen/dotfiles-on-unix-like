@@ -32,7 +32,7 @@ conf.lspconfig = function()
                     format = 'binary',
                 },
             },
-            root_dir = util.root_pattern('.git', '.ccls', 'compile_commands.json'),
+            root_dir = util.root_pattern('.git/', '.ccls', 'compile_commands.json'),
         },
 
         -- lsp servers managed by nvim-lsp-installer
@@ -117,7 +117,7 @@ conf.lspconfig = function()
         },
     })
 
-    local custom_attach = function()
+    local custom_attach = function(client, bufnr)
         require('lsp_signature').on_attach({
             bind = true,
             use_lspsaga = false,
@@ -127,6 +127,8 @@ conf.lspconfig = function()
             hi_parameter = 'Search',
             handler_opts = { 'double' },
         })
+
+        require('aerial').on_attach(client, bufnr)
     end
 
     local server_ready = function(server)

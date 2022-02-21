@@ -11,10 +11,15 @@ editor['terrortylor/nvim-comment'] = {
     opt = false,
     config = conf.nvim_comment,
 }
-editor['simrat39/symbols-outline.nvim'] = {
+-- editor['simrat39/symbols-outline.nvim'] = {
+--     opt = true,
+--     cmd = { 'SymbolsOutline', 'SymbolsOutlineOpen' },
+--     config = conf.symbols_outline,
+-- }
+editor['stevearc/aerial.nvim'] = {
     opt = true,
-    cmd = { 'SymbolsOutline', 'SymbolsOutlineOpen' },
-    config = conf.symbols_outline,
+    event = 'BufRead',
+    config = conf.aerial,
 }
 editor['nvim-treesitter/nvim-treesitter'] = {
     run = ':TSUpdate',
