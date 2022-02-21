@@ -1,4 +1,3 @@
-local log = require('utility.logger')
 local event = {}
 local definitions = {
     yank = {
@@ -41,8 +40,8 @@ local definitions = {
     },
 }
 
-event.nvim_create_augroups = function(definitions)
-    for group_name, definition in pairs(definitions) do
+event.nvim_create_augroups = function(defs)
+    for group_name, definition in pairs(defs) do
         vim.api.nvim_command('augroup ' .. group_name)
         vim.api.nvim_command('autocmd!')
         for _, def in ipairs(definition) do

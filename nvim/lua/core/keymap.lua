@@ -96,8 +96,6 @@ keymap.init = function()
         ['n|<leader>pc'] = map_cr('PackerClean'):with_silent():with_nowait(),
 
         -- nvim-lspconfig, nvim-lspinstaller, lspsaga, nvim-lsp, ...
-        ['n|<leader>li'] = map_cr('LspInfo'):with_silent():with_nowait(),
-        ['n|<leader>lr'] = map_cr('LspRestart'):with_silent():with_nowait(),
         ['n|g['] = map_cr('Lspsaga diagnostic_jump_prev'):with_silent(),
         ['n|g]'] = map_cr('Lspsaga diagnostic_jump_next'):with_silent(),
         ['n|gs'] = map_cr('Lspsaga signature_help'):with_silent(),
@@ -110,8 +108,8 @@ keymap.init = function()
         ['n|gp'] = map_cr('Lspsaga preview_definition'):with_silent(),
         ['n|gd'] = map_cr('lua vim.lsp.buf.definition()'):with_silent(),
 
-        -- SymbolsOutline
-        -- ['n|<leader>o'] = map_cu('SymbolsOutline'):with_silent(),
+        -- aerial.nvim
+        ['n|<leader>o'] = map_cu('AerialToggle'):with_silent(),
 
         -- Trouble
         ['n|gt'] = map_cr('TroubleToggle'):with_silent(),

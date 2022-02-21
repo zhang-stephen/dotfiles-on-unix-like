@@ -1,14 +1,6 @@
 local config = {}
 local sessions_dir = vim.fn.stdpath('data') .. '/sessions/'
 
-function config.symbols_outline()
-    require('symbols-outline').setup({
-        width = 60,
-        show_numbers = true,
-        show_relative_numbers = true,
-    })
-end
-
 function config.vim_cursorwod()
     vim.api.nvim_command('augroup user_plugin_cursorword')
     vim.api.nvim_command('autocmd!')
@@ -27,7 +19,17 @@ end
 function config.aerial()
     require('aerial').setup {
         backups = {'lsp', 'treesitter'},
-        default_bindings = false,
+        filter_kind = {
+            "Class",
+            "Constructor",
+            "Enum",
+            "Function",
+            "Interface",
+            "Module",
+            "Method",
+            "Namespace",
+            "Struct",
+        },
     }
 end
 
@@ -50,7 +52,6 @@ function config.nvim_treesitter()
             'vim',
             'bash',
         },
-        -- ensure_installed = 'maintained',
         highlight = {
             enable = true,
             disable = { 'vim' },
