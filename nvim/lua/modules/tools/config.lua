@@ -1,6 +1,6 @@
 local config = {}
 
-function config.telescope()
+config.telescope = function()
     vim.api.nvim_command([[packadd sqlite.lua]])
     vim.api.nvim_command([[packadd telescope-fzf-native.nvim]])
 
@@ -48,7 +48,7 @@ function config.telescope()
     require('telescope').load_extension('fzf')
 end
 
-function config.trouble()
+config.trouble = function()
     require('trouble').setup({
         position = 'bottom', -- position of the list can be: bottom, top, left, right
         height = 10, -- height of the trouble list when position is top or bottom
@@ -98,7 +98,7 @@ end
 
 -- Sniprun
 
-function config.wilder()
+config.wilder = function()
     vim.api.nvim_command([[
             call wilder#setup({'modes': [':', '/', '?']})
             call wilder#set_option('use_python_remote_plugin', 0)

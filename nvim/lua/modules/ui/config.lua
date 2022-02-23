@@ -38,9 +38,9 @@ end
 config.nightfox = function()
     local fox = require('nightfox')
 
-    fox.setup {
+    fox.setup({
         fox = 'nightfox',
-        transparent = false,
+        transparent = true,
         alt_nc = true,
         inverse = {
             visual = true,
@@ -50,12 +50,12 @@ config.nightfox = function()
         styles = {
             keyword = 'bold',
         },
-    }
+    })
 
-    fox.load('nightfox')
+    fox.load()
 end
 
-function config.lualine()
+config.lualine = function()
     local gps = require('nvim-gps')
 
     local function gps_content()
@@ -110,7 +110,7 @@ function config.lualine()
     })
 end
 
-function config.nvim_tree()
+config.nvim_tree = function()
     require('nvim-tree').setup({
         disable_netrw = true,
         hijack_netrw = true,
@@ -148,7 +148,7 @@ function config.nvim_tree()
     })
 end
 
-function config.nvim_bufferline()
+config.nvim_bufferline = function()
     require('bufferline').setup({
         options = {
             number = function(opts)
@@ -179,7 +179,7 @@ function config.nvim_bufferline()
     })
 end
 
-function config.gitsigns()
+config.gitsigns = function()
     require('gitsigns').setup({
         keymaps = {
             -- Default keymap options
@@ -216,7 +216,7 @@ function config.gitsigns()
     })
 end
 
-function config.indent_blankline()
+config.indent_blankline = function()
     vim.opt.list = true
     -- vim.opt.listchars:append('space:⋅')
     -- vim.opt.listchars:append('eol:↴')

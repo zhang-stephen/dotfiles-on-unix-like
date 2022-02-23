@@ -1,7 +1,7 @@
 local config = {}
 local sessions_dir = vim.fn.stdpath('data') .. '/sessions/'
 
-function config.vim_cursorwod()
+config.vim_cursorwod = function()
     vim.api.nvim_command('augroup user_plugin_cursorword')
     vim.api.nvim_command('autocmd!')
     vim.api.nvim_command('autocmd FileType NvimTree,lspsagafinder,alpha let b:cursorword = 0')
@@ -11,34 +11,34 @@ function config.vim_cursorwod()
     vim.api.nvim_command('augroup END')
 end
 
-function config.nvim_comment()
+config.nvim_comment = function()
     vim.api.nvim_command([[autocmd! FileType c,cpp :lua vim.api.nvim_buf_set_option(0, 'commentstring', '// %s')]])
     require('nvim_comment').setup()
 end
 
-function config.todo_comment()
+config.todo_comment = function()
     -- use all default settings
-    require('todo-comments').setup {}
+    require('todo-comments').setup({})
 end
 
-function config.aerial()
-    require('aerial').setup {
-        backups = {'lsp', 'treesitter'},
+config.aerial = function()
+    require('aerial').setup({
+        backups = { 'lsp', 'treesitter' },
         filter_kind = {
-            "Class",
-            "Constructor",
-            "Enum",
-            "Function",
-            "Interface",
-            "Module",
-            "Method",
-            "Namespace",
-            "Struct",
+            'Class',
+            'Constructor',
+            'Enum',
+            'Function',
+            'Interface',
+            'Module',
+            'Method',
+            'Namespace',
+            'Struct',
         },
-    }
+    })
 end
 
-function config.nvim_treesitter()
+config.nvim_treesitter = function()
     vim.api.nvim_command('set foldmethod=expr')
     vim.api.nvim_command('set foldexpr=nvim_treesitter#foldexpr()')
 
@@ -114,11 +114,11 @@ function config.nvim_treesitter()
     require('nvim-treesitter.install').prefer_git = true
 end
 
-function config.matchup()
+config.matchup = function()
     vim.api.nvim_command([[let g:matchup_matchparen_offscreen = {'method': 'popup'}]])
 end
 
-function config.nvim_gps()
+config.nvim_gps = function()
     require('nvim-gps').setup({
         icons = {
             ['class-name'] = ' ', -- Classes and class-like objects
@@ -136,17 +136,17 @@ function config.nvim_gps()
     })
 end
 
-function config.autotag()
+config.autotag = function()
     require('nvim-ts-autotag').setup({
         filetypes = { 'html', 'xml', 'javascript', 'typescriptreact', 'javascriptreact', 'vue' },
     })
 end
 
-function config.nvim_colorizer()
+config.nvim_colorizer = function()
     require('colorizer').setup()
 end
 
-function config.neoscroll()
+config.neoscroll = function()
     require('neoscroll').setup({
         -- All these keys will be mapped to their corresponding default scrolling animation
         mappings = { '<C-u>', '<C-d>', '<C-b>', '<C-f>', '<C-y>', '<C-e>', 'zt', 'zz', 'zb' },
@@ -161,7 +161,7 @@ function config.neoscroll()
     })
 end
 
-function config.auto_session()
+config.auto_session = function()
     local opts = {
         log_level = 'info',
         auto_session_enable_last_session = true,
@@ -175,7 +175,7 @@ function config.auto_session()
     require('auto-session').setup(opts)
 end
 
-function config.toggleterm()
+config.toggleterm = function()
     require('toggleterm').setup({
         -- size can be a number or function which is passed the current terminal
         size = function(term)
@@ -199,7 +199,7 @@ function config.toggleterm()
     })
 end
 
-function config.specs()
+config.specs = function()
     require('specs').setup({
         show_jumps = true,
         min_jump = 10,
