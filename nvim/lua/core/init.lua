@@ -16,9 +16,9 @@ function core.setup()
         for _, conf in ipairs(core.config) do
             conf.setup()
         end
-
-        vim.api.nvim_command([[ colorscheme catppuccin ]])
     end
+
+    vim.api.nvim_command [[colorscheme nightfox]]
 end
 
 return core

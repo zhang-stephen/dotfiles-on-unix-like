@@ -16,6 +16,11 @@ function config.nvim_comment()
     require('nvim_comment').setup()
 end
 
+function config.todo_comment()
+    -- use all default settings
+    require('todo-comments').setup {}
+end
+
 function config.aerial()
     require('aerial').setup {
         backups = {'lsp', 'treesitter'},

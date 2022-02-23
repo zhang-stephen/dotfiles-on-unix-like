@@ -89,9 +89,6 @@ Packer.setup = function()
     packer = require(Packer.manager.name)
     packer.init({
         compile_path = default_compiled,
-        git = {
-            clone_timeout = 120,
-        },
         display = {
             open_fn = function()
                 return require('packer.util').float({
@@ -104,6 +101,7 @@ Packer.setup = function()
     packer.reset()
 
     loading(packer.use)
+    -- use `nvim +PackerSync` to install/update/reconfigure plugins, instead of following statements
     -- packer.install()
     -- packer.compile()
     -- vim.api.nvim_command([[autocmd! User PackerCompileDone lua require('_compiled') ]])

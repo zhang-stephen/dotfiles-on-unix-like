@@ -4,10 +4,9 @@ local conf = require('modules.ui.config')
 ui['kyazdani42/nvim-web-devicons'] = {
     opt = false,
 }
-ui['catppuccin/nvim'] = {
+ui['EdenEast/nightfox.nvim'] = {
     opt = false,
-    as = 'catppuccin',
-    config = conf.catppuccin,
+    config = conf.nigthfox,
 }
 ui['hoob3rt/lualine.nvim'] = {
     opt = true,

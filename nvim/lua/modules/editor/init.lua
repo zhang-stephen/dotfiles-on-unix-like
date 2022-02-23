@@ -11,9 +11,13 @@ editor['terrortylor/nvim-comment'] = {
     opt = false,
     config = conf.nvim_comment,
 }
+editor['folke/todo-comments.nvim'] = {
+    opt = false,
+    config = conf.todo_comment,
+}
 editor['stevearc/aerial.nvim'] = {
     opt = true,
-    event = 'BufRead',
+    event = {'BufReadPre', 'BufNewFile'},
     config = conf.aerial,
 }
 editor['nvim-treesitter/nvim-treesitter'] = {

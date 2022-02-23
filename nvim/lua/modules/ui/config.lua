@@ -35,35 +35,24 @@ config.alpha_nvim = function()
     ]])
 end
 
-function config.catppuccin()
-    require('catppuccin').setup({
-        transparent_background = true,
-        term_colors = true,
+config.nightfox = function()
+    local fox = require('nightfox')
+
+    fox.setup {
+        fox = 'nightfox',
+        transparent = false,
+        alt_nc = true,
+        inverse = {
+            visual = true,
+            search = true,
+            match_paren = true,
+        },
         styles = {
-            comments = 'NONE',
-            functions = 'NONE',
-            keywords = 'NONE',
-            strings = 'NONE',
-            variables = 'NONE',
+            keyword = 'bold',
         },
-        integrations = {
-            native_lsp = {
-                virtual_text = {
-                    errors = 'NONE',
-                    hints = 'NONE',
-                    warnings = 'NONE',
-                    information = 'NONE',
-                },
-            },
-            lsp_trouble = true,
-            lsp_saga = true,
-            nvimtree = { show_root = true },
-            which_key = true,
-            indent_blankline = { colored_indent_levels = true },
-            ts_rainbow = true,
-            hop = true,
-        },
-    })
+    }
+
+    fox.load('nightfox')
 end
 
 function config.lualine()
@@ -76,22 +65,11 @@ function config.lualine()
             return ''
         end
     end
-    local symbols_outline = {
-        sections = {
-            lualine_a = { 'mode' },
-            lualine_b = { 'filetype' },
-            lualine_c = {},
-            lualine_x = {},
-            lualine_y = {},
-            lualine_z = { 'location' },
-        },
-        filetypes = { 'Outline' },
-    }
 
     require('lualine').setup({
         options = {
             icons_enabled = true,
-            theme = 'catppuccin',
+            theme = 'auto',
             disabled_filetypes = {},
             component_separators = '|',
             section_separators = nil,
@@ -127,7 +105,7 @@ function config.lualine()
             'nvim-tree',
             'toggleterm',
             'fugitive',
-            symbols_outline,
+            'aerial',
         },
     })
 end
@@ -298,6 +276,7 @@ function config.indent_blankline()
     })
     -- because lazy load indent-blankline so need readd this autocmd
     vim.api.nvim_command('autocmd BufReadPre * IndentBlanklineEnable')
+    vim.api.nvim_command('autocmd BufNewFile * IndentBlanklineEnable')
     vim.api.nvim_command('autocmd CursorMoved * IndentBlanklineRefresh')
 end
 
