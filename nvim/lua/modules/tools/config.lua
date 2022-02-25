@@ -46,6 +46,7 @@ config.telescope = function()
     })
 
     require('telescope').load_extension('fzf')
+    require('telescope').load_extension('notify')
 end
 
 config.trouble = function()
@@ -105,6 +106,40 @@ config.wilder = function()
             call wilder#set_option('pipeline', [wilder#branch(wilder#cmdline_pipeline({'use_python': 0,'fuzzy': 1, 'fuzzy_filter': wilder#lua_fzy_filter()}),wilder#vim_search_pipeline(), [wilder#check({_, x -> empty(x)}), wilder#history(), wilder#result({'draw': [{_, x -> ' ' . x}]})])])
             call wilder#set_option('renderer', wilder#renderer_mux({':': wilder#popupmenu_renderer({'highlighter': wilder#lua_fzy_highlighter(), 'left': [wilder#popupmenu_devicons()], 'right': [' ', wilder#popupmenu_scrollbar()]}), '/': wilder#wildmenu_renderer({'highlighter': wilder#lua_fzy_highlighter()})}))
         ]])
+end
+
+config.which_key = function()
+    require('which-key').setup({
+        plugins = {
+            spelling = {
+                enabled = true,
+                suggestions = 10,
+            },
+        },
+    })
+end
+
+config.notify = function()
+    local notify = require('notify')
+    local notify_renderers = require('notify.render')
+
+    notify.setup({
+        stages = 'slide',
+        timeout = 2500, -- 2.5s
+        render = function(bufnr, notif, highlights)
+            if notif.title[1] == '' then
+                return notify_renderers.minimal(bufnr, notif, highlights)
+            else
+                return notify_renderers.default(bufnr, notif, highlights)
+            end
+        end,
+    })
+
+    -- NOTE: use Telescope as finder for notifications
+    -- see config.telescope()
+
+    -- try async notify as default notify method
+    vim.notify = notify
 end
 
 return config

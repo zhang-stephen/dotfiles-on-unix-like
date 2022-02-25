@@ -30,11 +30,8 @@ tools['nvim-telescope/telescope-frecency.nvim'] = {
 tools['jvgrootveld/telescope-zoxide'] = { opt = true, after = 'telescope.nvim' }
 tools['thinca/vim-quickrun'] = { opt = true, cmd = { 'QuickRun', 'Q' } }
 tools['folke/which-key.nvim'] = {
-    opt = true,
-    keys = ',',
-    config = function()
-        require('which-key').setup({})
-    end,
+    keys = vim.g.mapleader,
+    config = conf.which_key,
 }
 tools['folke/trouble.nvim'] = {
     opt = true,
@@ -46,6 +43,10 @@ tools['gelguy/wilder.nvim'] = {
     event = 'CmdlineEnter',
     config = conf.wilder,
     requires = { { 'romgrk/fzy-lua-native', after = 'wilder.nvim' } },
+}
+tools['rcarriga/nvim-notify'] = {
+    opt = false,
+    config = conf.notify,
 }
 
 return tools
