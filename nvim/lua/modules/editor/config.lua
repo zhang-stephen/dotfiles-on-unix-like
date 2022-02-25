@@ -13,11 +13,12 @@ end
 
 config.nvim_comment = function()
     vim.api.nvim_command([[autocmd! FileType c,cpp :lua vim.api.nvim_buf_set_option(0, 'commentstring', '// %s')]])
-    require('nvim_comment').setup()
+    require('nvim_comment').setup({
+        comment_empty = true,
+    })
 end
 
 config.todo_comment = function()
-    -- use all default settings
     require('todo-comments').setup({})
 end
 
@@ -140,10 +141,6 @@ config.autotag = function()
     require('nvim-ts-autotag').setup({
         filetypes = { 'html', 'xml', 'javascript', 'typescriptreact', 'javascriptreact', 'vue' },
     })
-end
-
-config.nvim_colorizer = function()
-    require('colorizer').setup()
 end
 
 config.neoscroll = function()

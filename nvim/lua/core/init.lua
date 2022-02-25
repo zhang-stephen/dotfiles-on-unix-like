@@ -17,8 +17,6 @@ function core.setup()
             conf.setup()
         end
     end
-
-    vim.api.nvim_command([[colorscheme nightfox]])
 end
 
 return core

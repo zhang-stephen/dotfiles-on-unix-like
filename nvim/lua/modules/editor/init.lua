@@ -94,17 +94,11 @@ editor['akinsho/nvim-toggleterm.lua'] = {
     config = conf.toggleterm,
 }
 editor['numtostr/FTerm.nvim'] = { opt = true, event = 'BufRead' }
-editor['norcalli/nvim-colorizer.lua'] = {
-    opt = true,
-    event = 'BufRead',
-    config = conf.nvim_colorizer,
-}
 editor['rmagatti/auto-session'] = {
     opt = true,
     cmd = { 'SaveSession', 'RestoreSession', 'DeleteSession' },
     config = conf.auto_session,
 }
-editor['jdhao/better-escape.vim'] = { opt = true, event = 'InsertEnter' }
 editor['tpope/vim-fugitive'] = { opt = true, cmd = { 'Git', 'G' } }
 editor['famiu/bufdelete.nvim'] = {
     opt = true,

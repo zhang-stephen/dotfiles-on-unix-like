@@ -4,9 +4,9 @@ local conf = require('modules.ui.config')
 ui['kyazdani42/nvim-web-devicons'] = {
     opt = false,
 }
-ui['EdenEast/nightfox.nvim'] = {
+ui['folke/tokyonight.nvim'] = {
     opt = false,
-    config = conf.nigthfox,
+    config = conf.tokyonight,
 }
 ui['hoob3rt/lualine.nvim'] = {
     opt = true,

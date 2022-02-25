@@ -35,24 +35,14 @@ config.alpha_nvim = function()
     ]])
 end
 
-config.nightfox = function()
-    local fox = require('nightfox')
+config.tokyonight = function()
+    vim.g.tokyonight_italic_keywords = false
+    vim.g.tokyonight_italic_comments = false
+    vim.g.tokyonight_transparent = true
+    vim.g.tokyonight_transparent_sidebar = true
+    vim.g.tokyonight_style = 'storm'
 
-    fox.setup({
-        fox = 'nightfox',
-        transparent = true,
-        alt_nc = true,
-        inverse = {
-            visual = true,
-            search = true,
-            match_paren = true,
-        },
-        styles = {
-            keyword = 'bold',
-        },
-    })
-
-    fox.load()
+    vim.api.nvim_command([[colorscheme tokyonight]])
 end
 
 config.lualine = function()
@@ -180,6 +170,10 @@ config.nvim_bufferline = function()
 end
 
 config.gitsigns = function()
+    vim.api.nvim_command [[hi GitSignsAdd guifg=#2EFE64]]
+    vim.api.nvim_command [[hi GitSignsChange guifg=#0040FF]]
+    vim.api.nvim_command [[hi GitSignsDelete guifg=#FE2E2E]]
+
     require('gitsigns').setup({
         keymaps = {
             -- Default keymap options

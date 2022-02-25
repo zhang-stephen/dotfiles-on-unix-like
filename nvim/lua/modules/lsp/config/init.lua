@@ -7,6 +7,20 @@ conf.lspconfig = function()
     local installer = require('nvim-lsp-installer')
     local capabilities = require('vim.lsp.protocol').make_client_capabilities()
 
+    local custom_attach = function(client, bufnr)
+        require('lsp_signature').on_attach({
+            bind = true,
+            use_lspsaga = false,
+            floating_window = true,
+            fix_pos = true,
+            hint_enable = true,
+            hi_parameter = 'Search',
+            handler_opts = { 'double' },
+        })
+
+        require('aerial').on_attach(client, bufnr)
+    end
+
     -- register a global command to Format the buffer
     -- just like coc.nvim
     vim.api.nvim_command([[command! -nargs=0 Format lua vim.lsp.buf.formatting()]])
@@ -33,6 +47,7 @@ conf.lspconfig = function()
                 },
             },
             root_dir = util.root_pattern('.git/', '.ccls', 'compile_commands.json'),
+            on_attach = custom_attach,
         },
 
         -- lsp servers managed by nvim-lsp-installer
@@ -116,20 +131,6 @@ conf.lspconfig = function()
             },
         },
     })
-
-    local custom_attach = function(client, bufnr)
-        require('lsp_signature').on_attach({
-            bind = true,
-            use_lspsaga = false,
-            floating_window = true,
-            fix_pos = true,
-            hint_enable = true,
-            hi_parameter = 'Search',
-            handler_opts = { 'double' },
-        })
-
-        require('aerial').on_attach(client, bufnr)
-    end
 
     local server_ready = function(server)
         local opts = {
