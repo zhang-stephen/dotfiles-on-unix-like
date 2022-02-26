@@ -16,17 +16,19 @@ config.alpha_nvim = function()
         '                                                     ',
     }
 
-    -- Set menu
+    -- Set menu, telescope.nvim required
     dashboard.section.buttons.val = {
         dashboard.button('f', '  > Find file', ':cd ~ | Telescope find_files<CR>'),
         dashboard.button('r', '  > Recent', ':Telescope oldfiles<CR>'),
-        dashboard.button('q', '  > Quit NVIM', ':qa<CR>'),
+        dashboard.button('n', '  > Notifations', ':Telescope notify<CR>'),
+        dashboard.button('c', 'ﰖ  > Git Commits', ':Telescope git_commits<CR>'),
+        dashboard.button('n', 'שׂ  > Git Branches', ':Telescope git_branches<CR>'),
+        dashboard.button('s', 'ﭧ  > Git Stashes', ':Telescope git_stash<CR>'),
+        dashboard.button('t', '  > Themes', ':Telescope colorscheme<CR>'),
+        dashboard.button('q', '  > Quit neovim', ':qa<CR>'),
     }
 
-    local fortune = require('alpha.fortune')
-    dashboard.section.footer.val = fortune()
-
-    -- Send config to alpha
+    dashboard.section.footer.val = require('alpha.fortune')()
     alpha.setup(dashboard.opts)
 
     -- Disable folding on alpha buffer
@@ -43,6 +45,14 @@ config.tokyonight = function()
     vim.g.tokyonight_style = 'storm'
 
     vim.api.nvim_command([[colorscheme tokyonight]])
+end
+
+config.gruvbox_material = function()
+    vim.g.gruvbox_material_disable_italic_comment = 1
+    vim.g.gruvbox_material_enable_bold = 1
+    vim.g.gruvbox_material_enable_italic = 0
+    vim.g.gruvbox_material_transparent_background = 1
+    vim.g.gruvbox_material_better_performance = 1
 end
 
 config.lualine = function()
@@ -141,7 +151,7 @@ end
 config.nvim_bufferline = function()
     require('bufferline').setup({
         options = {
-            number = function(opts)
+            numbers = function(opts)
                 return string.format('%s/%s', opts.raise(opts.id), opts.lower(opts.ordinal))
             end,
             modified_icon = '*',
@@ -166,14 +176,15 @@ config.nvim_bufferline = function()
                 },
             },
         },
+        highlights = {
+            buffer_selected = {
+                gui = 'bold',
+            }
+        }
     })
 end
 
 config.gitsigns = function()
-    vim.api.nvim_command [[hi GitSignsAdd guifg=#2EFE64]]
-    vim.api.nvim_command [[hi GitSignsChange guifg=#0040FF]]
-    vim.api.nvim_command [[hi GitSignsDelete guifg=#FE2E2E]]
-
     require('gitsigns').setup({
         keymaps = {
             -- Default keymap options

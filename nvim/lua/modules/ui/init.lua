@@ -8,6 +8,10 @@ ui['folke/tokyonight.nvim'] = {
     opt = false,
     config = conf.tokyonight,
 }
+ui['sainnhe/gruvbox-material'] = {
+    opt = false,
+    config = conf.gruvbox_material,
+}
 ui['hoob3rt/lualine.nvim'] = {
     opt = true,
     after = 'lualine-lsp-progress',
