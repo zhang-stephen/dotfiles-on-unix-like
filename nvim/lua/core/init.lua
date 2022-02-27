@@ -16,6 +16,10 @@ function core.setup()
         for _, conf in ipairs(core.config) do
             conf.setup()
         end
+
+        -- post-process or user-defined process after configuring
+        -- TODO: refactor these code
+        require('tasks').run()
     end
 end
 

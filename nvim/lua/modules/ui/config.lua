@@ -22,7 +22,7 @@ config.alpha_nvim = function()
         dashboard.button('r', '  > Recent', ':Telescope oldfiles<CR>'),
         dashboard.button('n', '  > Notifations', ':Telescope notify<CR>'),
         dashboard.button('c', 'ﰖ  > Git Commits', ':Telescope git_commits<CR>'),
-        dashboard.button('n', 'שׂ  > Git Branches', ':Telescope git_branches<CR>'),
+        dashboard.button('b', 'שׂ  > Git Branches', ':Telescope git_branches<CR>'),
         dashboard.button('s', 'ﭧ  > Git Stashes', ':Telescope git_stash<CR>'),
         dashboard.button('t', '  > Themes', ':Telescope colorscheme<CR>'),
         dashboard.button('q', '  > Quit neovim', ':qa<CR>'),
@@ -78,7 +78,7 @@ config.lualine = function()
             lualine_a = { 'mode' },
             lualine_b = { { 'branch' }, { 'diff' } },
             lualine_c = {
-                { 'lsp_progress' },
+                -- { 'lsp_progress' },
                 { gps_content, cond = gps.is_available },
             },
             lualine_x = {
@@ -176,11 +176,45 @@ config.nvim_bufferline = function()
                 },
             },
         },
+        -- NOTE: disable italics to avoid render issue in windows terminal
         highlights = {
             buffer_selected = {
                 gui = 'bold',
-            }
-        }
+            },
+            info_selected = {
+                gui = 'bold',
+            },
+            hint_selected = {
+                gui = 'bold',
+            },
+            warning_selected = {
+                gui = 'bold',
+            },
+            error_selected = {
+                gui = 'bold',
+            },
+            diagnostic_selected = {
+                gui = 'bold',
+            },
+            info_diagnostic_selected = {
+                gui = 'bold',
+            },
+            hint_diagnostic_selected = {
+                gui = 'bold',
+            },
+            warning_diagnostic_selected = {
+                gui = 'bold',
+            },
+            error_diagnostic_selected = {
+                gui = 'bold',
+            },
+            pick_selected = {
+                gui = 'bold',
+            },
+            duplicate_selected = {
+                gui = 'bold',
+            },
+        },
     })
 end
 
