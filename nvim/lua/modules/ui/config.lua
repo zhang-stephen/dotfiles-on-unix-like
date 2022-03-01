@@ -21,6 +21,7 @@ config.alpha_nvim = function()
         dashboard.button('f', '  > Find file', ':cd ~ | Telescope find_files<CR>'),
         dashboard.button('r', '  > Recent', ':Telescope oldfiles<CR>'),
         dashboard.button('n', '  > Notifations', ':Telescope notify<CR>'),
+        dashboard.button('x', '  > Git Status', ':Telescope git_status<CR>'),
         dashboard.button('c', 'ﰖ  > Git Commits', ':Telescope git_commits<CR>'),
         dashboard.button('b', 'שׂ  > Git Branches', ':Telescope git_branches<CR>'),
         dashboard.button('s', 'ﭧ  > Git Stashes', ':Telescope git_stash<CR>'),

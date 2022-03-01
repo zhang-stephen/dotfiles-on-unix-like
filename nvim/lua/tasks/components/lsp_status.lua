@@ -56,6 +56,7 @@ return function()
                 icon = spinner_frames[1],
                 timeout = false,
                 hidden = false,
+                hide_from_history = true,
             })
 
             client_notifs[client_id][result.token] = {
