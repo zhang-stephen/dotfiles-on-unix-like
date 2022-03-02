@@ -34,6 +34,8 @@ config.telescope = function()
             },
         },
 
+        pickers = {},
+
         extensions = {
             fzf = {
                 fuzzy = false, -- false will only do exact matching

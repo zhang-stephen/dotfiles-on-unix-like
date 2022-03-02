@@ -5,6 +5,10 @@ local lsp = {}
 lsp['neovim/nvim-lspconfig'] = {
     opt = true,
     after = 'cmp-nvim-lsp',
+    module = {
+        'lspconfig',
+        'lspconfig.util'
+    },
     config = conf.lspconfig,
 }
 lsp['williamboman/nvim-lsp-installer'] = {
@@ -25,9 +29,10 @@ lsp['ray-x/lsp_signature.nvim'] = { opt = true, after = 'nvim-lspconfig' }
 lsp['hrsh7th/nvim-cmp'] = {
     config = conf.cmp,
     event = { 'BufReadPre', 'BufNewFile' },
+    module = 'cmp',
     requires = {
         { 'lukas-reineke/cmp-under-comparator' },
-        { 'hrsh7th/cmp-nvim-lsp', after = 'nvim-cmp' },
+        { 'hrsh7th/cmp-nvim-lsp', after = 'nvim-cmp', module = 'cmp_nvim_lsp' },
         { 'hrsh7th/cmp-nvim-lua', after = 'cmp-nvim-lsp' },
         { 'andersevenrud/cmp-tmux', after = 'cmp-nvim-lua' },
         { 'hrsh7th/cmp-path', after = 'cmp-tmux' },

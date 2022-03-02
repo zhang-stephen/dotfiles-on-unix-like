@@ -89,6 +89,7 @@ Packer.setup = function()
     packer = require(Packer.manager.name)
     packer.init({
         compile_path = default_compiled,
+        max_jobs = 24,
         display = {
             open_fn = function()
                 return require('packer.util').float({

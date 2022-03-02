@@ -119,6 +119,11 @@ keymap.init = function()
         ['n|<leader>cq'] = map_cr('TroubleToggle quickfix'):with_silent(),
         ['n|<leader>cl'] = map_cr('TroubleToggle loclist'):with_silent(),
 
+        -- Telescope
+        ['n|<leader>ts'] = map_cr('Telescope lsp_dynamic_workspace_symbols'):with_silent(),
+        ['n|<leader>tf'] = map_cr('Telescope find_files'):with_silent(),
+        ['n|<leader>tg'] = map_cr('Telescope grep_string'):with_silent(),
+
         -- nvim-comment
         ['n|<leader>/'] = map_cr('CommentToggle'):with_silent(),
         ['v|<leader>/'] = map_cr('CommentToggle'):with_silent(),
