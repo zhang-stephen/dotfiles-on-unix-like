@@ -1,6 +1,6 @@
 # Modern Configuration for Neovim 0.6.0+
 
-*Click [here](blogs.stephen-zhang.cn/2022/01/30/neovim-configuration-cn/) for documents in `zh_CN`.*
+*Click [here](https://blogs.stephen-zhang.cn/post/515df42a/) for documents in `zh_CN`.*
 
 ### Preface
 
