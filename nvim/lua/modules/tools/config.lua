@@ -4,7 +4,7 @@ config.telescope = function()
     vim.api.nvim_command([[packadd sqlite.lua]])
     vim.api.nvim_command([[packadd telescope-fzf-native.nvim]])
 
-    require('telescope').setup({
+    local tconf = {
         defaults = {
             prompt_prefix = '🔭 ',
             selection_caret = '→ ',
@@ -23,7 +23,7 @@ config.telescope = function()
             file_sorter = require('telescope.sorters').get_fuzzy_file,
             file_ignore_patterns = {},
             generic_sorter = require('telescope.sorters').get_generic_fuzzy_sorter,
-            path_display = { 'absolute' },
+            path_display = { 'relative' },
             winblend = 0,
             border = {},
             borderchars = { '─', '│', '─', '│', '╭', '╮', '╯', '╰' },
@@ -44,11 +44,15 @@ config.telescope = function()
                 case_mode = 'smart_case', -- or 'ignore_case' or 'respect_case'
                 -- the default case_mode is 'smart_case'
             },
+            notify = {},
         },
-    })
+    }
 
-    require('telescope').load_extension('fzf')
-    require('telescope').load_extension('notify')
+    require('telescope').setup(tconf)
+
+    for extension, _ in pairs(tconf.extensions) do
+        require('telescope').load_extension(extension)
+    end
 end
 
 config.trouble = function()
@@ -67,11 +71,11 @@ config.trouble = function()
             close = 'q', -- close the list
             cancel = '<esc>', -- cancel the preview and get back to your last window / buffer / cursor
             refresh = 'r', -- manually refresh
-            jump = { '<cr>', '<tab>' }, -- jump to the diagnostic or open / close folds
+            jump = { '<tab>' }, -- jump to the diagnostic or open / close folds
             open_split = { '<c-x>' }, -- open buffer in new split
             open_vsplit = { '<c-v>' }, -- open buffer in new vsplit
             open_tab = { '<c-t>' }, -- open buffer in new tab
-            jump_close = { 'o' }, -- jump to the diagnostic and close the list
+            jump_close = { '<CR>' }, -- jump to the diagnostic and close the list
             toggle_mode = 'm', -- toggle between 'workspace' and 'document' diagnostics mode
             toggle_preview = 'P', -- toggle auto_preview
             hover = 'K', -- opens a small popup with the full multiline message

@@ -106,7 +106,7 @@ config.lualine = function()
             'nvim-tree',
             'toggleterm',
             'fugitive',
-            'aerial',
+            'symbols-outline'
         },
     })
 end
