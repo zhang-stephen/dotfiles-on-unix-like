@@ -17,6 +17,8 @@ conf.lspconfig = function()
             hi_parameter = 'Search',
             handler_opts = { 'double' },
         })
+
+        require('aerial').on_attach(client, bufnr)
     end
 
     -- register a global command to Format the buffer

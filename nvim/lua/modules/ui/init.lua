@@ -14,8 +14,12 @@ ui['sainnhe/gruvbox-material'] = {
 }
 ui['hoob3rt/lualine.nvim'] = {
     opt = true,
-    after = 'nvim-gps',
+    after = 'lualine-lsp-progress',
     config = conf.lualine,
+}
+ui['arkav/lualine-lsp-progress'] = {
+    opt = true,
+    after = 'nvim-gps',
 }
 ui['goolord/alpha-nvim'] = {
     opt = true,

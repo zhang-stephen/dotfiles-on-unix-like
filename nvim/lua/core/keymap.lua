@@ -109,7 +109,7 @@ keymap.init = function()
         ['n|gd'] = map_cr('lua vim.lsp.buf.definition()'):with_silent(),
 
         -- aerial.nvim
-        ['n|<leader>o'] = map_cu('SymbolsOutline'):with_silent(),
+        ['n|<leader>o'] = map_cu('AerialToggle'):with_silent(),
 
         -- Trouble
         ['n|gt'] = map_cr('TroubleToggle'):with_silent(),

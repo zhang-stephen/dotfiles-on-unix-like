@@ -22,25 +22,19 @@ config.todo_comment = function()
     require('todo-comments').setup({})
 end
 
-config.outline = function()
-    require('symbols-outline').setup({
-        highlight_hovered_item = true,
-        width = 20,
-        relative_width = true,
-        show_guides = true,
-        auto_preview = true,
-        position = 'right',
-        show_numbers = true,
-        show_relative_numbers = true,
-        show_symbol_details = true,
-        preview_bg_highlight = 'Pmenu',
-        keymaps = {
-            close = '<Esc>',
-            goto_location = '<CR>',
-            focus_location = 'o',
-            hover_symbol = '<C-space>',
-            rename_symbol = 'r',
-            code_actions = 'a'
+config.aerial = function()
+    require('aerial').setup({
+        backups = { 'lsp', 'treesitter' },
+        filter_kind = {
+            'Class',
+            'Constructor',
+            'Enum',
+            'Function',
+            'Interface',
+            'Module',
+            'Method',
+            'Namespace',
+            'Struct',
         },
     })
 end

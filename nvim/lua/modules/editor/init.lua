@@ -15,10 +15,10 @@ editor['folke/todo-comments.nvim'] = {
     opt = false,
     config = conf.todo_comment,
 }
-editor['simrat39/symbols-outline.nvim'] = {
+editor['stevearc/aerial.nvim'] = {
     opt = true,
     event = { 'BufReadPre', 'BufNewFile' },
-    config = conf.outline,
+    config = conf.aerial,
 }
 editor['nvim-treesitter/nvim-treesitter'] = {
     run = ':TSUpdate',

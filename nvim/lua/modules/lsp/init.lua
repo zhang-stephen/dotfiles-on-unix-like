@@ -4,7 +4,7 @@ local lsp = {}
 
 lsp['neovim/nvim-lspconfig'] = {
     opt = true,
-    event = { 'BufReadPre', 'BufNewFile' },
+    after = 'cmp-nvim-lsp',
     module = {
         'lspconfig',
         'lspconfig.util'
