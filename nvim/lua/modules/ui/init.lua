@@ -3,6 +3,11 @@ local conf = require('modules.ui.config')
 
 ui['kyazdani42/nvim-web-devicons'] = {
     opt = false,
+    config = function()
+        require('nvim-web-devicons').setup({
+            default = true,
+        })
+    end
 }
 ui['folke/tokyonight.nvim'] = {
     opt = false,
@@ -14,12 +19,8 @@ ui['sainnhe/gruvbox-material'] = {
 }
 ui['hoob3rt/lualine.nvim'] = {
     opt = true,
-    after = 'lualine-lsp-progress',
-    config = conf.lualine,
-}
-ui['arkav/lualine-lsp-progress'] = {
-    opt = true,
     after = 'nvim-gps',
+    config = conf.lualine,
 }
 ui['goolord/alpha-nvim'] = {
     opt = true,

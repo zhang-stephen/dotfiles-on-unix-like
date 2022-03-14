@@ -29,20 +29,26 @@ config.aerial = function()
             'Class',
             'Constructor',
             'Enum',
+            'Field',
             'Function',
             'Interface',
+            'Key',
             'Module',
             'Method',
             'Namespace',
+            'Object',
+            'Operator',
+            'Package',
+            'Property',
             'Struct',
+            'TypeParameter',
         },
+        max_width = { 60, 0.3 },
+        close_behavior = 'close',
     })
 end
 
 config.nvim_treesitter = function()
-    vim.api.nvim_command('set foldmethod=expr')
-    vim.api.nvim_command('set foldexpr=nvim_treesitter#foldexpr()')
-
     require('nvim-treesitter.configs').setup({
         ensure_installed = {
             'c',

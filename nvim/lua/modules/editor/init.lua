@@ -17,7 +17,8 @@ editor['folke/todo-comments.nvim'] = {
 }
 editor['stevearc/aerial.nvim'] = {
     opt = true,
-    event = { 'BufReadPre', 'BufNewFile' },
+    cmd = {'AerialToggle'},
+    module = 'aerial',
     config = conf.aerial,
 }
 editor['nvim-treesitter/nvim-treesitter'] = {

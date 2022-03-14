@@ -1,4 +1,3 @@
-local log = require('utility.logger')
 local options = {}
 
 options.configuration = {
@@ -19,6 +18,8 @@ options.configuration = {
         splitright = true,
         grepformat = '%f:%l:%c:%m',
         -- grepprg = 'rg --hidden --vimgrep --smart-case --'
+        foldmethod = 'indent',
+        foldlevel = 99,
     },
 
     buffwin = {
@@ -57,8 +58,8 @@ options.configuration = {
     cmds = { 'filetype indent on', 'highlight Pmenu ctermbg=black guibg=black' },
 }
 
-local bind_option = function(options)
-    for k, v in pairs(options) do
+local bind_option = function(opts)
+    for k, v in pairs(opts) do
         if v == true then
             vim.cmd('set ' .. k)
         elseif v == false then
