@@ -55,17 +55,21 @@ options.configuration = {
         winblend = 10,
     },
 
-    cmds = { 'filetype indent on', 'highlight Pmenu ctermbg=black guibg=black' },
+    cmds = {
+        'filetype indent on',
+        'highlight Pmenu ctermbg=black guibg=black',
+        -- 'syntax on',
+    },
 }
 
 local bind_option = function(opts)
     for k, v in pairs(opts) do
         if v == true then
-            vim.cmd('set ' .. k)
+            vim.api.nvim_command('set ' .. k)
         elseif v == false then
-            vim.cmd('set no' .. k)
+            vim.api.nvim_command('set no' .. k)
         else
-            vim.cmd('set ' .. k .. '=' .. v)
+            vim.api.nvim_command('set ' .. k .. '=' .. v)
         end
     end
 end

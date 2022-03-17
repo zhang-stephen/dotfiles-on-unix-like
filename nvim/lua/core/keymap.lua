@@ -123,6 +123,9 @@ keymap.init = function()
         ['n|<leader>ts'] = map_cr('Telescope lsp_dynamic_workspace_symbols'):with_silent(),
         ['n|<leader>tf'] = map_cr('Telescope find_files'):with_silent(),
         ['n|<leader>tg'] = map_cr('Telescope grep_string'):with_silent(),
+        ['n|<leader>ta'] = map_cr('Telescope aerial'):with_silent(),
+        ['n|<leader>td'] = map_cr('Telescope lsp_definition'):with_silent(),
+        ['n|<leader>tr'] = map_cr('Telescope lsp_references'):with_silent(),
 
         -- nvim-comment
         ['n|<leader>/'] = map_cr('CommentToggle'):with_silent(),
@@ -146,7 +149,7 @@ keymap.init = function()
         ['n|;'] = map_cmd([[v:lua.enhance_ft_move(';')]]):with_expr():with_recursive(),
 
         -- Plugin EasyAlign
-        ['n|ga'] = map_cmd([['v:lua.enhance_align('nga')]]):with_expr():with_recursive(),
+        ['n|ga'] = map_cmd([[v:lua.enhance_align('nga')]]):with_expr():with_recursive(),
         ['x|ga'] = map_cmd([[v:lua.enhance_align('xga')]]):with_expr():with_recursive(),
 
         -- bufferline

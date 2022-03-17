@@ -14,7 +14,7 @@ local definitions = {
         -- { 'FileType', 'c,cpp', 'set expandtab tabstop=2 shiftwidth=2' },
         {
             'FileType',
-            'dashboard',
+            'alpha',
             'set showtabline=0 | autocmd WinLeave <buffer> set showtabline=2',
         },
         {
@@ -45,7 +45,7 @@ event.nvim_create_augroups = function(defs)
         vim.api.nvim_command('augroup ' .. group_name)
         vim.api.nvim_command('autocmd!')
         for _, def in ipairs(definition) do
-            local command = table.concat(vim.tbl_flatten({ 'autocmd', def }), ' ')
+            local command = table.concat(vim.tbl_flatten({ 'autocmd!', def }), ' ')
             vim.api.nvim_command(command)
         end
         vim.api.nvim_command('augroup END')
