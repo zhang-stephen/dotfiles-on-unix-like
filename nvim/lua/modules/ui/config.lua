@@ -39,8 +39,8 @@ config.alpha_nvim = function()
 end
 
 config.tokyonight = function()
-    vim.g.tokyonight_italic_keywords = false
-    vim.g.tokyonight_italic_comments = false
+    vim.g.tokyonight_italic_keywords = true
+    vim.g.tokyonight_italic_comments = true
     vim.g.tokyonight_transparent = true
     vim.g.tokyonight_transparent_sidebar = true
     vim.g.tokyonight_style = 'storm'
@@ -49,9 +49,9 @@ config.tokyonight = function()
 end
 
 config.gruvbox_material = function()
-    vim.g.gruvbox_material_disable_italic_comment = 1
+    vim.g.gruvbox_material_disable_italic_comment = 0
     vim.g.gruvbox_material_enable_bold = 1
-    vim.g.gruvbox_material_enable_italic = 0
+    vim.g.gruvbox_material_enable_italic = 1
     vim.g.gruvbox_material_transparent_background = 1
     vim.g.gruvbox_material_better_performance = 1
 end
@@ -177,45 +177,7 @@ config.nvim_bufferline = function()
                 },
             },
         },
-        -- NOTE: disable italics to avoid render issue in windows terminal
-        highlights = {
-            buffer_selected = {
-                gui = 'bold',
-            },
-            info_selected = {
-                gui = 'bold',
-            },
-            hint_selected = {
-                gui = 'bold',
-            },
-            warning_selected = {
-                gui = 'bold',
-            },
-            error_selected = {
-                gui = 'bold',
-            },
-            diagnostic_selected = {
-                gui = 'bold',
-            },
-            info_diagnostic_selected = {
-                gui = 'bold',
-            },
-            hint_diagnostic_selected = {
-                gui = 'bold',
-            },
-            warning_diagnostic_selected = {
-                gui = 'bold',
-            },
-            error_diagnostic_selected = {
-                gui = 'bold',
-            },
-            pick_selected = {
-                gui = 'bold',
-            },
-            duplicate_selected = {
-                gui = 'bold',
-            },
-        },
+        highlights = {},
     })
 end
 
