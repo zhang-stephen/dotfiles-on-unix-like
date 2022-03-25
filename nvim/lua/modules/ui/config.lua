@@ -40,7 +40,7 @@ end
 
 config.tokyonight = function()
     vim.g.tokyonight_italic_keywords = true
-    vim.g.tokyonight_italic_comments = true
+    vim.g.tokyonight_italic_comments = false
     vim.g.tokyonight_transparent = true
     vim.g.tokyonight_transparent_sidebar = true
     vim.g.tokyonight_style = 'storm'
@@ -49,7 +49,7 @@ config.tokyonight = function()
 end
 
 config.gruvbox_material = function()
-    vim.g.gruvbox_material_disable_italic_comment = 0
+    vim.g.gruvbox_material_disable_italic_comment = 1
     vim.g.gruvbox_material_enable_bold = 1
     vim.g.gruvbox_material_enable_italic = 1
     vim.g.gruvbox_material_transparent_background = 1
