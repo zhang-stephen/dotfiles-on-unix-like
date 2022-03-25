@@ -28,7 +28,8 @@ What you need to make this configuration work is following:
 + neovim 0.6.0+ or nightly build,
 + git 2.18+,
 + cmake 3.18+,
-+ Gcc 9.2.0 or later(for compilation of [ccls](https://github.com/MaskRay/ccls) and nvim-treesitter parsers),
++ Gcc 9.2.0 or later(for compilation of nvim-treesitter parsers),
++ clangd 11.0.0+ as c/cpp language server,
 + Node.js 17.0+(for [pyright](https://github.com/microsoft/pyright)),
 + [Nerd Fonts](https://www.nerdfonts.com/) for terminal display(I prefer `FiraCode NF`).
 
@@ -108,9 +109,9 @@ If someone used this configuration, welcome PR and issues.
 ### Roadmap
 
 - [ ] add support for `rust`,
-- [ ] format all code in lua,
+- [x] format all code in lua,
 - [ ] adjust the configuation of extension `indent-blank.nvim`,
-- [ ] improve the logger,
+- [x] improve the logger,
 - [ ] lazy-loader optimization,
 - [ ] write a tool to analyze the lazy-load configuration of packer.nvim.
 

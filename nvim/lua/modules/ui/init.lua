@@ -43,7 +43,7 @@ ui['lewis6991/gitsigns.nvim'] = {
 }
 ui['lukas-reineke/indent-blankline.nvim'] = {
     opt = true,
-    event = 'BufReadPre',
+    event = { 'BufReadPre', 'BufNewFile' },
     after = 'nvim-treesitter',
     config = conf.indent_blankline,
 }

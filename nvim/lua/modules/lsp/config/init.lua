@@ -26,28 +26,25 @@ conf.lspconfig = function()
     vim.api.nvim_command([[command! -nargs=0 Format lua vim.lsp.buf.formatting()]])
 
     local enhance_server_opts = {
-        ['ccls'] = {
-            -- the default configurations
-            -- create .ccls under project root rather than modify lua code if you want to customize it
-            -- refers to: https://github.com/MaskRay/ccls/wiki/Project-Setup#ccls-file
-            -- use `ln -sf` to place compile_commands.json into project root dir
-            init_options = {
-                compilationDatabaseDirectory = './',
-                index = {
-                    threads = 12,
-                    comments = 2,
-                },
-                clang = {
-                    extraArgs = {},
-                    excludeArgs = { '-m*', '-flto*', '-W*', '-frounding-math' },
-                },
-                cache = {
-                    directory = vim.env['HOME'] .. '/.cache/ccls/',
-                    format = 'binary',
-                },
+        ['clangd'] = {
+            -- Use clangd as default c/cpp language server
+            -- users might have to create `.clangd` under the root path of projects to configure it
+            -- see https://clangd.llvm.org/config
+            cmd = {
+                'clangd',
+                '--log=error',
+                '--background-index',
+                '--clang-tidy',
+                '--header-insertion=iwyu',
+                '-j=12',
+                '--pch-storage=memory',
+                '--malloc-trim',
+                '--enable-config'
             },
-            root_dir = util.root_pattern('.git/', '.ccls', 'compile_commands.json'),
             on_attach = custom_attach,
+            root_dir = util.root_pattern('.git/', '.clangd', 'compile_commands.json'),
+            single_file_support = true,
+            capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities),
         },
 
         -- lsp servers managed by nvim-lsp-installer
