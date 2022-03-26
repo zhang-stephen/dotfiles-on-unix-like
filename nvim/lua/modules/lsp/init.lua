@@ -7,13 +7,13 @@ lsp['neovim/nvim-lspconfig'] = {
     after = 'cmp-nvim-lsp',
     module = {
         'lspconfig',
-        'lspconfig.util'
+        'lspconfig.util',
     },
     config = conf.lspconfig,
 }
 lsp['williamboman/nvim-lsp-installer'] = {
     opt = true,
-    module = 'nvim-lsp-installer'
+    module = 'nvim-lsp-installer',
 }
 lsp['RishabhRD/nvim-lsputils'] = {
     opt = true,

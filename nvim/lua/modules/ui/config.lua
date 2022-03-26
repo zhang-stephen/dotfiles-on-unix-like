@@ -1,5 +1,12 @@
 local config = {}
 
+config.devicon = function()
+    require("nvim-web-devicons").set_default_icon('', '#6d8086')
+    require('nvim-web-devicons').setup({
+        default = true,
+    })
+end
+
 config.alpha_nvim = function()
     local alpha = require('alpha')
     local dashboard = require('alpha.themes.dashboard')
@@ -44,8 +51,6 @@ config.tokyonight = function()
     vim.g.tokyonight_transparent = true
     vim.g.tokyonight_transparent_sidebar = true
     vim.g.tokyonight_style = 'storm'
-
-    vim.api.nvim_command([[colorscheme tokyonight]])
 end
 
 config.gruvbox_material = function()
@@ -54,6 +59,61 @@ config.gruvbox_material = function()
     vim.g.gruvbox_material_enable_italic = 1
     vim.g.gruvbox_material_transparent_background = 1
     vim.g.gruvbox_material_better_performance = 1
+end
+
+config.catppuccin = function()
+    require('catppuccin').setup({
+        transparent_background = true,
+        term_colors = true,
+        styles = {
+            comments = 'NONE',
+            functions = 'italic',
+            keywords = 'italic',
+            strings = 'bold',
+            variables = 'NONE',
+        },
+        integrations = {
+            treesitter = true,
+            native_lsp = {
+                enabled = true,
+                virtual_text = {
+                    errors = 'italic',
+                    hints = 'italic',
+                    warnings = 'italic',
+                    information = 'italic',
+                },
+                underlines = {
+                    errors = 'undercurl',
+                    hints = 'undercurl',
+                    warnings = 'undercurl',
+                    information = 'undercurl',
+                },
+            },
+            lsp_trouble = true,
+            cmp = true,
+            lsp_saga = true,
+            gitgutter = false,
+            gitsigns = true,
+            telescope = true,
+            nvimtree = {
+                enabled = true,
+                show_root = false,
+                transparent_panel = true,
+            },
+            which_key = true,
+            indent_blankline = {
+                enabled = true,
+                colored_indent_levels = false,
+            },
+            bufferline = true,
+            markdown = true,
+            ts_rainbow = false,
+            hop = false,
+            notify = true,
+        },
+    })
+
+    vim.api.nvim_command('color catppuccin')
 end
 
 config.lualine = function()

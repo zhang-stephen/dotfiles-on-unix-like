@@ -3,11 +3,7 @@ local conf = require('modules.ui.config')
 
 ui['kyazdani42/nvim-web-devicons'] = {
     opt = false,
-    config = function()
-        require('nvim-web-devicons').setup({
-            default = true,
-        })
-    end
+    config = conf.devicon,
 }
 ui['folke/tokyonight.nvim'] = {
     opt = false,
@@ -16,6 +12,11 @@ ui['folke/tokyonight.nvim'] = {
 ui['sainnhe/gruvbox-material'] = {
     opt = false,
     config = conf.gruvbox_material,
+}
+ui['catppuccin/nvim'] = {
+    opt = false,
+    as = 'catppuccin',
+    config = conf.catppuccin,
 }
 ui['hoob3rt/lualine.nvim'] = {
     opt = true,

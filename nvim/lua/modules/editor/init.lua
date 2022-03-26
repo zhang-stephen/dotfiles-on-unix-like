@@ -7,9 +7,9 @@ editor['itchyny/vim-cursorword'] = {
     event = { 'BufReadPre', 'BufNewFile' },
     config = conf.vim_cursorwod,
 }
-editor['terrortylor/nvim-comment'] = {
+editor['numToStr/Comment.nvim'] = {
     opt = false,
-    config = conf.nvim_comment,
+    config = conf.comment,
 }
 editor['folke/todo-comments.nvim'] = {
     opt = false,
@@ -17,7 +17,7 @@ editor['folke/todo-comments.nvim'] = {
 }
 editor['stevearc/aerial.nvim'] = {
     opt = true,
-    cmd = {'AerialToggle'},
+    cmd = { 'AerialToggle' },
     module = 'aerial',
     config = conf.aerial,
 }

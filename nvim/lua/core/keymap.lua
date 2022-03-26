@@ -62,7 +62,7 @@ keymap.init = function()
 
         -- edit
         ['n|Y'] = map_cmd('y$'),
-        ['n|D'] = map_cmd('D$'),
+        ['n|D'] = map_cmd('d$'),
         ['n|n'] = map_cmd('nzzzv'), -- n zz zv
         ['n|N'] = map_cmd('Nzzzv'), -- N zz zv
 
@@ -126,10 +126,7 @@ keymap.init = function()
         ['n|<leader>ta'] = map_cr('Telescope aerial'):with_silent(),
         ['n|<leader>td'] = map_cr('Telescope lsp_definition'):with_silent(),
         ['n|<leader>tr'] = map_cr('Telescope lsp_references'):with_silent(),
-
-        -- nvim-comment
-        ['n|<leader>/'] = map_cr('CommentToggle'):with_silent(),
-        ['v|<leader>/'] = map_cr('CommentToggle'):with_silent(),
+        ['n|<leader>tt'] = map_cr('TodoTelescope'):with_silent(),
 
         -- Hop
         ['n|<leader>w'] = map_cu('HopWord'):with_nowait():with_silent(),

@@ -39,7 +39,7 @@ conf.lspconfig = function()
                 '-j=12',
                 '--pch-storage=memory',
                 '--malloc-trim',
-                '--enable-config'
+                '--enable-config',
             },
             on_attach = custom_attach,
             root_dir = util.root_pattern('.git/', '.clangd', 'compile_commands.json'),
@@ -153,18 +153,18 @@ conf.lspconfig = function()
                 log.error(string.format('nvim-lspconfig not support: %s', server))
             end
         elseif type(config) == 'function' then
-            local available, managed = require('nvim-lsp-installer.servers').get_server(server)
+            local available, managed = installer.get_server(server)
             if available then
-                if managed:is_installed() then
-                    managed:on_ready(server_ready)
-                else
+                if not managed:is_installed() then
                     managed:install()
                 end
+
+                managed:on_ready(server_ready)
             else
                 log.error(string.format('unknown server for nvim-lspinstaller: %s', server))
             end
         else
-            log.error(string.format('unsupport config for %s', server))
+            log.error(string.format('unsupport configuration for %s', server))
         end
     end
 end

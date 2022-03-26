@@ -11,10 +11,31 @@ config.vim_cursorwod = function()
     vim.api.nvim_command('augroup END')
 end
 
-config.nvim_comment = function()
-    vim.api.nvim_command([[autocmd! FileType c,cpp :lua vim.api.nvim_buf_set_option(0, 'commentstring', '// %s')]])
-    require('nvim_comment').setup({
-        comment_empty = true,
+config.comment = function()
+    require('Comment').setup({
+        padding = true,
+        sticky = true,
+        ignore = nil,
+        toggler = {
+            line = 'gcc',
+            block = 'gbc',
+        },
+        opleader = {
+            line = 'gc',
+            block = 'gb'
+        },
+        extra = {
+            above = 'gcO',
+            below = 'gco',
+            eol = 'gcA',
+        },
+        mapping = {
+            basic = true,
+            extra = true,
+            extended = true,
+        },
+        pre_hook = nil,
+        post_hook = nil,
     })
 end
 
@@ -24,7 +45,7 @@ end
 
 config.aerial = function()
     require('aerial').setup({
-        backups = { 'lsp', 'treesitter' },
+        backups = { 'lsp', 'treesitter', 'markdown' },
         filter_kind = {
             'Class',
             'Constructor',
