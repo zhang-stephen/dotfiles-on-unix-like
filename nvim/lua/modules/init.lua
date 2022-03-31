@@ -1,8 +1,8 @@
 local modules = {
-    editor = require('modules.editor'),
-    tools = require('modules.tools'),
-    ui = require('modules.ui'),
-    lsp = require('modules.lsp'),
+    require('modules.lsp'),
+    require('modules.editor'),
+    require('modules.tools'),
+    require('modules.ui'),
 }
 
 return modules

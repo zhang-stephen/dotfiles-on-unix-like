@@ -23,6 +23,7 @@ editor['stevearc/aerial.nvim'] = {
 }
 editor['nvim-treesitter/nvim-treesitter'] = {
     run = ':TSUpdate',
+    -- event = 'BufRead',
     config = conf.nvim_treesitter,
 }
 editor['nvim-treesitter/nvim-treesitter-textobjects'] = {
@@ -36,7 +37,6 @@ editor['romgrk/nvim-treesitter-context'] = {
 editor['p00f/nvim-ts-rainbow'] = {
     opt = true,
     after = 'nvim-treesitter',
-    event = 'BufRead',
 }
 editor['JoosepAlviste/nvim-ts-context-commentstring'] = {
     opt = true,
@@ -49,7 +49,6 @@ editor['mfussenegger/nvim-ts-hint-textobject'] = {
 editor['SmiteshP/nvim-gps'] = {
     opt = true,
     after = 'nvim-treesitter',
-    event = { 'BufNewFile', 'BufReadPre', 'BufWinEnter' },
     config = conf.nvim_gps,
 }
 editor['windwp/nvim-ts-autotag'] = {

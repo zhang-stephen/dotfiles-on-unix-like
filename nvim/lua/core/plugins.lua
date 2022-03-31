@@ -77,7 +77,7 @@ Packer.setup = function()
             opt = true,
         })
 
-        for _, modules in pairs(require('modules')) do
+        for _, modules in ipairs(require('modules')) do
             for repo, spec in pairs(modules) do
                 use(vim.tbl_extend('force', { repo }, spec))
             end

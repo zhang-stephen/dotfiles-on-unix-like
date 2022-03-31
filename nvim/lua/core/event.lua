@@ -35,6 +35,8 @@ local definitions = {
         { 'BufWritePre', 'MERGE_MSG', 'setlocal noundofile' },
         { 'BufWritePre', '*.tmp', 'setlocal noundofile' },
         { 'BufWritePre', '*.bak', 'setlocal noundofile' },
+        -- close nvim_tree.lua if it were the last window
+        { 'BufWritePre', '*', [[++nested if winnr('$') == 1 && bufname() == 'NvimTree_' . tabpagenr() | quit | endif]] },
         -- FIXME: raise E201/E434 when buffer changed, e.g. run `:h something`
         -- { 'BufEnter', '*', 'silent! lcd %:p:h' }, -- auto place to last edit
     },
