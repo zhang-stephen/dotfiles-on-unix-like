@@ -73,6 +73,7 @@ return function()
                     nvim_lua = '[LUA]',
                     path = '[PATH]',
                     tmux = '[TMUX]',
+                    luasnip = '[SNIP]',
                     spell = '[SPELL]',
                 })[entry.source.name]
 
@@ -117,13 +118,18 @@ return function()
                 end
             end,
         },
-        snippet = nil,
+        snippet = {
+            expand = function(args)
+                require("luasnip").lsp_expand(args.body)
+            end,
+        },
         sources = {
             { name = 'nvim_lsp' },
             { name = 'nvim_lua' },
             { name = 'path' },
             { name = 'spell' },
             { name = 'tmux' },
+            { name = 'luasnip' },
             { name = 'buffer' },
             { name = 'latex_symbols' },
         },

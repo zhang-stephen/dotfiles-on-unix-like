@@ -193,7 +193,15 @@ conf.lightbulb = function()
     vim.api.nvim_command([[ autocmd CursorHold,CursorHoldI * lua require('nvim-lightbulb').update_lightbulb() ]])
 end
 
-conf.cmp = require('modules.lsp.config.cmp')
+conf.cmp = require('modules.lsp.config.completion')
+
+conf.luasnip = function()
+    require("luasnip").config.set_config({
+        history = true,
+        updateevents = "TextChanged,TextChangedI",
+    })
+    require("luasnip/loaders/from_vscode").load()
+end
 
 conf.autopairs = function()
     require('nvim-autopairs').setup({})
