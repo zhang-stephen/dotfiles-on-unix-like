@@ -22,7 +22,7 @@ editor['stevearc/aerial.nvim'] = {
     config = conf.aerial,
 }
 editor['nvim-treesitter/nvim-treesitter'] = {
-    run = ':TSUpdate',
+    run = ':TSUpdate all',
     config = conf.nvim_treesitter,
 }
 editor['nvim-treesitter/nvim-treesitter-textobjects'] = {
@@ -90,6 +90,7 @@ editor['vimlab/split-term.vim'] = { opt = true, cmd = { 'Term', 'VTerm' } }
 editor['akinsho/nvim-toggleterm.lua'] = {
     opt = true,
     event = 'BufRead',
+    branch = 'main',
     config = conf.toggleterm,
 }
 editor['numtostr/FTerm.nvim'] = { opt = true, event = 'BufRead' }
@@ -107,6 +108,19 @@ editor['edluffy/specs.nvim'] = {
     opt = true,
     event = 'CursorMoved',
     config = conf.specs,
+}
+editor["rcarriga/nvim-dap-ui"] = {
+	opt = false,
+	config = conf.dapui,
+	requires = {
+		{ "mfussenegger/nvim-dap", config = conf.dap },
+		{
+			"Pocco81/DAPInstall.nvim",
+			opt = true,
+			cmd = { "DIInstall", "DIUninstall", "DIList" },
+			-- config = conf.dapinstall,
+		},
+	},
 }
 
 return editor

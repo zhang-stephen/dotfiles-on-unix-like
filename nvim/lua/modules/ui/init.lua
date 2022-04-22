@@ -51,6 +51,7 @@ ui['lukas-reineke/indent-blankline.nvim'] = {
 ui['akinsho/nvim-bufferline.lua'] = {
     opt = true,
     event = 'BufRead',
+    branch = 'main',
     config = conf.nvim_bufferline,
 }
 ui['dstein64/nvim-scrollview'] = {
