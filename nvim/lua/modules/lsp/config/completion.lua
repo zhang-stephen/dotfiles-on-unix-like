@@ -120,7 +120,7 @@ return function()
         },
         snippet = {
             expand = function(args)
-                require("luasnip").lsp_expand(args.body)
+                require('luasnip').lsp_expand(args.body)
             end,
         },
         sources = {

@@ -28,7 +28,7 @@ lsp['kosayoda/nvim-lightbulb'] = {
 }
 
 lsp['ray-x/lsp_signature.nvim'] = { opt = true, after = 'nvim-lspconfig' }
-lsp['L3MON4D3/LuaSnip'] = { config = conf.luasnip, }
+lsp['L3MON4D3/LuaSnip'] = { config = conf.luasnip }
 
 lsp['hrsh7th/nvim-cmp'] = {
     config = conf.cmp,

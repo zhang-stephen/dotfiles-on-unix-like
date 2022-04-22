@@ -52,7 +52,7 @@ ui['akinsho/nvim-bufferline.lua'] = {
     opt = true,
     event = 'BufRead',
     branch = 'main',
-    config = conf.nvim_bufferline,
+    config = conf.bufferline,
 }
 ui['dstein64/nvim-scrollview'] = {
     opt = true,

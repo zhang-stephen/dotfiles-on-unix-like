@@ -1,7 +1,7 @@
 local config = {}
 
 config.devicon = function()
-    require("nvim-web-devicons").set_default_icon('', '#6d8086')
+    require('nvim-web-devicons').set_default_icon('', '#6d8086')
     require('nvim-web-devicons').setup({
         default = true,
     })
@@ -208,7 +208,7 @@ config.nvim_tree = function()
     })
 end
 
-config.nvim_bufferline = function()
+config.bufferline = function()
     require('bufferline').setup({
         options = {
             numbers = function(opts)

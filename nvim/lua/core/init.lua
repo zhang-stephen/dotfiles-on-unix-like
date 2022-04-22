@@ -8,7 +8,7 @@ local core = {
 }
 
 local is_nvim_compatible = function()
-    return vim.fn.has('nvim-0.6')
+    return vim.fn.has('nvim-0.7')
 end
 
 function core.setup()

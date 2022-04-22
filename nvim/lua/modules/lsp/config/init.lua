@@ -19,6 +19,21 @@ conf.lspconfig = function()
         })
 
         require('aerial').on_attach(client, bufnr)
+
+        -- add hover diagnostic after nvim 0.7
+        vim.api.nvim_create_autocmd('CursorHold', {
+            buffer = bufnr,
+            callback = function()
+                vim.diagnostic.open_float({
+                    focusable = false,
+                    close_events = { 'BufLeave', 'CursorMoved', 'InsertEnter', 'FocusLost' },
+                    border = 'rounded',
+                    source = 'always',
+                    prefix = ' ',
+                    scope = 'cursor',
+                })
+            end,
+        })
     end
 
     -- register a global command to Format the buffer
@@ -196,11 +211,11 @@ end
 conf.cmp = require('modules.lsp.config.completion')
 
 conf.luasnip = function()
-    require("luasnip").config.set_config({
+    require('luasnip').config.set_config({
         history = true,
-        updateevents = "TextChanged,TextChangedI",
+        updateevents = 'TextChanged,TextChangedI',
     })
-    require("luasnip/loaders/from_vscode").load()
+    require('luasnip/loaders/from_vscode').load()
 end
 
 conf.autopairs = function()
