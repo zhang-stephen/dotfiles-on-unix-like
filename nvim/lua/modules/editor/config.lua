@@ -244,7 +244,7 @@ end
 
 config.dapui = function()
     require('dapui').setup({
-        icons = { expanded = '+', collapsed = '-' },
+        icons = { expanded = '-', collapsed = '+' },
         mappings = {
             -- Use a table to apply multiple mappings
             expand = { '<CR>', '<2-LeftMouse>' },
@@ -252,6 +252,7 @@ config.dapui = function()
             remove = 'd',
             edit = 'e',
             repl = 'r',
+            toggle = 't',
         },
         sidebar = {
             elements = {
@@ -262,7 +263,7 @@ config.dapui = function()
                 },
                 { id = 'breakpoints', size = 0.25 },
                 { id = 'stacks', size = 0.25 },
-                { id = 'watches', size = 00.25 },
+                { id = 'watches', size = 0.25 },
             },
             size = 40,
             position = 'left',
@@ -307,7 +308,7 @@ function config.dap()
                 return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
             end,
             cwd = '${workspaceFolder}',
-            stopOnEntry = false,
+            stopOnEntry = true,
             args = {},
 
             -- if you change `runInTerminal` to true, you might need to change the yama/ptrace_scope setting:
@@ -352,6 +353,9 @@ function config.dap()
             end,
         },
     }
+
+    -- load user defined .nvim/launch.json
+    require('dap.ext.vscode').load_launchjs('.nvim/launch.json')
 end
 
 return config

@@ -128,6 +128,17 @@ keymap.init = function()
         ['n|<leader>tr'] = map_cr('Telescope lsp_references'):with_silent(),
         ['n|<leader>tt'] = map_cr('TodoTelescope'):with_silent(),
 
+        -- DAP
+        ['n|<F5>'] = map_cr([[lua require('dap').continue()]]):with_silent():with_nowait(),
+        ['n|<F7>'] = map_cr([[lua require('dap').step_over()]]):with_silent():with_nowait(),
+        ['n|<F8>'] = map_cr([[lua require('dap').step_into()]]):with_silent():with_nowait(),
+        ['n|<F9>'] = map_cr([[lua require('dap').step_out()]]):with_silent():with_nowait(),
+        ['n|<leader>db'] = map_cr([[lua require('dap').toggle_breakpoint()]]):with_silent():with_nowait(),
+        ['n|<leader>dc'] = map_cr([[lua require('dap').set_breakpoint(vim.fn.input('breakpoint condition: '))]])
+            :with_silent()
+            :with_nowait(),
+        ['n|<leader>dr'] = map_cr([[lua require('dap').repl.open()]]),
+
         -- Hop
         ['n|<leader>w'] = map_cu('HopWord'):with_nowait():with_silent(),
         ['n|<leader>l'] = map_cu('HopLine'):with_nowait():with_silent(),

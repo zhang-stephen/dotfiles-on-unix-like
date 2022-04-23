@@ -127,6 +127,25 @@ config.lualine = function()
         end
     end
 
+    local extend_sections = {
+        lualine_a = { 'filetype' },
+    }
+
+    local aerial = {
+        sections = extend_sections,
+        filetypes = { 'aerial' },
+    }
+
+    local dapui = {
+        sections = extend_sections,
+        filetypes = {
+            ['dapui_scopes'] = 'DAP Scopes',
+            ['dapui_stacks'] = 'DAP Stacks',
+            ['dapui_breakpoints'] = 'DAP Breakpoints',
+            ['dapui_watches'] = 'DAP Watches',
+        },
+    }
+
     require('lualine').setup({
         options = {
             icons_enabled = true,
@@ -166,7 +185,8 @@ config.lualine = function()
             'nvim-tree',
             'toggleterm',
             'fugitive',
-            'aerial',
+            aerial,
+            dapui,
         },
     })
 end

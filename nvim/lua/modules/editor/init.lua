@@ -110,16 +110,17 @@ editor['edluffy/specs.nvim'] = {
     config = conf.specs,
 }
 editor['rcarriga/nvim-dap-ui'] = {
-    opt = false,
+    opt = true,
+    after = 'nvim-lspconfig',
     config = conf.dapui,
     requires = {
-        { 'mfussenegger/nvim-dap', config = conf.dap },
-        {
-            'Pocco81/DAPInstall.nvim',
-            opt = true,
-            cmd = { 'DIInstall', 'DIUninstall', 'DIList' },
-            -- config = conf.dapinstall,
-        },
+        { 'mfussenegger/nvim-dap', config = conf.dap, module = 'dap' },
+        -- {
+        --     'Pocco81/DAPInstall.nvim',
+        --     opt = true,
+        --     cmd = { 'DIInstall', 'DIUninstall', 'DIList' },
+        --     -- config = conf.dapinstall,
+        -- },
     },
 }
 

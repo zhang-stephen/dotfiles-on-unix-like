@@ -50,7 +50,7 @@ ui['lukas-reineke/indent-blankline.nvim'] = {
 }
 ui['akinsho/nvim-bufferline.lua'] = {
     opt = true,
-    event = 'BufRead',
+    event = { 'BufReadPre', 'BufNewFile' },
     branch = 'main',
     config = conf.bufferline,
 }
