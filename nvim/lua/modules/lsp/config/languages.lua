@@ -5,6 +5,7 @@ return function()
     local util = require('lspconfig.util')
     local installer = require('nvim-lsp-installer')
     local capabilities = require('vim.lsp.protocol').make_client_capabilities()
+    local servers_path = vim.fn.stdpath('data') .. '/lsp_servers'
 
     local custom_attach = function(client, bufnr)
         require('lsp_signature').on_attach({
@@ -42,7 +43,6 @@ return function()
 
     -- language servers managed by nvim-lsp-installer
     local servers = {
-        -- lsp servers managed by nvim-lsp-installer
         ['sumneko_lua'] = {
             settings = {
                 Lua = {
@@ -65,7 +65,10 @@ return function()
                         callSnippet = 'Disable',
                     },
                 },
-            }
+            },
+            cmd = {
+                string.format('%s/sumneko_lua/extension/server/bin/lua-language-server', servers_path),
+            },
         },
 
         ['jsonls'] = {
@@ -78,15 +81,29 @@ return function()
                         },
                     },
                 },
-            }
+            },
+            cmd = {
+                string.format('%s/jsonls/node_modules/.bin/vscode-json-language-server', servers_path),
+                string.format('%s/jsonls/node_modules/.bin/vscode-eslint-language-server', servers_path),
+                string.format('%s/jsonls/node_modules/.bin/vscode-html-language-server', servers_path),
+                string.format('%s/jsonls/node_modules/.bin/vscode-css-language-server', servers_path),
+            },
         },
 
-        ['bashls'] = {},
+        ['bashls'] = {
+            cmd = {
+                string.format('%s/bash/node_modules/.bin/bash-language-server', servers_path),
+            }
+        },
 
         ['cmake'] = {},
 
         -- python3
-        ['pyright'] = {},
+        ['pyright'] = {
+            cmd = {
+                string.format('%s/python/node_modules/.bin/pyright-langserver', servers_path),
+            }
+        },
 
         -- toml
         ['taplo'] = {},
