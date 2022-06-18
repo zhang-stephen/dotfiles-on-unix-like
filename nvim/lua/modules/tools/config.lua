@@ -128,6 +128,8 @@ config.notify = function()
     notify.setup({
         stages = 'slide',
         timeout = 2000, -- 2.0s
+        background_color = '#121212',
+        fps = 60,
         render = function(bufnr, notif, highlights)
             if notif.title[1] == '' then
                 return notify_renderers.minimal(bufnr, notif, highlights)

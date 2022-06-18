@@ -2,6 +2,7 @@ local conf = require('modules.lsp.config')
 
 local lsp = {}
 
+lsp['williamboman/nvim-lsp-installer'] = { opt = false }
 lsp['neovim/nvim-lspconfig'] = {
     opt = true,
     event = { 'BufReadPre', 'BufNewFile' },
@@ -10,10 +11,6 @@ lsp['neovim/nvim-lspconfig'] = {
         'lspconfig.util',
     },
     config = conf.lspconfig,
-}
-lsp['williamboman/nvim-lsp-installer'] = {
-    opt = true,
-    module = 'nvim-lsp-installer',
 }
 lsp['RishabhRD/nvim-lsputils'] = {
     opt = true,
