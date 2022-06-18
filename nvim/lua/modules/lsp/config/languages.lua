@@ -5,7 +5,11 @@ return function()
     local util = require('lspconfig.util')
     local installer = require('nvim-lsp-installer')
     local capabilities = require('vim.lsp.protocol').make_client_capabilities()
-    local servers_path = vim.fn.stdpath('data') .. '/lsp_servers'
+
+    local executable = function(bin)
+        local servers_path = vim.fn.stdpath('data') .. '/lsp_servers'
+        return string.format(servers_path .. '/%s', bin);
+    end
 
     local custom_attach = function(client, bufnr)
         require('lsp_signature').on_attach({
@@ -64,10 +68,13 @@ return function()
                         keywordSnippet = 'Disable',
                         callSnippet = 'Disable',
                     },
+                    runtime = {
+                        version = 'Lua 5.1',
+                    },
                 },
             },
             cmd = {
-                string.format('%s/sumneko_lua/extension/server/bin/lua-language-server', servers_path),
+                executable('sumneko_lua/extension/server/bin/lua-language-server');
             },
         },
 
@@ -83,38 +90,58 @@ return function()
                 },
             },
             cmd = {
-                string.format('%s/jsonls/node_modules/.bin/vscode-json-language-server', servers_path),
-                string.format('%s/jsonls/node_modules/.bin/vscode-eslint-language-server', servers_path),
-                string.format('%s/jsonls/node_modules/.bin/vscode-html-language-server', servers_path),
-                string.format('%s/jsonls/node_modules/.bin/vscode-css-language-server', servers_path),
+                executable('jsonls/node_modules/.bin/vscode-json-language-server'),
+                executable('jsonls/node_modules/.bin/vscode-eslint-language-server'),
+                executable('jsonls/node_modules/.bin/vscode-html-language-server'),
+                executable('jsonls/node_modules/.bin/vscode-css-language-server'),
             },
         },
 
         ['bashls'] = {
             cmd = {
-                string.format('%s/bash/node_modules/.bin/bash-language-server', servers_path),
+                executable('bash/node_modules/.bin/bash-language-server'),
             }
         },
 
-        ['cmake'] = {},
+        ['cmake'] = {
+            cmd = {
+                executable('cmake/venv/bin/cmake-language-server'),
+            },
+        },
 
         -- python3
         ['pyright'] = {
             cmd = {
-                string.format('%s/python/node_modules/.bin/pyright-langserver', servers_path),
+                executable('python/node_modules/.bin/pyright-langserver'),
             }
         },
 
         -- toml
-        ['taplo'] = {},
+        ['taplo'] = {
+            cmd = {
+                executable('taplo/taplo_lsp'),
+            },
+        },
 
-        ['vimls'] = {},
+        ['vimls'] = {
+            cmd = {
+                executable('vim/node_modules/.bin/vim-language-server'),
+            },
+        },
 
         -- xml
-        ['lemminx'] = {},
+        ['lemminx'] = {
+            cmd = {
+                executable('lemminx/lemminx'),
+            },
+        },
 
         -- yaml
-        ['yamlls'] = {},
+        ['yamlls'] = {
+            cmd = {
+                executable('yaml/node_modules/.bin/yaml-language-server'),
+            },
+        },
     }
 
     installer.settings({
@@ -147,6 +174,34 @@ return function()
         end
     end
 
+    local which_c_cpp_server = function()
+        -- default c/c++ language server is MaskRay/ccls
+        -- only use llvm/clangd if one of following conditions is fulfilled:
+        -- 1. if environment variable `LSP_USE_LLVM_CLANGD`were set,
+        -- 2. single file mode(ccls doesn't support single file mode)
+        -- 3. if .clangd exists in project root but .ccls doesn't exist
+        local start_path = vim.api.nvim_buf_get_name(0)
+
+        -- TODO: return nil if start_path is not filetype of  c/c++/obj-c.
+        -- HACK: need more verification, e.g. first buffer is not c/c++/obj-c but the second on is. I'm not sure what will happen.
+
+        local root_dir = util.root_pattern('.git/', '.ccls', '.clangd', 'compile_commands.json')(start_path)
+
+        if vim.env['LSP_USE_LLVM_CLANGD'] then return 'clangd' end
+
+        if root_dir == nil then
+            return 'clangd'
+        else
+            if not vim.fn.filereadable(string.format('%s/.ccls', root_dir)) then
+                return 'clangd'
+            end
+        end
+
+        return 'ccls'
+    end
+
+    -- C/C++ language servers aren't managed by nvim-lsp-installer
+    -- TODO: integrate ccls into modules.lsp
     local c_cpp_servers = {
         ['clangd'] = {
             -- users might have to create `.clangd` under the root path of projects to configure it
@@ -193,6 +248,6 @@ return function()
         },
     }
 
-    local selected = vim.env['LSP_USE_LLVM_CLANGD'] and 'clangd' or 'ccls'
+    local selected = which_c_cpp_server()
     lsp[selected].setup(c_cpp_servers[selected])
 end

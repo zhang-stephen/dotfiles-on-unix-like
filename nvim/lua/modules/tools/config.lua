@@ -130,11 +130,11 @@ config.notify = function()
         timeout = 2000, -- 2.0s
         background_color = '#121212',
         fps = 60,
-        render = function(bufnr, notif, highlights)
+        render = function(bufnr, notif, ...)
             if notif.title[1] == '' then
-                return notify_renderers.minimal(bufnr, notif, highlights)
+                return notify_renderers.minimal(bufnr, notif, ...)
             else
-                return notify_renderers.default(bufnr, notif, highlights)
+                return notify_renderers.default(bufnr, notif, ...)
             end
         end,
     })
