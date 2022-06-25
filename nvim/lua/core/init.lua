@@ -14,13 +14,13 @@ end
 core.copy_mode_toggle = function()
     if not _G.copy_wt then
         _G.copy_wt = true
-        vim.api.nvim_command [[set nonumber norelativenumber signcolumn=no]]
+        vim.api.nvim_command([[set nonumber norelativenumber signcolumn=no]])
     else
         _G.copy_wt = false
-        vim.api.nvim_command [[set number relativenumber signcolumn=yes:2]]
+        vim.api.nvim_command([[set number relativenumber signcolumn=yes:2]])
     end
 
-    vim.api.nvim_command [[IndentBlanklineToggle]]
+    vim.api.nvim_command([[IndentBlanklineToggle]])
 end
 
 function core.setup()

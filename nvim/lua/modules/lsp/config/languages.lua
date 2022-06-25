@@ -8,7 +8,7 @@ return function()
 
     local executable = function(bin)
         local servers_path = vim.fn.stdpath('data') .. '/lsp_servers'
-        return string.format(servers_path .. '/%s', bin);
+        return string.format(servers_path .. '/%s', bin)
     end
 
     local custom_attach = function(client, bufnr)
@@ -74,7 +74,7 @@ return function()
                 },
             },
             cmd = {
-                executable('sumneko_lua/extension/server/bin/lua-language-server');
+                executable('sumneko_lua/extension/server/bin/lua-language-server'),
             },
         },
 
@@ -91,16 +91,14 @@ return function()
             },
             cmd = {
                 executable('jsonls/node_modules/.bin/vscode-json-language-server'),
-                executable('jsonls/node_modules/.bin/vscode-eslint-language-server'),
-                executable('jsonls/node_modules/.bin/vscode-html-language-server'),
-                executable('jsonls/node_modules/.bin/vscode-css-language-server'),
+                '--stdio',
             },
         },
 
         ['bashls'] = {
             cmd = {
                 executable('bash/node_modules/.bin/bash-language-server'),
-            }
+            },
         },
 
         ['cmake'] = {
@@ -111,9 +109,20 @@ return function()
 
         -- python3
         ['pyright'] = {
+            settings = {
+                python = {
+                    analysis = {
+                        diagnosticSeverityOverrides = {
+                            reportUnusedVariable = 'information',
+                        },
+                    },
+                },
+            },
+            single_file_support = true,
             cmd = {
                 executable('python/node_modules/.bin/pyright-langserver'),
-            }
+                '--stdio',
+            },
         },
 
         -- toml
@@ -177,7 +186,7 @@ return function()
     local which_c_cpp_server = function()
         -- default c/c++ language server is MaskRay/ccls
         -- only use llvm/clangd if one of following conditions is fulfilled:
-        -- 1. if environment variable `LSP_USE_LLVM_CLANGD`were set,
+        -- 1. if environment variable `LSP_USE_LLVM_CLANGD` were set,
         -- 2. single file mode(ccls doesn't support single file mode)
         -- 3. if .clangd exists in project root but .ccls doesn't exist
         local start_path = vim.api.nvim_buf_get_name(0)
@@ -187,11 +196,14 @@ return function()
 
         local root_dir = util.root_pattern('.git/', '.ccls', '.clangd', 'compile_commands.json')(start_path)
 
-        if vim.env['LSP_USE_LLVM_CLANGD'] then return 'clangd' end
+        if vim.env['LSP_USE_LLVM_CLANGD'] then
+            return 'clangd'
+        end
 
         if root_dir == nil then
             return 'clangd'
         else
+            -- ccls has higher priotity if both ccls and clangd were configured.
             if not vim.fn.filereadable(string.format('%s/.ccls', root_dir)) then
                 return 'clangd'
             end
@@ -228,6 +240,7 @@ return function()
             -- refers to: https://github.com/MaskRay/ccls/wiki/Project-Setup#ccls-file
             -- use `ln -sf` to place compile_commands.json into project root dir
             init_options = {
+                -- all init options could be found in ccls/src/config.hh
                 compilationDatabaseDirectory = './',
                 index = {
                     threads = 12,
@@ -240,6 +253,11 @@ return function()
                 cache = {
                     directory = vim.env['HOME'] .. '/.cache/ccls/',
                     format = 'binary',
+                },
+                completion = {
+                    -- WARN: it might slow donw the lsp services!
+                    -- INFO: to silent the warning of drop old requests
+                    dropOldRequests = false,
                 },
             },
             root_dir = util.root_pattern('.git/', '.ccls', 'compile_commands.json'),
