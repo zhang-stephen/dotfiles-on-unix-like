@@ -1,0 +1,174 @@
+{
+    "languages": {
+        "cc": {
+            "name": "clangd",
+            "managed_by": {
+                "lsp_installer": false
+            },
+            "config": {
+                "cmd": [
+                    "clangd",
+                    "--enable-config",
+                    "--background-index",
+                    "--clang-tidy",
+                    "--malloc-trim",
+                    "--log=error",
+                    "--header-insertion=iwyu",
+                    "--pch-storage=memory",
+                    "-j=12"
+                ],
+                "root_dir": [
+                    ".git/",
+                    ".clangd",
+                    "compile_commands.json"
+                ],
+                "single_file_support": true
+            }
+        },
+        "lua": {
+            "name": "sumneko_lua",
+            "managed_by": {
+                "lsp_installer": false
+            },
+            "config": {
+                "settings": {
+                    "Lua": {
+                        "diagnostics": {
+                            "globals": [
+                                "vim",
+                                "packer_plugins"
+                            ]
+                        },
+                        "workspace": {
+                            "library": [
+                                "$VIMRUNTIME/lua",
+                                "$VIMRUNTIME/lua/vim/lsp"
+                            ],
+                            "maxPreload": 100000,
+                            "preloadFileSize": 10000
+                        },
+                        "telemetry": {
+                            "enable": false
+                        },
+                        "completion": {
+                            "keywordSnippet": "Disable",
+                            "callSnippet": "Disable"
+                        },
+                        "runtime": {
+                            "version": "Lua 5.1"
+                        }
+                    }
+                },
+                "cmd": [
+                    "sumneko_lua/extension/server/bin/lua-language-server"
+                ]
+            }
+        },
+        "json": {
+            "name": "jsonls",
+            "managed_by": {
+                "lsp_installer": true
+            },
+            "config": {
+                "settings": {
+                    "json": {
+                        "schemas": [
+                            {
+                                "fileMatch": [
+                                    "package.json"
+                                ],
+                                "url": "https://json.schemastore.org/package.json"
+                            }
+                        ]
+                    }
+                },
+                "cmd": [
+                    "jsonls/node_modules/.bin/vscode-json-language-server",
+                    "--stdio"
+                ]
+            }
+        },
+        "shell": {
+            "name": "bashls",
+            "managed_by": {
+                "lsp_installer": true
+            },
+            "config": {
+                "cmd": [
+                    "bash/node_modules/.bin/bash-language-server"
+                ]
+            }
+        },
+        "cmake": {
+            "name": "cmake",
+            "managed_by": {
+                "lsp_installer": true
+            },
+            "config": {
+                "cmd": [
+                    "cmake/venv/bin/cmake-language-server"
+                ]
+            }
+        },
+        "python3": {
+            "name": "pyright",
+            "managed_by": {
+                "lsp_installer": true
+            },
+            "config": {
+                "single_file_support": true,
+            "settings": {
+                "python.analysis.diagnosticsSeverityOverrides.reportUnusedVariable": "information"
+            },
+            "cmd": [
+                "python/node_modules/.bin/pyright-langserver",
+                "--stdio"
+            ]
+        }
+    },
+    "toml": {
+        "name": "taplo",
+        "managed_by": {
+            "lsp_installer": true
+        },
+            "config": {
+            "cmd": [
+                "taplo/taplo_lsp"
+            ]
+        }
+    },
+    "viml": {
+        "name": "vimls",
+        "managed_by": {
+            "lsp_installer": true
+        },
+        "config": {
+            "cmd": [
+                "vim/node_modules/.bin/vim-language-server"
+            ]
+        }
+    },
+    "xml": {
+        "name": "lemminx",
+        "managed_by": {
+            "lsp_installer": true
+        },
+        "config": {
+            "cmd": [
+                "lemminx/lemminx"
+            ]
+        }
+    },
+    "yaml": {
+        "name": "yamlls",
+        "managed_by": {
+            "lsp_installer": true
+        },
+        "config": {
+            "cmd": [
+                "yaml/node_modules/.bin/yaml-language-server"
+            ]
+        }
+    }
+}
+}

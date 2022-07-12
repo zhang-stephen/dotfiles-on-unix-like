@@ -2,7 +2,10 @@ local conf = require('modules.lsp.config')
 
 local lsp = {}
 
-lsp['williamboman/nvim-lsp-installer'] = { opt = false }
+lsp['williamboman/nvim-lsp-installer'] = {
+    opt = false,
+    config = conf.lsp_installer,
+}
 lsp['neovim/nvim-lspconfig'] = {
     opt = true,
     event = { 'BufReadPre', 'BufNewFile' },
@@ -10,7 +13,6 @@ lsp['neovim/nvim-lspconfig'] = {
         'lspconfig',
         'lspconfig.util',
     },
-    config = conf.lspconfig,
 }
 lsp['RishabhRD/nvim-lsputils'] = {
     opt = true,
@@ -22,6 +24,11 @@ lsp['kosayoda/nvim-lightbulb'] = {
     opt = true,
     after = 'nvim-lspconfig',
     config = conf.lightbulb,
+}
+lsp['zhang-stephen/nvim-lsp-loader'] = {
+    after = 'nvim-lspconfig',
+    branch = 'dev/allow_nested_keys',
+    config = conf.lsp_loader,
 }
 
 lsp['ray-x/lsp_signature.nvim'] = { opt = true, after = 'nvim-lspconfig' }

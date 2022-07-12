@@ -1,7 +1,18 @@
 local log = require('utility.logger')
 local conf = {}
 
-conf.lspconfig = require('modules.lsp.config.languages')
+conf.lsp_installer = function()
+    require('nvim-lsp-installer').setup({
+        log_level = vim.log.levels.DEBUG,
+        ui = {
+            icons = {
+                server_installed = '✓',
+                server_pending = '➜',
+                server_uninstalled = '✗',
+            },
+        },
+    })
+end
 
 conf.lspsaga = function()
     require('lspsaga').init_lsp_saga({
@@ -25,6 +36,48 @@ end
 
 conf.lightbulb = function()
     vim.api.nvim_command([[ autocmd CursorHold,CursorHoldI * lua require('nvim-lightbulb').update_lightbulb() ]])
+end
+
+conf.lsp_loader = function()
+    require('nvim-lsp-loader').setup({
+        mode = 'user-first',
+        default_config_path = vim.env['HOME'] .. '/.config/nvim/languages.json',
+        nested_json_keys = true,
+
+        on_attach = function(client, bufnr)
+            require('lsp_signature').on_attach({
+                bind = true,
+                use_lspsaga = false,
+                floating_window = true,
+                fix_pos = true,
+                hint_enable = true,
+                hi_parameter = 'Search',
+                handler_opts = { 'double' },
+            })
+
+            require('aerial').on_attach(client, bufnr)
+
+            -- add hover diagnostic after nvim 0.7
+            vim.api.nvim_create_autocmd('CursorHold', {
+                buffer = bufnr,
+                callback = function()
+                    vim.diagnostic.open_float({
+                        focusable = false,
+                        close_events = { 'BufLeave', 'CursorMoved', 'InsertEnter', 'FocusLost' },
+                        border = 'rounded',
+                        source = 'always',
+                        prefix = ' ',
+                        scope = 'cursor',
+                    })
+                end,
+            })
+        end,
+
+        make_capabilities = function()
+            local capabilities = require('vim.lsp.protocol').make_client_capabilities()
+            return require('cmp_nvim_lsp').update_capabilities(capabilities)
+        end,
+    })
 end
 
 conf.cmp = require('modules.lsp.config.completion')
