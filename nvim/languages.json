@@ -28,7 +28,7 @@
         "lua": {
             "name": "sumneko_lua",
             "managed_by": {
-                "lsp_installer": false
+                "lsp_installer": true
             },
             "config": {
                 "settings": {
