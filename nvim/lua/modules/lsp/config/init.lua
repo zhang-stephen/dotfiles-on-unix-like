@@ -1,9 +1,8 @@
 local log = require('utility.logger')
 local conf = {}
 
-conf.lsp_installer = function()
-    require('nvim-lsp-installer').setup({
-        log_level = vim.log.levels.DEBUG,
+conf.mason = function()
+    require('mason').setup({
         ui = {
             icons = {
                 server_installed = '✓',

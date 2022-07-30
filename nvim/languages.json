@@ -3,7 +3,7 @@
         "cc": {
             "name": "clangd",
             "managed_by": {
-                "lsp_installer": false
+                "mason": false
             },
             "config": {
                 "cmd": [
@@ -28,7 +28,7 @@
         "lua": {
             "name": "sumneko_lua",
             "managed_by": {
-                "lsp_installer": true
+                "mason": true
             },
             "config": {
                 "settings": {
@@ -67,7 +67,7 @@
         "json": {
             "name": "jsonls",
             "managed_by": {
-                "lsp_installer": true
+                "mason": true
             },
             "config": {
                 "settings": {
@@ -91,7 +91,7 @@
         "shell": {
             "name": "bashls",
             "managed_by": {
-                "lsp_installer": true
+                "mason": true
             },
             "config": {
                 "cmd": [
@@ -102,7 +102,7 @@
         "cmake": {
             "name": "cmake",
             "managed_by": {
-                "lsp_installer": true
+                "mason": true
             },
             "config": {
                 "cmd": [
@@ -113,7 +113,7 @@
         "python3": {
             "name": "pyright",
             "managed_by": {
-                "lsp_installer": true
+                "mason": true
             },
             "config": {
                 "single_file_support": true,
@@ -129,7 +129,7 @@
     "toml": {
         "name": "taplo",
         "managed_by": {
-            "lsp_installer": true
+            "mason": true
         },
             "config": {
             "cmd": [
@@ -140,7 +140,7 @@
     "viml": {
         "name": "vimls",
         "managed_by": {
-            "lsp_installer": true
+            "mason": true
         },
         "config": {
             "cmd": [
@@ -151,7 +151,7 @@
     "xml": {
         "name": "lemminx",
         "managed_by": {
-            "lsp_installer": true
+            "mason": true
         },
         "config": {
             "cmd": [
@@ -162,7 +162,7 @@
     "yaml": {
         "name": "yamlls",
         "managed_by": {
-            "lsp_installer": true
+            "mason": true
         },
         "config": {
             "cmd": [

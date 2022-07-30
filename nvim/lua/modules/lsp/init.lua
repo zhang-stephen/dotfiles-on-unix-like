@@ -2,10 +2,6 @@ local conf = require('modules.lsp.config')
 
 local lsp = {}
 
-lsp['williamboman/nvim-lsp-installer'] = {
-    opt = false,
-    config = conf.lsp_installer,
-}
 lsp['neovim/nvim-lspconfig'] = {
     opt = true,
     event = { 'BufReadPre', 'BufNewFile' },
@@ -13,6 +9,16 @@ lsp['neovim/nvim-lspconfig'] = {
         'lspconfig',
         'lspconfig.util',
     },
+    config = function()
+        -- register a global command to Format the buffer
+        -- just like coc.nvim
+        -- TODO: use a universial method to replace this command.
+        vim.api.nvim_command([[command! -nargs=0 Format lua vim.lsp.buf.formatting()]])
+    end,
+}
+lsp['williamboman/mason.nvim'] = {
+    after = 'nvim-lspconfig',
+    config = conf.mason,
 }
 lsp['RishabhRD/nvim-lsputils'] = {
     opt = true,
@@ -26,8 +32,7 @@ lsp['kosayoda/nvim-lightbulb'] = {
     config = conf.lightbulb,
 }
 lsp['zhang-stephen/nvim-lsp-loader'] = {
-    after = 'nvim-lspconfig',
-    branch = 'dev/allow_nested_keys',
+    after = 'mason.nvim',
     config = conf.lsp_loader,
 }
 
