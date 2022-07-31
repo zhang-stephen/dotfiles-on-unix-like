@@ -29,9 +29,12 @@ tools['nvim-telescope/telescope-frecency.nvim'] = {
 }
 tools['jvgrootveld/telescope-zoxide'] = { opt = true, after = 'telescope.nvim' }
 tools['thinca/vim-quickrun'] = { opt = true, cmd = { 'QuickRun', 'Q' } }
-tools['folke/which-key.nvim'] = {
-    keys = vim.g.mapleader,
-    config = conf.which_key,
+tools['mrjones2014/legendary.nvim'] = {
+    opt = false,
+    requires = {
+        { 'stevearc/dressing.nvim', config = conf.dressing }
+    },
+    config = conf.legendary,
 }
 tools['folke/trouble.nvim'] = {
     opt = true,

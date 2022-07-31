@@ -5,14 +5,6 @@ ui['kyazdani42/nvim-web-devicons'] = {
     opt = false,
     config = conf.devicon,
 }
-ui['folke/tokyonight.nvim'] = {
-    opt = false,
-    config = conf.tokyonight,
-}
-ui['sainnhe/gruvbox-material'] = {
-    opt = false,
-    config = conf.gruvbox_material,
-}
 ui['catppuccin/nvim'] = {
     opt = false,
     as = 'catppuccin',
@@ -57,6 +49,11 @@ ui['akinsho/nvim-bufferline.lua'] = {
 ui['dstein64/nvim-scrollview'] = {
     opt = true,
     event = 'BufRead',
+}
+ui['norcalli/nvim-colorizer.lua'] = {
+    opt = true,
+    event = 'BufReadPre',
+    config = conf.colorizer,
 }
 
 return ui

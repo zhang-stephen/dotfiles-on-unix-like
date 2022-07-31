@@ -65,6 +65,9 @@ editor['hrsh7th/vim-eft'] = { opt = false }
 editor['romainl/vim-cool'] = {
     opt = true,
     event = { 'CursorMoved', 'InsertEnter' },
+    config = function ()
+        vim.g.CoolTotalMathes = 1
+    end
 }
 editor['phaazon/hop.nvim'] = {
     opt = true,
@@ -94,11 +97,6 @@ editor['akinsho/nvim-toggleterm.lua'] = {
     config = conf.toggleterm,
 }
 editor['numtostr/FTerm.nvim'] = { opt = true, event = 'BufRead' }
-editor['rmagatti/auto-session'] = {
-    opt = true,
-    cmd = { 'SaveSession', 'RestoreSession', 'DeleteSession' },
-    config = conf.auto_session,
-}
 editor['tpope/vim-fugitive'] = { opt = true, cmd = { 'Git', 'G' } }
 editor['famiu/bufdelete.nvim'] = {
     opt = true,
@@ -109,19 +107,4 @@ editor['edluffy/specs.nvim'] = {
     event = 'CursorMoved',
     config = conf.specs,
 }
--- editor['rcarriga/nvim-dap-ui'] = {
---     opt = true,
---     after = 'nvim-lspconfig',
---     config = conf.dapui,
---     requires = {
---         { 'mfussenegger/nvim-dap', config = conf.dap, module = 'dap' },
---         -- {
---         --     'Pocco81/DAPInstall.nvim',
---         --     opt = true,
---         --     cmd = { 'DIInstall', 'DIUninstall', 'DIList' },
---         --     -- config = conf.dapinstall,
---         -- },
---     },
--- }
-
 return editor

@@ -110,15 +110,15 @@ config.wilder = function()
         ]])
 end
 
-config.which_key = function()
-    require('which-key').setup({
-        plugins = {
-            spelling = {
-                enabled = true,
-                suggestions = 10,
-            },
-        },
+config.legendary = function()
+    require('legendary').setup({
+        include_builtin = true,
+        include_legendary_cmds = true,
     })
+end
+
+config.dressing = function()
+    require('dressing').setup()
 end
 
 config.notify = function()

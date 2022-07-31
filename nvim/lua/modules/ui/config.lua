@@ -45,22 +45,6 @@ config.alpha_nvim = function()
     ]])
 end
 
-config.tokyonight = function()
-    vim.g.tokyonight_italic_keywords = true
-    vim.g.tokyonight_italic_comments = false
-    vim.g.tokyonight_transparent = true
-    vim.g.tokyonight_transparent_sidebar = true
-    vim.g.tokyonight_style = 'storm'
-end
-
-config.gruvbox_material = function()
-    vim.g.gruvbox_material_disable_italic_comment = 1
-    vim.g.gruvbox_material_enable_bold = 1
-    vim.g.gruvbox_material_enable_italic = 1
-    vim.g.gruvbox_material_transparent_background = 1
-    vim.g.gruvbox_material_better_performance = 1
-end
-
 config.catppuccin = function()
     require('catppuccin').setup({
         transparent_background = true,
@@ -200,7 +184,6 @@ config.nvim_tree = function()
         open_on_tab = false,
         hijack_cursor = true,
         update_cwd = false,
-        update_to_buf_dir = { enable = true, auto_open = true },
         diagnostics = {
             enable = false,
             icons = { hint = '', info = '', warning = '', error = '' },
@@ -218,7 +201,7 @@ config.nvim_tree = function()
             height = 30,
             hide_root_folder = false,
             side = 'left',
-            auto_resize = false,
+            adaptive_size = true,
             mappings = { custom_only = false, list = {} },
             number = false,
             relativenumber = false,
@@ -359,6 +342,17 @@ config.indent_blankline = function()
     vim.api.nvim_command('autocmd BufReadPre * IndentBlanklineEnable')
     vim.api.nvim_command('autocmd BufNewFile * IndentBlanklineEnable')
     vim.api.nvim_command('autocmd CursorMoved * IndentBlanklineRefresh')
+end
+
+config.colorizer = function()
+    require('colorizer').setup({
+        '*'
+    }, {
+        mode = 'background',
+        RGB = true,
+        RRGGBB = true,
+        names = true,
+    })
 end
 
 return config
