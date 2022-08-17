@@ -32,7 +32,7 @@ tools['thinca/vim-quickrun'] = { opt = true, cmd = { 'QuickRun', 'Q' } }
 tools['mrjones2014/legendary.nvim'] = {
     opt = false,
     requires = {
-        { 'stevearc/dressing.nvim', config = conf.dressing }
+        { 'stevearc/dressing.nvim', config = conf.dressing },
     },
     config = conf.legendary,
 }

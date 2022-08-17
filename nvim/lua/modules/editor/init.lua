@@ -15,6 +15,10 @@ editor['folke/todo-comments.nvim'] = {
     opt = false,
     config = conf.todo_comment,
 }
+editor['chentoast/marks.nvim'] = {
+    opt = false,
+    config = conf.marks,
+}
 editor['stevearc/aerial.nvim'] = {
     opt = true,
     cmd = { 'AerialToggle' },
@@ -65,13 +69,12 @@ editor['hrsh7th/vim-eft'] = { opt = false }
 editor['romainl/vim-cool'] = {
     opt = true,
     event = { 'CursorMoved', 'InsertEnter' },
-    config = function ()
+    config = function()
         vim.g.CoolTotalMathes = 1
-    end
+    end,
 }
 editor['phaazon/hop.nvim'] = {
     opt = true,
-    branch = 'v1',
     cmd = {
         'HopLine',
         'HopLineStart',

@@ -9,12 +9,7 @@ lsp['neovim/nvim-lspconfig'] = {
         'lspconfig',
         'lspconfig.util',
     },
-    config = function()
-        -- register a global command to Format the buffer
-        -- just like coc.nvim
-        -- TODO: use a universial method to replace this command.
-        vim.api.nvim_command([[command! -nargs=0 Format lua vim.lsp.buf.formatting()]])
-    end,
+    config = conf.lspconfig,
 }
 lsp['williamboman/mason.nvim'] = {
     after = 'nvim-lspconfig',
@@ -25,7 +20,11 @@ lsp['RishabhRD/nvim-lsputils'] = {
     after = 'nvim-lspconfig',
     config = conf.lsputils,
 }
-lsp['tami5/lspsaga.nvim'] = { opt = true, after = 'nvim-lspconfig' }
+lsp['kkharji/lspsaga.nvim'] = {
+    opt = true,
+    after = 'nvim-lspconfig',
+    config = conf.lspsaga,
+}
 lsp['kosayoda/nvim-lightbulb'] = {
     opt = true,
     after = 'nvim-lspconfig',

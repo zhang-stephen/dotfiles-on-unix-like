@@ -1,6 +1,21 @@
 local log = require('utility.logger')
 local conf = {}
 
+conf.lspconfig = function()
+    -- register a global command to Format the buffer
+    -- just like coc.nvim
+    -- TODO: use a universial method to replace this command.
+    vim.api.nvim_command([[command! -nargs=0 Format lua vim.lsp.buf.formatting()]])
+
+    -- set signs for diagnostic
+    -- default priority is 10
+    local signs = { Error = ' ', Warn = ' ', Hint = ' ', Info = ' ' }
+    for type, icon in pairs(signs) do
+        local hl = 'DiagnosticSign' .. type
+        vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+    end
+end
+
 conf.mason = function()
     require('mason').setup({
         ui = {
@@ -14,11 +29,10 @@ conf.mason = function()
 end
 
 conf.lspsaga = function()
-    require('lspsaga').init_lsp_saga({
-        error_sign = '',
-        warn_sign = '',
-        hint_sign = '',
-        infor_sign = '',
+    require('lspsaga').setup({
+        code_action_prompt = {
+            enable = false,
+        },
     })
 end
 
@@ -60,7 +74,7 @@ conf.lsp_loader = function()
             vim.api.nvim_create_autocmd('CursorHold', {
                 buffer = bufnr,
                 callback = function()
-                    vim.diagnostic.open_float({
+                    vim.diagnostic.open_float(nil, {
                         focusable = false,
                         close_events = { 'BufLeave', 'CursorMoved', 'InsertEnter', 'FocusLost' },
                         border = 'rounded',

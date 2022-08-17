@@ -346,7 +346,7 @@ end
 
 config.colorizer = function()
     require('colorizer').setup({
-        '*'
+        '*',
     }, {
         mode = 'background',
         RGB = true,
